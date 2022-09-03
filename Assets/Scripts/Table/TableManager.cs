@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
-public class TableManager
+public class TableManager : MonoBehaviour
 {
     public Table_Camera m_Camera = new Table_Camera();
 

@@ -17,7 +17,6 @@ public class Managers : MonoBehaviour
     SceneManagerEx _scene = new SceneManagerEx();
     SoundManager _sound = new SoundManager();
     UIManager _ui = new UIManager();
-    TableManager _table = new TableManager();
 
     public static DataManager Data { get { return Instance._data; } }
     public static PoolManager Pool { get { return Instance._pool; } }
@@ -25,7 +24,6 @@ public class Managers : MonoBehaviour
     public static SceneManagerEx Scene { get { return Instance._scene; } }
     public static SoundManager Sound { get { return Instance._sound; } }
     public static UIManager UI { get { return Instance._ui; } }
-    public static TableManager Table { get { return Instance._table; } }
 	#endregion
 
 	void Start()

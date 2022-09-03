@@ -3,7 +3,7 @@ using UnityEngine;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 
-public class Table_Base 
+public class Table_Base
 {
     string GetTablePath()
     {
@@ -30,7 +30,7 @@ public class Table_Base
         stream.Close();
     }
 
-    protected void Save_Binary(string _strName, Object _obj)
+    protected void Save_Binary(string _strName, object _obj)
     {
         string strpath = GetTablePath() + "/Table/Resources/" + "Table_" + _strName + ".txt";
 
