@@ -6,7 +6,6 @@ using static Define;
 public class PlayerController : MonoBehaviour
 {
     CreatureState _state = CreatureState.Idle;
-	MoveDir _dir;
 
     private float _moveSpeed = 10.0f;
     private float jumpHeight = 1.0f;
@@ -35,11 +34,11 @@ public class PlayerController : MonoBehaviour
 
 		if (State == CreatureState.Idle)
 		{
-			_animator.Play("IDLE");
+			_animator.Play("Idle_Normal_SwordAndShield");
 		}
 		else if (State == CreatureState.Move)
 		{
-			_animator.Play("Move");
+			_animator.Play("MoveFWD_Normal_InPlace_SwordAndShield");
 		}
 		else if (State == CreatureState.Skill)
 		{
@@ -118,6 +117,7 @@ public class PlayerController : MonoBehaviour
 		Vector3 dir = new Vector3(x_Axis, 0, z_Axis);
 
 		transform.position += dir * _moveSpeed * Time.deltaTime;
+		transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(dir), 20 * Time.deltaTime);
 
 		if (Input.GetKeyDown(KeyCode.Space))
 		{

@@ -4,12 +4,9 @@ using UnityEngine;
 
 public class Define
 {
-    public enum MoveDir
+    public enum CameraMode
     {
-        Up,
-        Down,
-        Left,
-        Right
+        QuarterView,
     }
 
     public enum CreatureState

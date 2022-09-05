@@ -5,26 +5,40 @@ using UnityEngine;
 public class CameraController : MonoBehaviour
 {
     [SerializeField]
-    GameObject Target;               // 카메라가 따라다닐 타겟
+    Define.CameraMode _mode = Define.CameraMode.QuarterView;
 
-    public float offsetX = 0.0f;            // 카메라의 x좌표
-    public float offsetY = 10.0f;           // 카메라의 y좌표
-    public float offsetZ = -10.0f;          // 카메라의 z좌표
+    [SerializeField]
+    Vector3 _delta = new Vector3(0.0f, 6.0f, -5.0f);
 
-    public float CameraSpeed = 10.0f;       // 카메라의 속도
-    Vector3 TargetPos;                      // 타겟의 위치
+    [SerializeField]
+    GameObject _player = null;
 
-    // Update is called once per frame
-    void FixedUpdate()
+    void Start()
     {
-        // 타겟의 x, y, z 좌표에 카메라의 좌표를 더하여 카메라의 위치를 결정
-        TargetPos = new Vector3(
-            Target.transform.position.x + offsetX,
-            Target.transform.position.y + offsetY,
-            Target.transform.position.z + offsetZ
-            );
 
-        // 카메라의 움직임을 부드럽게 하는 함수(Lerp)
-        transform.position = Vector3.Lerp(transform.position, TargetPos, Time.deltaTime * CameraSpeed);
+    }
+
+    void LateUpdate()
+    {
+        if (_mode == Define.CameraMode.QuarterView)
+        {
+            RaycastHit hit;
+            if (Physics.Raycast(_player.transform.position, _delta, out hit, _delta.magnitude, LayerMask.GetMask("Wall")))
+            {
+                float dist = (hit.point - _player.transform.position).magnitude * 0.8f;
+                transform.position = _player.transform.position + _delta.normalized * dist;
+            }
+            else
+            {
+                transform.position = _player.transform.position + _delta;
+                transform.LookAt(_player.transform);
+            }
+        }
+    }
+
+    public void SetQuarterView(Vector3 delta)
+    {
+        _mode = Define.CameraMode.QuarterView;
+        _delta = delta;
     }
 }
