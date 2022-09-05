@@ -1,44 +1,127 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static Define;
 
 public class PlayerController : MonoBehaviour
 {
-    private CharacterController controller;
-    private Vector3 playerVelocity;
-    private bool groundedPlayer;
-    private float playerSpeed = 10.0f;
+    CreatureState _state = CreatureState.Idle;
+	MoveDir _dir;
+
+    private float _moveSpeed = 10.0f;
     private float jumpHeight = 1.0f;
-    private float gravityValue = -9.81f;
 
-    private void Start()
+    Rigidbody _rigid;
+    CapsuleCollider _capsule;
+	Animator _animator = null;
+
+	public virtual CreatureState State
+	{
+		get { return _state; }
+		set
+		{
+			if (_state == value)
+				return;
+
+			_state = value;
+			UpdateAnimation();
+		}
+	}
+
+	protected virtual void UpdateAnimation()
+	{
+		if (_animator == null)
+			return;
+
+		if (State == CreatureState.Idle)
+		{
+			_animator.Play("IDLE");
+		}
+		else if (State == CreatureState.Move)
+		{
+			_animator.Play("Move");
+		}
+		else if (State == CreatureState.Skill)
+		{
+			_animator.Play("Skill");
+		}
+		else if (State == CreatureState.Dead)
+		{
+			_animator.Play("Dead");
+		}
+	}
+
+	private void Start()
     {
-        controller = gameObject.AddComponent<CharacterController>();
+		Init();
+
+	}
+
+	protected virtual void Init()
+	{
+		_rigid = GetComponent<Rigidbody>();
+		_capsule = GetComponent<CapsuleCollider>();
+		_animator = GetComponent<Animator>();
+
+		UpdateAnimation();
+	}
+
+	void Update()
+    {
+        UpdateController();
     }
 
-    void Update()
+    protected virtual void UpdateController()
     {
-        groundedPlayer = controller.isGrounded;
-        if (groundedPlayer && playerVelocity.y < 0)
+        switch (State)
         {
-            playerVelocity.y = 0f;
+            case CreatureState.Idle:
+				GetInputKey();
+				UpdateIdle();
+				break;
+            case CreatureState.Move:
+				GetInputKey();
+				UpdateMove();
+				break;
+            case CreatureState.Skill:
+                break;
+            case CreatureState.Dead:
+                break;
+            default:
+                break;
         }
-
-        Vector3 move = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
-        controller.Move(move * Time.deltaTime * playerSpeed);
-
-        if (move != Vector3.zero)
-        {
-            gameObject.transform.forward = move;
-        }
-
-        // Changes the height position of the player..
-        if (Input.GetButtonDown("Jump") && groundedPlayer)
-        {
-            playerVelocity.y += Mathf.Sqrt(jumpHeight * -3.0f * gravityValue);
-        }
-
-        playerVelocity.y += gravityValue * Time.deltaTime;
-        controller.Move(playerVelocity * Time.deltaTime);
     }
+
+	void GetInputKey()
+    {
+		if (Input.anyKey)
+		{
+			State = CreatureState.Move;
+		}
+        else
+        {
+			State = CreatureState.Idle;
+        }
+	}
+
+
+    protected virtual void UpdateIdle()
+    {
+
+    }
+
+	protected virtual void UpdateMove()
+    {
+		float x_Axis = Input.GetAxisRaw("Horizontal");
+		float z_Axis = Input.GetAxisRaw("Vertical");
+
+		Vector3 dir = new Vector3(x_Axis, 0, z_Axis);
+
+		transform.position += dir * _moveSpeed * Time.deltaTime;
+
+		if (Input.GetKeyDown(KeyCode.Space))
+		{
+			transform.Translate(Vector3.up * jumpHeight);
+		}
+	}
 }

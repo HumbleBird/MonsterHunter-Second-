@@ -4,6 +4,22 @@ using UnityEngine;
 
 public class Define
 {
+    public enum MoveDir
+    {
+        Up,
+        Down,
+        Left,
+        Right
+    }
+
+    public enum CreatureState
+    {
+        Idle,
+        Move,
+        Skill,
+        Dead
+    }
+
     public enum Scene
     {
         Unknown,
