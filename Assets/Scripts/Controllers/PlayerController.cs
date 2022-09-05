@@ -124,4 +124,14 @@ public class PlayerController : MonoBehaviour
 			transform.Translate(Vector3.up * jumpHeight);
 		}
 	}
+
+	protected virtual void UpdateSkill()
+    {
+
+    }
+
+	void OnHitEvent()
+    {
+
+    }
 }
