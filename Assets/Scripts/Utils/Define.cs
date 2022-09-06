@@ -4,6 +4,13 @@ using UnityEngine;
 
 public class Define
 {
+    public enum SkillType
+    {
+        BasicAttack,
+        StrongAttack,
+        
+    }
+
     public enum CameraMode
     {
         QuarterView,

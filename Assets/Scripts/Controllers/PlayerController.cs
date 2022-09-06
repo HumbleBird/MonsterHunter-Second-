@@ -6,9 +6,11 @@ using static Define;
 public class PlayerController : MonoBehaviour
 {
     CreatureState _state = CreatureState.Idle;
+	SkillType _skillType = SkillType.BasicAttack;
 
-    private float _moveSpeed = 10.0f;
+	private float _moveSpeed = 10.0f;
     private float jumpHeight = 1.0f;
+	private float _attackRange = 2.0f;
 
     Rigidbody _rigid;
     CapsuleCollider _capsule;
@@ -42,7 +44,16 @@ public class PlayerController : MonoBehaviour
 		}
 		else if (State == CreatureState.Skill)
 		{
-			_animator.Play("Skill");
+            switch (_skillType)
+            {
+                case SkillType.BasicAttack:
+				    _animator.Play("Skill");
+                    break;
+				case SkillType.StrongAttack:
+                    break;
+                default:
+                    break;
+            }
 		}
 		else if (State == CreatureState.Dead)
 		{
@@ -83,7 +94,8 @@ public class PlayerController : MonoBehaviour
 				UpdateMove();
 				break;
             case CreatureState.Skill:
-                break;
+				UpdateSkill();
+				break;
             case CreatureState.Dead:
                 break;
             default:
@@ -93,10 +105,12 @@ public class PlayerController : MonoBehaviour
 
 	void GetInputKey()
     {
-		if (Input.anyKey)
-		{
+		if (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.DownArrow) ||
+			Input.GetKey(KeyCode.RightAlt) || Input.GetKey(KeyCode.UpArrow))
 			State = CreatureState.Move;
-		}
+        else if (Input.GetMouseButtonDown(0))
+        {
+        }
         else
         {
 			State = CreatureState.Idle;
@@ -122,16 +136,32 @@ public class PlayerController : MonoBehaviour
 		if (Input.GetKeyDown(KeyCode.Space))
 		{
 			transform.Translate(Vector3.up * jumpHeight);
-		}
-	}
+        }
+    }
 
-	protected virtual void UpdateSkill()
+    protected virtual void UpdateSkill()
+    {
+        if (Input.GetMouseButtonDown(0))
+        {
+            BasicAttack();
+        }
+        else if (Input.GetMouseButtonDown(-1))
+        {
+            StrongAttack();
+        }
+    }
+
+    // 평타
+    void BasicAttack()
+    {
+		
+    }
+
+	// 강한 평타
+	void StrongAttack()
     {
 
     }
 
-	void OnHitEvent()
-    {
 
-    }
 }
