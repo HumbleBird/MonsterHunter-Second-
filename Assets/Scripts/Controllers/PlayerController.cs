@@ -6,27 +6,22 @@ using static Define;
 public class PlayerController : MonoBehaviour
 {
     CreatureState _state = CreatureState.Idle;
-	SkillType _skillType = SkillType.BasicAttack;
+	MoveDir _dir = MoveDir.Idle;
 
-	private float _moveSpeed = 10.0f;
-    private float jumpHeight = 1.0f;
-	private float _attackRange = 2.0f;
+	private float _moveSpeed = 1.0f;
 
-    Rigidbody _rigid;
-    CapsuleCollider _capsule;
 	Animator _animator = null;
+
+	public MoveDir Dir
+    {
+		get { return _dir; }
+		set{ if (_dir == value) return; _dir = value; UpdateAnimation(); }
+	}
 
 	public virtual CreatureState State
 	{
 		get { return _state; }
-		set
-		{
-			if (_state == value)
-				return;
-
-			_state = value;
-			UpdateAnimation();
-		}
+		set{ if (_state == value) return;  _state = value; UpdateAnimation(); }
 	}
 
 	protected virtual void UpdateAnimation()
@@ -36,28 +31,36 @@ public class PlayerController : MonoBehaviour
 
 		if (State == CreatureState.Idle)
 		{
-			_animator.Play("Idle_Normal_SwordAndShield");
+			_animator.SetBool("_isMove", false);
 		}
 		else if (State == CreatureState.Move)
 		{
-			_animator.Play("MoveFWD_Normal_InPlace_SwordAndShield");
-		}
-		else if (State == CreatureState.Skill)
-		{
-            switch (_skillType)
+            switch (Dir)
             {
-                case SkillType.BasicAttack:
-				    _animator.Play("Skill");
+                case MoveDir.Front:
+			        _animator.Play("sword and shield walk_f");
+					break;
+				case MoveDir.Back:
+				    _animator.Play("sword and shield walk_b");
                     break;
-				case SkillType.StrongAttack:
-                    break;
+				case MoveDir.Left:
+					_animator.Play("sword and shield strafe_l");
+					break;
+                case MoveDir.Right:
+					_animator.Play("sword and shield strafe_r");
+					break;
                 default:
                     break;
             }
 		}
+		// 나중에는 skill을 dick으로 관리
+		else if (State == CreatureState.Skill)
+		{
+
+		}
 		else if (State == CreatureState.Dead)
 		{
-			_animator.Play("Dead");
+			_animator.Play("sword and shield death");
 		}
 	}
 
@@ -69,16 +72,13 @@ public class PlayerController : MonoBehaviour
 
 	protected virtual void Init()
 	{
-		_rigid = GetComponent<Rigidbody>();
-		_capsule = GetComponent<CapsuleCollider>();
 		_animator = GetComponent<Animator>();
-
-		UpdateAnimation();
 	}
 
 	void Update()
     {
         UpdateController();
+		UpdateAnimation();
     }
 
     protected virtual void UpdateController()
@@ -98,25 +98,16 @@ public class PlayerController : MonoBehaviour
 				break;
             case CreatureState.Dead:
                 break;
-            default:
-                break;
         }
     }
 
 	void GetInputKey()
     {
-		if (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.DownArrow) ||
-			Input.GetKey(KeyCode.RightAlt) || Input.GetKey(KeyCode.UpArrow))
+		// 키보드 (이동)
+		if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) ||
+			Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.W))
 			State = CreatureState.Move;
-        else if (Input.GetMouseButtonDown(0))
-        {
-        }
-        else
-        {
-			State = CreatureState.Idle;
-        }
 	}
-
 
     protected virtual void UpdateIdle()
     {
@@ -125,43 +116,33 @@ public class PlayerController : MonoBehaviour
 
 	protected virtual void UpdateMove()
     {
-		float x_Axis = Input.GetAxisRaw("Horizontal");
-		float z_Axis = Input.GetAxisRaw("Vertical");
+		//Vector3 pos = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
 
-		Vector3 dir = new Vector3(x_Axis, 0, z_Axis);
-
-		transform.position += dir * _moveSpeed * Time.deltaTime;
-		transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(dir), 20 * Time.deltaTime);
-
-		if (Input.GetKeyDown(KeyCode.Space))
+		if (Input.GetKey(KeyCode.W))
 		{
-			transform.Translate(Vector3.up * jumpHeight);
+			Dir = MoveDir.Front;
+		}
+		else if (Input.GetKey(KeyCode.S))
+		{
+			Dir = MoveDir.Back;
+		}
+		else if (Input.GetKey(KeyCode.D))
+		{
+			Dir = MoveDir.Right;
+		}
+		else if (Input.GetKey(KeyCode.A))
+		{
+			Dir = MoveDir.Left;
+		}
+        else
+        {
+			Dir = MoveDir.Idle;
         }
+
+		//transform.position += pos * _moveSpeed * Time.deltaTime;
     }
 
     protected virtual void UpdateSkill()
     {
-        if (Input.GetMouseButtonDown(0))
-        {
-            BasicAttack();
-        }
-        else if (Input.GetMouseButtonDown(-1))
-        {
-            StrongAttack();
-        }
     }
-
-    // 평타
-    void BasicAttack()
-    {
-		
-    }
-
-	// 강한 평타
-	void StrongAttack()
-    {
-
-    }
-
-
 }

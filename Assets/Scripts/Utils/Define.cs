@@ -4,6 +4,15 @@ using UnityEngine;
 
 public class Define
 {
+    public enum MoveDir
+    {
+        Idle,
+        Front,
+        Back,
+        Left,
+        Right
+    }
+
     public enum SkillType
     {
         BasicAttack,
