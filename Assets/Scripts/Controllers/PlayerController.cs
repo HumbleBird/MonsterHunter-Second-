@@ -9,6 +9,7 @@ public class PlayerController : MonoBehaviour
 	MoveDir _dir = MoveDir.Idle;
 
 	private float _moveSpeed = 1.0f;
+	private float wait_run_ratio = 0.0f;
 
 	Animator _animator = null;
 
@@ -31,14 +32,16 @@ public class PlayerController : MonoBehaviour
 
 		if (State == CreatureState.Idle)
 		{
-			_animator.SetBool("_isMove", false);
+			_animator.Play("sword and shield idle");
 		}
 		else if (State == CreatureState.Move)
 		{
             switch (Dir)
             {
                 case MoveDir.Front:
-			        _animator.Play("sword and shield walk_f");
+                    {
+						_animator.Play("sword and shield walk_f");
+					}
 					break;
 				case MoveDir.Back:
 				    _animator.Play("sword and shield walk_b");
@@ -120,6 +123,8 @@ public class PlayerController : MonoBehaviour
 
 		if (Input.GetKey(KeyCode.W))
 		{
+			wait_run_ratio = Mathf.Lerp(wait_run_ratio, 1, 10.0f * Time.deltaTime);
+			_animator.SetFloat("wait_run_ratio", wait_run_ratio);
 			Dir = MoveDir.Front;
 		}
 		else if (Input.GetKey(KeyCode.S))
@@ -136,6 +141,8 @@ public class PlayerController : MonoBehaviour
 		}
         else
         {
+			wait_run_ratio = Mathf.Lerp(wait_run_ratio, 0, 10.0f * Time.deltaTime);
+			_animator.SetFloat("wait_run_ratio", wait_run_ratio);
 			Dir = MoveDir.Idle;
         }
 
