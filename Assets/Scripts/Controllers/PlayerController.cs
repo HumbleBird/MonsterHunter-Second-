@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,18 +7,9 @@ using static Define;
 public class PlayerController : MonoBehaviour
 {
     CreatureState _state = CreatureState.Idle;
-	MoveDir _dir = MoveDir.Idle;
-
-	private float _moveSpeed = 1.0f;
-	private float wait_run_ratio = 0.0f;
 
 	Animator _animator = null;
-
-	public MoveDir Dir
-    {
-		get { return _dir; }
-		set{ if (_dir == value) return; _dir = value; UpdateAnimation(); }
-	}
+	int _attackCount = 0;
 
 	public virtual CreatureState State
 	{
@@ -30,37 +22,6 @@ public class PlayerController : MonoBehaviour
 		if (_animator == null)
 			return;
 
-		if (State == CreatureState.Idle)
-		{
-			_animator.Play("sword and shield idle");
-		}
-		else if (State == CreatureState.Move)
-		{
-            switch (Dir)
-            {
-                case MoveDir.Front:
-                    {
-						_animator.Play("sword and shield walk_f");
-					}
-					break;
-				case MoveDir.Back:
-				    _animator.Play("sword and shield walk_b");
-                    break;
-				case MoveDir.Left:
-					_animator.Play("sword and shield strafe_l");
-					break;
-                case MoveDir.Right:
-					_animator.Play("sword and shield strafe_r");
-					break;
-                default:
-                    break;
-            }
-		}
-		// 나중에는 skill을 dick으로 관리
-		else if (State == CreatureState.Skill)
-		{
-
-		}
 		else if (State == CreatureState.Dead)
 		{
 			_animator.Play("sword and shield death");
@@ -110,6 +71,9 @@ public class PlayerController : MonoBehaviour
 		if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) ||
 			Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.W))
 			State = CreatureState.Move;
+
+		else if (Input.GetMouseButtonDown(0))
+			State = CreatureState.Skill;
 	}
 
     protected virtual void UpdateIdle()
@@ -119,37 +83,28 @@ public class PlayerController : MonoBehaviour
 
 	protected virtual void UpdateMove()
     {
-		//Vector3 pos = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
+		// 애니메이션 (애니메이션 자체에 이동이 포함되어 있음)
+		float horizontal = Input.GetAxis("Horizontal");
+		float vertical = Input.GetAxis("Vertical");
 
-		if (Input.GetKey(KeyCode.W))
-		{
-			wait_run_ratio = Mathf.Lerp(wait_run_ratio, 1, 10.0f * Time.deltaTime);
-			_animator.SetFloat("wait_run_ratio", wait_run_ratio);
-			Dir = MoveDir.Front;
-		}
-		else if (Input.GetKey(KeyCode.S))
-		{
-			Dir = MoveDir.Back;
-		}
-		else if (Input.GetKey(KeyCode.D))
-		{
-			Dir = MoveDir.Right;
-		}
-		else if (Input.GetKey(KeyCode.A))
-		{
-			Dir = MoveDir.Left;
-		}
-        else
-        {
-			wait_run_ratio = Mathf.Lerp(wait_run_ratio, 0, 10.0f * Time.deltaTime);
-			_animator.SetFloat("wait_run_ratio", wait_run_ratio);
-			Dir = MoveDir.Idle;
-        }
+		// Shft키를 안누르면 최대 0.5, Shft키를 누르면 최대 1까지 값이 바뀌게 된다
+		float offset = 0.5f + Input.GetAxis("Sprint") * 0.5f;
 
-		//transform.position += pos * _moveSpeed * Time.deltaTime;
-    }
+		// horizontal 값에 따라 애니메이션 재생 (-1:왼쪽, 0:가운데, 1:오른쪽)
+		_animator.SetFloat("Horizontal", horizontal * offset);
+		// vertical 값에 따라 애니메이션 재생 (-1:뒤, 0:가운데, 1:앞)
+		_animator.SetFloat("Vertical", vertical * offset);
 
-    protected virtual void UpdateSkill()
+		// 이동속도 : Shift키를 안눌렀을 땐 walkSpeed, Shift키를 눌렀을 땐 runSpeed값이 moveSpeed에 저장
+		//float moveSpeed = Mathf.Lerp(walkSpeed, runSpeed, Input.GetAxis("Sprint"));
+	}
+
+	protected virtual void UpdateSkill()
     {
-    }
+		// 기본 스킬
+		//BaseAttack();
+		Attack attack = new Blow();
+
+		State = CreatureState.Idle;
+	}
 }
