@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 
 public  class Blow : Attack
 {
-    Blow blow = new Blow();
+    void Init()
+    {
+        Blow blow = new Blow();
+    }
 
     public override void BasicAttack()
     {

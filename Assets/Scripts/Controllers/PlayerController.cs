@@ -103,7 +103,7 @@ public class PlayerController : MonoBehaviour
     {
 		// 기본 스킬
 		//BaseAttack();
-		Attack attack = new Blow();
+		
 
 		State = CreatureState.Idle;
 	}
