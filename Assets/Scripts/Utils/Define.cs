@@ -10,14 +10,6 @@ public class Define
         QuarterView,
     }
 
-    public enum CreatureState
-    {
-        Idle,
-        Move,
-        Skill,
-        Dead
-    }
-
     public enum Scene
     {
         Unknown,
