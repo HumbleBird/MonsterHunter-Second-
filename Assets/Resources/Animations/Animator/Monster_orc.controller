@@ -498,7 +498,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Monster_anim|Atack
+  m_Name: Attack
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
@@ -607,13 +607,13 @@ AnimatorStateMachine:
   m_ChildStates:
   - serializedVersion: 1
     m_State: {fileID: 1102898994738877876}
-    m_Position: {x: -250, y: 230, z: 0}
+    m_Position: {x: -290, y: 180, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1102179631451379128}
-    m_Position: {x: -250, y: 300, z: 0}
+    m_Position: {x: -290, y: 250, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1102736981190681760}
-    m_Position: {x: -250, y: 360, z: 0}
+    m_Position: {x: -290, y: 310, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1102997349229314382}
     m_Position: {x: -250, y: 580, z: 0}

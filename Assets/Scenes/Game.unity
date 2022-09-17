@@ -315,7 +315,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _mode: 0
-  _delta: {x: 0, y: 3.59, z: -1.93}
+  _delta: {x: 0, y: 8, z: -1.93}
   _player: {fileID: 543450652670289351}
   m_Speed: 0
   m_MaxRayDist: 1
@@ -673,7 +673,7 @@ PrefabInstance:
     - target: {fileID: 662347745478704761, guid: 71c2b86e4d7bc49b894c67d7b7a7b83f,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 662347745478704761, guid: 71c2b86e4d7bc49b894c67d7b7a7b83f,
         type: 3}
@@ -683,7 +683,7 @@ PrefabInstance:
     - target: {fileID: 662347745478704761, guid: 71c2b86e4d7bc49b894c67d7b7a7b83f,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 3
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 662347745478704761, guid: 71c2b86e4d7bc49b894c67d7b7a7b83f,
         type: 3}
@@ -1371,12 +1371,50 @@ MonoBehaviour:
   target: {fileID: 1537890631}
   _scanRange: 10
   _attackRange: 2
+--- !u!114 &1988439949
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1988439942}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc860598e342aeb459d2b9cedd8bd7b5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _level: 0
+  _hp: 0
+  _maxHp: 0
+  _attack: 0
+  _defense: 0
+  _moveSpeed: 0
 --- !u!4 &543450652670289351 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1000966418453780646, guid: 5e690635e8c4c4a4a9a9d450119b0d87,
     type: 3}
   m_PrefabInstance: {fileID: 751710648963284321}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &543450652670289356
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1537890631}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5eff5fdbcaaa57442b94ddd1b7f0010a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _level: 0
+  _hp: 0
+  _maxHp: 0
+  _attack: 0
+  _defense: 0
+  _moveSpeed: 0
+  _exp: 0
+  _gold: 0
 --- !u!1001 &751710648963284321
 PrefabInstance:
   m_ObjectHideFlags: 0
