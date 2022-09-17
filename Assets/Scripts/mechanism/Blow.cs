@@ -6,13 +6,9 @@ using System.Threading.Tasks;
 
 public  class Blow : Attack
 {
-    void Init()
+    protected override void Init()
     {
         Blow blow = new Blow();
     }
 
-    public override void BasicAttack()
-    {
-        throw new NotImplementedException();
-    }
 }

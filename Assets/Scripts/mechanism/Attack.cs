@@ -10,5 +10,21 @@ public abstract class Attack : MonoBehaviour
     Blow blow;
     Range range;
 
-    public abstract void BasicAttack();
+    protected virtual void Init()
+    {
+
+    }
+
+    public virtual void BasicAttack()
+    {
+        ;
+    }
+    public virtual void BasicEnforceAttack()
+    {
+        ;
+    }
+    public virtual void Kick()
+    {
+        ;
+    }
 }
