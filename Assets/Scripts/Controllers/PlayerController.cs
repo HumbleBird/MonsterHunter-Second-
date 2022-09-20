@@ -1,3 +1,4 @@
+using Data;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -6,7 +7,12 @@ using static Define;
 
 public class PlayerController : Charater
 {
-	protected override void Update()
+    protected override void Init()
+    {
+
+	}
+
+    protected override void Update()
     {
 		GetInputKey();
 	}

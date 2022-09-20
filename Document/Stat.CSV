@@ -1,0 +1,4 @@
+Idx,Hp,Stamina,Atk,Def,JumpPower,WalkSpeed,RunSpeed,CrunchSpeed,AttackSpeed
+아이디,체력,스테미너,공격력,방어력,점프 높이,걷는 속도,달리기 속도,앉기 이동 속도,공격 속도
+1001,100,50,10,5,5,5,10,2,1
+1002,150,30,15,10,4,5,8,2,0.8

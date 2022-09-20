@@ -6,6 +6,10 @@ using static Define;
 
 public class Charater : MonoBehaviour
 {
+    protected Stat _stat;
+    public int Hp;
+    public int Defense;
+
     [SerializeField]
     protected Vector3 _destPos;
 
@@ -91,4 +95,15 @@ public class Charater : MonoBehaviour
     protected virtual void UpdateMove() { }
     protected virtual void UpdateSkill() { }
     protected virtual void UpdateDead() { }
+
+    protected virtual void OnAttacked(GameObject attacker)
+    {
+        int damage = 0;// Mathf.Max(0, attacker.Attack - Defense);
+        Hp -= damage;
+        if (Hp <= 0)
+        {
+            Hp = 0;
+            //OnDead(attacker);
+        }
+    }
 }
