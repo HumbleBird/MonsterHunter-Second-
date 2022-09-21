@@ -10,6 +10,13 @@ public class Monster : Charater
 	[SerializeField]
 	float _attackRange = 2;
 
+    protected override void Init()
+    {
+        base.Init();
+
+        State = CreatureState.Idle;
+    }
+
     protected override void UpdateIdle()
     {
         float distance = (target.transform.position - transform.position).magnitude;
@@ -67,10 +74,10 @@ public class Monster : Charater
     {
         if (_lockTarget != null)
         {
-           Stat targetStat = _lockTarget.GetComponent<Stat>();
-           //targetStat.OnAttacked(_stat);
+            Charater cl = _lockTarget.GetComponent<Charater>();
+            cl.OnAttacked(transform.gameObject);
 
-            if (targetStat.Hp > 0)
+            if (Hp > 0)
             {
                 float distance = (_lockTarget.transform.position - transform.position).magnitude;
                 if (distance <= _attackRange)

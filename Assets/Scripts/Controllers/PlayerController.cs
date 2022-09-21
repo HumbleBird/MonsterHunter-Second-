@@ -9,8 +9,12 @@ public class PlayerController : Charater
 {
     protected override void Init()
     {
+		base.Init();
 
-	}
+        Table_Stat.Info _stat = null;
+        int Id = 1;
+        Managers.Table.m_Stat.m_Dictionary.TryGetValue(Id, out _stat);
+    }
 
     protected override void Update()
     {
@@ -47,23 +51,6 @@ public class PlayerController : Charater
 			_animator.SetTrigger("MRClick");
 	}
 
-	bool _isGround = true;
-	void Jump()
-    {
-		if (Input.GetKeyDown("Space") && _isGround == true)
-        {
-			_isGround = false;
-			_animator.SetTrigger("OnJump");
-		}
-    }
-
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.CompareTag("Ground"))
-        {
-			_isGround = true;
-        }
-    }
 
 
 }

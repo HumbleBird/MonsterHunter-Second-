@@ -228,11 +228,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1000966418453780646}
-  - component: {fileID: 6558377351069401820}
   - component: {fileID: 9006022462425404481}
   - component: {fileID: 5866666020975951808}
   - component: {fileID: 5866666020975951807}
-  - component: {fileID: 543450652670289356}
+  - component: {fileID: 1901313885134665710}
   m_Layer: 0
   m_Name: Paladin WProp J Nordstrom
   m_TagString: Untagged
@@ -260,26 +259,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!95 &6558377351069401820
-Animator:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 481873116616196636}
-  m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: 39c8fbcf6d6a4e340902748776fa5ae6, type: 3}
-  m_Controller: {fileID: 9100000, guid: 2c291dc785f62b946afc33152735d06f, type: 2}
-  m_CullingMode: 1
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 1
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!114 &9006022462425404481
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -292,6 +271,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 182d4eaebb91fef48ae46de8d1d51fa5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Hp: 0
+  Defense: 0
   _destPos: {x: 0, y: 0, z: 0}
   _lockTarget: {fileID: 0}
   target: {fileID: 0}
@@ -325,26 +306,26 @@ CapsuleCollider:
   m_Height: 1.8976946
   m_Direction: 1
   m_Center: {x: -0.012362957, y: 0.84475255, z: 0}
---- !u!114 &543450652670289356
-MonoBehaviour:
+--- !u!95 &1901313885134665710
+Animator:
+  serializedVersion: 4
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 481873116616196636}
   m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5eff5fdbcaaa57442b94ddd1b7f0010a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _level: 0
-  _hp: 0
-  _maxHp: 0
-  _attack: 0
-  _defense: 0
-  _moveSpeed: 0
-  _exp: 0
-  _gold: 0
+  m_Avatar: {fileID: 9000000, guid: 39c8fbcf6d6a4e340902748776fa5ae6, type: 3}
+  m_Controller: {fileID: 9100000, guid: 2c291dc785f62b946afc33152735d06f, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 1
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &608477026091564299
 GameObject:
   m_ObjectHideFlags: 0

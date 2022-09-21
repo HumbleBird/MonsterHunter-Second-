@@ -20,6 +20,7 @@ public class Define
 
     public enum CreatureState
     {
+        None,
         Idle,
         Move,
         Skill,

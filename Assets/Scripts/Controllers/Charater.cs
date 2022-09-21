@@ -6,8 +6,7 @@ using static Define;
 
 public class Charater : MonoBehaviour
 {
-    protected Stat _stat;
-    public int Hp;
+    public int Hp = 100;
     public int Defense;
 
     [SerializeField]
@@ -23,7 +22,7 @@ public class Charater : MonoBehaviour
 
     protected float _speed = 1f; // Nomal Move Speed
 
-    CreatureState _state = CreatureState.Idle;
+    CreatureState _state = CreatureState.None;
 	public CreatureState State
     {
 		get { return _state;}
@@ -56,7 +55,7 @@ public class Charater : MonoBehaviour
         }
     }
 
-	private void Start()
+	private void Awake()
 	{
 		Init();
 	}
@@ -96,10 +95,14 @@ public class Charater : MonoBehaviour
     protected virtual void UpdateSkill() { }
     protected virtual void UpdateDead() { }
 
-    protected virtual void OnAttacked(GameObject attacker)
+    public virtual void OnAttacked(GameObject attacker)
     {
         int damage = 0;// Mathf.Max(0, attacker.Attack - Defense);
         Hp -= damage;
+
+        // 애니메이션
+        _animator.Play("Hit");
+
         if (Hp <= 0)
         {
             Hp = 0;

@@ -268,10 +268,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 662347745478704761}
-  - component: {fileID: 7823708891515688132}
   - component: {fileID: 4597673734399790262}
   - component: {fileID: 1988439945}
-  - component: {fileID: 1988439949}
+  - component: {fileID: 407603862173540278}
   m_Layer: 0
   m_Name: monster_orc
   m_TagString: Untagged
@@ -297,26 +296,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!95 &7823708891515688132
-Animator:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1342959200176554030}
-  m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: 61b8698a2176146289745095c88a5155, type: 3}
-  m_Controller: {fileID: 9100000, guid: 09cab020fee16432ba38823221662a31, type: 2}
-  m_CullingMode: 1
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!136 &4597673734399790262
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -343,29 +322,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8bffddf5a64c7ab479ecd6a45c505720, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Hp: 0
+  Defense: 0
   _destPos: {x: 0, y: 0, z: 0}
   _lockTarget: {fileID: 0}
   target: {fileID: 0}
   _scanRange: 10
   _attackRange: 2
---- !u!114 &1988439949
-MonoBehaviour:
+--- !u!95 &407603862173540278
+Animator:
+  serializedVersion: 4
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1342959200176554030}
   m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cc860598e342aeb459d2b9cedd8bd7b5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _level: 0
-  _hp: 0
-  _maxHp: 0
-  _attack: 0
-  _defense: 0
-  _moveSpeed: 0
+  m_Avatar: {fileID: 9000000, guid: 61b8698a2176146289745095c88a5155, type: 3}
+  m_Controller: {fileID: 9100000, guid: 09cab020fee16432ba38823221662a31, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1576848682820892603
 GameObject:
   m_ObjectHideFlags: 0
