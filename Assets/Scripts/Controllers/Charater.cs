@@ -6,6 +6,20 @@ using static Define;
 
 public class Charater : MonoBehaviour
 {
+    #region Stat
+    int _id;
+    int _currentHp;
+    int _maxHp;
+    int _currentStamina;
+    int _maxStamina;
+    int _atk;
+
+    public int CurrentHp { get { return _currentHp; } }
+    public int MaxHp { get { return _maxHp; } }
+    public int CurrentStamina { get { return _currentStamina; } }
+    public int MaxStamina { get { return _maxStamina; } }
+    #endregion
+
     public int Hp = 100;
     public int Defense;
 
@@ -109,4 +123,6 @@ public class Charater : MonoBehaviour
             //OnDead(attacker);
         }
     }
+
+    protected virtual void OnHitEvent() { }
 }

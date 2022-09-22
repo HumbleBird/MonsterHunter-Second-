@@ -70,7 +70,7 @@ public class Monster : Charater
         }
     }
 
-    void OnHitEvent()
+    protected override void OnHitEvent()
     {
         if (_lockTarget != null)
         {

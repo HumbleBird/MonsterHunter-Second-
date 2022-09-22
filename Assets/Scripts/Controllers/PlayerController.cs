@@ -11,12 +11,12 @@ public class PlayerController : Charater
     {
 		base.Init();
 
-        Table_Stat.Info _stat = null;
-        int Id = 1;
-        Managers.Table.m_Stat.m_Dictionary.TryGetValue(Id, out _stat);
-    }
+		Dictionary<int, Table_Stat.Info> dict = Managers.Table.m_Stat.m_Dictionary;
+		Table_Stat.Info stat = dict[1001];
+	}
 
-    protected override void Update()
+
+	protected override void Update()
     {
 		GetInputKey();
 	}
@@ -46,11 +46,21 @@ public class PlayerController : Charater
 	void Attack()
     {
 		if (Input.GetMouseButtonDown(0))
+        {
 			_animator.SetTrigger("MLClick");
+
+		}
 		else if (Input.GetMouseButtonDown(1))
+        {
 			_animator.SetTrigger("MRClick");
+		}
 	}
 
-
+    protected override void OnHitEvent()
+    {
+		// 스테미나 감소
+		// 적중시 적 체력 감소
+		// 
+    }
 
 }
