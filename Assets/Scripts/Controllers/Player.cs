@@ -1,11 +1,10 @@
-using Data;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using static Define;
 
-public class PlayerController : Charater
+public class Player : Charater
 {
     protected override void Init()
     {
@@ -58,9 +57,11 @@ public class PlayerController : Charater
 
     protected override void OnHitEvent()
     {
-		// 스테미나 감소
-		// 적중시 적 체력 감소
-		// 
+		if(_lockTarget != null)
+        {
+			Charater cl =_lockTarget.GetComponent<Charater>();
+			cl.OnAttacked(transform.gameObject);
+        }
     }
 
 }

@@ -6,7 +6,7 @@ public class BattleManager : MonoBehaviour
 {
     // À¯´Ö°ü¸®
 
-    public PlayerController _player { get; set; }
+    public Player _player { get; set; }
     //Dictionary<int, GameObject> _objects = new Dictionary<int, GameObject>();
     List<GameObject> _objects = new List<GameObject>();
 

@@ -36,8 +36,8 @@ public class UI_PlayerInfo : UI_Scene
             return;
 
         Image HpBariamge = GetImage((int)Images.HPBar);
-        HpBariamge.fillAmount = _player.CurrentHp / _player.MaxHp;
+        HpBariamge.fillAmount = _player.Hp / _player.MaxHp;
         Image StaminaBariamge = GetImage((int)Images.STAMINABar);
-        StaminaBariamge.fillAmount = _player.CurrentStamina / _player.MaxStamina;
+        StaminaBariamge.fillAmount = _player.Stamina / _player.MaxStamina;
     }
 }

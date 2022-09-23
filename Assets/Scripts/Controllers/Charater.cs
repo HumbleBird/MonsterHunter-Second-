@@ -7,21 +7,15 @@ using static Define;
 public class Charater : MonoBehaviour
 {
     #region Stat
-    int _id;
-    int _currentHp;
-    int _maxHp;
-    int _currentStamina;
-    int _maxStamina;
-    int _atk;
-
-    public int CurrentHp { get { return _currentHp; } }
-    public int MaxHp { get { return _maxHp; } }
-    public int CurrentStamina { get { return _currentStamina; } }
-    public int MaxStamina { get { return _maxStamina; } }
+    Table_Stat.Info _stat = null;
+    public int Hp { get { return _stat.m_iHp; } set { _stat.m_iHp = value; }}
+    public int MaxHp { get; set; }
+    public int Stamina { get { return _stat.m_iStemina; } set { _stat.m_iStemina = value; } }
+    public int MaxStamina;
+    public float Atk { get { return _stat.m_fAtk; } set { _stat.m_fAtk = value; } }
+    public float Def { get { return _stat.m_fDef; } set { _stat.m_fDef = value; } }
+    public float WalkSpeed { get { return _stat.m_fWalkSpeed; } set { _stat.m_fWalkSpeed = value; } }
     #endregion
-
-    public int Hp = 100;
-    public int Defense;
 
     [SerializeField]
     protected Vector3 _destPos;
@@ -33,8 +27,6 @@ public class Charater : MonoBehaviour
 
     protected Animator _animator;
 	protected Rigidbody _rigid;
-
-    protected float _speed = 1f; // Nomal Move Speed
 
     CreatureState _state = CreatureState.None;
 	public CreatureState State
@@ -78,7 +70,11 @@ public class Charater : MonoBehaviour
 	{
 		_animator = GetComponent<Animator>();
 		_rigid = GetComponent<Rigidbody>();
-	}
+
+        MaxHp = Hp;
+        MaxStamina = Stamina;
+
+    }
 
 	protected virtual void Update()
 	{
@@ -109,9 +105,11 @@ public class Charater : MonoBehaviour
     protected virtual void UpdateSkill() { }
     protected virtual void UpdateDead() { }
 
-    public virtual void OnAttacked(GameObject attacker)
+    public virtual void OnAttacked(GameObject Attacker)
     {
-        int damage = 0;// Mathf.Max(0, attacker.Attack - Defense);
+        Charater attacker = Attacker.GetComponent<Charater>();
+
+        int damage = (int)Mathf.Max(0, attacker.Atk - Def);
         Hp -= damage;
 
         // 애니메이션
@@ -120,7 +118,7 @@ public class Charater : MonoBehaviour
         if (Hp <= 0)
         {
             Hp = 0;
-            //OnDead(attacker);
+            State = CreatureState.Dead;
         }
     }
 

@@ -54,7 +54,7 @@ public class Monster : Charater
         {
             NavMeshAgent nma = gameObject.GetOrAddComponent<NavMeshAgent>();
             nma.SetDestination(_destPos);
-            nma.speed = _speed;
+            nma.speed = WalkSpeed;
 
             transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(dir), 20 * Time.deltaTime);
         }
@@ -75,7 +75,7 @@ public class Monster : Charater
         if (_lockTarget != null)
         {
             Charater cl = _lockTarget.GetComponent<Charater>();
-            cl.OnAttacked(transform.gameObject);
+            cl.OnAttacked(gameObject);
 
             if (Hp > 0)
             {
