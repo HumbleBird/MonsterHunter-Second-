@@ -11,8 +11,8 @@ public class TableManager
 
     public void Init()
     {
-#if UNITY_EDITOR
         m_Camera.Init_CSV("Camera", 2, 0);
+#if UNITY_EDITOR
         m_Stat.Init_CSV("Stat", 2, 0);
         m_Attack.Init_CSV("Attack", 2, 0);
         

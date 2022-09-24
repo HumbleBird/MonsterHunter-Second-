@@ -10,8 +10,9 @@ public class Player : Charater
     {
 		base.Init();
 
-		Dictionary<int, Table_Stat.Info> dict = Managers.Table.m_Stat.m_Dictionary;
-		Table_Stat.Info stat = dict[1001];
+		Table_Stat.Info stat = null;
+		Managers.Table.m_Stat.m_Dictionary.TryGetValue(1001, out stat);
+		_stat = stat;
 	}
 
 

@@ -7,11 +7,11 @@ using static Define;
 public class Charater : MonoBehaviour
 {
     #region Stat
-    Table_Stat.Info _stat = null;
+    protected Table_Stat.Info _stat = new Table_Stat.Info();
     public int Hp { get { return _stat.m_iHp; } set { _stat.m_iHp = value; }}
     public int MaxHp { get; set; }
     public int Stamina { get { return _stat.m_iStemina; } set { _stat.m_iStemina = value; } }
-    public int MaxStamina;
+    public int MaxStamina { get; set; }
     public float Atk { get { return _stat.m_fAtk; } set { _stat.m_fAtk = value; } }
     public float Def { get { return _stat.m_fDef; } set { _stat.m_fDef = value; } }
     public float WalkSpeed { get { return _stat.m_fWalkSpeed; } set { _stat.m_fWalkSpeed = value; } }
