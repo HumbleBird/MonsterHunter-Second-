@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class UI_BattleManager : MonoBehaviour
+public class UI_BattleManager : MonoBehaviour, IPointerDownHandler, IDragHandler, IPointerUpHandler
 {
     public JoyStick2 JOYSTICK;
 
-    public void OnPointerDown(BaseEventData evt)
+    public void OnPointerDown(PointerEventData evt)
     {
         JOYSTICK.gameObject.SetActive(true);
 
@@ -28,13 +28,13 @@ public class UI_BattleManager : MonoBehaviour
     }
 
 
-    public void OnPointerUp(BaseEventData evt)
+    public void OnPointerUp(PointerEventData evt)
     {
         JOYSTICK.gameObject.SetActive(false);
         JOYSTICK.OnUp((PointerEventData)evt);
     }
 
-    public void OnDrag(BaseEventData evt)
+    public void OnDrag(PointerEventData evt)
     {
         JOYSTICK.OnDrag((PointerEventData)evt);
     }

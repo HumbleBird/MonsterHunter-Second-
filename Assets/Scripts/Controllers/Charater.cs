@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Photon.Pun;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,7 +8,7 @@ using static Define;
 public class Charater : MonoBehaviour
 {
     #region Stat
-    protected Table_Stat.Info _stat = new Table_Stat.Info();
+    public Table_Stat.Info _stat = new Table_Stat.Info();
     public int Hp { get { return _stat.m_iHp; } set { _stat.m_iHp = value; }}
     public int MaxHp { get; set; }
     public int Stamina { get { return _stat.m_iStemina; } set { _stat.m_iStemina = value; } }
@@ -17,16 +18,29 @@ public class Charater : MonoBehaviour
     public float WalkSpeed { get { return _stat.m_fWalkSpeed; } set { _stat.m_fWalkSpeed = value; } }
     #endregion
 
+    #region Attack
+    public Table_Attack.Info _attackInfo = new Table_Attack.Info();
+    public float CoolTime { get { return _attackInfo.m_fCoolTime; } set { _attackInfo.m_fCoolTime = value; } }
+
+    public float _coolTime;
+    #endregion
+
+
     [SerializeField]
     protected Vector3 _destPos;
+    Vector3 m_vCurPos;
+    Quaternion m_qCurRot;
+    PhotonView PV;
 
     [SerializeField]
     protected GameObject _lockTarget;
     [SerializeField]
     protected GameObject target; // 타겟
 
-    protected Animator _animator;
+    public Animator _animator { get; set; }
 	protected Rigidbody _rigid;
+
+    Battle _battle = new Battle();
 
     CreatureState _state = CreatureState.None;
 	public CreatureState State
@@ -42,7 +56,7 @@ public class Charater : MonoBehaviour
         }
     }
 
-	public void RefreshAnimation()
+    public void RefreshAnimation()
     {
         switch (State)
         {
@@ -53,7 +67,7 @@ public class Charater : MonoBehaviour
                 _animator.Play("Walk");
                 break;
             case CreatureState.Skill:
-                _animator.Play("Attack");
+                //_animator.Play("Attack");
                 break;
             case CreatureState.Dead:
                 _animator.Play("Dead");
@@ -75,6 +89,7 @@ public class Charater : MonoBehaviour
         MaxStamina = Stamina;
 
     }
+
 
 	protected virtual void Update()
 	{
@@ -105,9 +120,9 @@ public class Charater : MonoBehaviour
     protected virtual void UpdateSkill() { }
     protected virtual void UpdateDead() { }
 
-    public virtual void OnAttacked(GameObject Attacker)
+    public virtual void OnAttacked(GameObject Atker)
     {
-        Charater attacker = Attacker.GetComponent<Charater>();
+        Charater attacker = Atker.GetComponent<Charater>();
 
         int damage = (int)Mathf.Max(0, attacker.Atk - Def);
         Hp -= damage;
@@ -123,4 +138,25 @@ public class Charater : MonoBehaviour
     }
 
     protected virtual void OnHitEvent() { }
+
+    void PhotonDeadReckoning() // 데드레커닝
+    {
+        transform.position = Vector3.Lerp(transform.position, m_vCurPos, Time.deltaTime);
+        transform.rotation = Quaternion.Lerp(transform.rotation, m_qCurRot, Time.deltaTime);
+    }
+
+    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+    {
+        // 로컬 플레이어의 위치 정보 전달
+        if (stream.IsWriting)
+        {
+            stream.SendNext(transform.position);
+            stream.SendNext(transform.rotation);
+        }
+        else
+        {
+            m_vCurPos = (Vector3)stream.ReceiveNext();
+            m_qCurRot = (Quaternion)stream.ReceiveNext();
+        }
+    }
 }

@@ -6,13 +6,18 @@ using static Define;
 
 public class Player : Charater
 {
-    protected override void Init()
+	Attack _attack = new Attack();
+
+
+	protected override void Init()
     {
 		base.Init();
 
 		Table_Stat.Info stat = null;
 		Managers.Table.m_Stat.m_Dictionary.TryGetValue(1001, out stat);
 		_stat = stat;
+
+		_attack.Init(gameObject);
 	}
 
 
@@ -45,15 +50,7 @@ public class Player : Charater
 
 	void Attack()
     {
-		if (Input.GetMouseButtonDown(0))
-        {
-			_animator.SetTrigger("MLClick");
 
-		}
-		else if (Input.GetMouseButtonDown(1))
-        {
-			_animator.SetTrigger("MRClick");
-		}
 	}
 
     protected override void OnHitEvent()
