@@ -87,7 +87,6 @@ public class Charater : MonoBehaviour
 
         MaxHp = Hp;
         MaxStamina = Stamina;
-
     }
 
 

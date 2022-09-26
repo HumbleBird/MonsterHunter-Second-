@@ -14,10 +14,6 @@ public class Stat
         // 스텟 정보를 넘겨줌
         float stat = 0;
 
-        switch (inputStat)
-        {
-        }
-
         return stat;
     }
 }

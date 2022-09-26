@@ -1,8 +1,8 @@
 ﻿using UnityEngine;
 
-public abstract class Strategy
+public abstract class Strategy : MonoBehaviour
 {
-    protected virtual void Init(GameObject go)
+    public virtual void Init(GameObject go)
     {
     }
 }

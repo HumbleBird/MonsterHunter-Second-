@@ -6,8 +6,7 @@ using static Define;
 
 public class Player : Charater
 {
-	Attack _attack = new Attack();
-
+	Blow _attack = new Blow();
 
 	protected override void Init()
     {
@@ -17,16 +16,14 @@ public class Player : Charater
 		Managers.Table.m_Stat.m_Dictionary.TryGetValue(1001, out stat);
 		_stat = stat;
 
+		Table_Attack.Info attackInfo = null;
+		Managers.Table.m_Attack.m_Dictionary.TryGetValue(100001, out attackInfo);
+		_attackInfo = attackInfo;
+
 		_attack.Init(gameObject);
 	}
 
-
 	protected override void Update()
-    {
-		GetInputKey();
-	}
-
-	void GetInputKey()
     {
 		Move();
 		Attack();
@@ -48,11 +45,6 @@ public class Player : Charater
 		//float moveSpeed = Mathf.Lerp(walkSpeed, runSpeed, Input.GetAxis("Sprint"));
 	}
 
-	void Attack()
-    {
-
-	}
-
     protected override void OnHitEvent()
     {
 		if(_lockTarget != null)
@@ -62,4 +54,12 @@ public class Player : Charater
         }
     }
 
+	public void Attack()
+    {
+        if (Input.GetMouseButtonDown(0))
+        {
+			_attack.BasicAttack();
+        }
+		
+    }
 }
