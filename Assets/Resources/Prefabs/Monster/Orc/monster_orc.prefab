@@ -270,7 +270,7 @@ GameObject:
   - component: {fileID: 662347745478704761}
   - component: {fileID: 4597673734399790262}
   - component: {fileID: 1988439945}
-  - component: {fileID: 407603862173540278}
+  - component: {fileID: 2141164795}
   m_Layer: 0
   m_Name: monster_orc
   m_TagString: Untagged
@@ -322,14 +322,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8bffddf5a64c7ab479ecd6a45c505720, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Hp: 0
-  Defense: 0
+  _stat:
+    m_nID: 0
+    m_iHp: 0
+    m_iStemina: 0
+    m_fAtk: 0
+    m_fDef: 0
+    m_fJumpPower: 0
+    m_fWalkSpeed: 0
+    m_fRunSpeed: 0
+    m_fCrunchSpeed: 0
+    m_fAttackSpeed: 0
+  _attackInfo:
+    m_nID: 0
+    m_sName: 
+    m_iDmg: 0
+    m_iSpeed: 0
+    m_fCoolTime: 0
+    m_fRange: 0
+    m_iNextNum: 0
+    m_sAnimName: 
+  _coolTime: 0
   _destPos: {x: 0, y: 0, z: 0}
   _lockTarget: {fileID: 0}
   target: {fileID: 0}
   _scanRange: 10
   _attackRange: 2
---- !u!95 &407603862173540278
+--- !u!95 &2141164795
 Animator:
   serializedVersion: 4
   m_ObjectHideFlags: 0
@@ -340,7 +359,7 @@ Animator:
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 61b8698a2176146289745095c88a5155, type: 3}
   m_Controller: {fileID: 9100000, guid: 09cab020fee16432ba38823221662a31, type: 2}
-  m_CullingMode: 0
+  m_CullingMode: 2
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0

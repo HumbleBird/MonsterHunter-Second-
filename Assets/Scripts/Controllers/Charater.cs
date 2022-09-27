@@ -34,8 +34,7 @@ public class Charater : MonoBehaviour
 
     [SerializeField]
     protected GameObject _lockTarget;
-    [SerializeField]
-    protected GameObject target; // 타겟
+    public GameObject target; // 타겟
 
     public Animator _animator { get; set; }
 	protected Rigidbody _rigid;

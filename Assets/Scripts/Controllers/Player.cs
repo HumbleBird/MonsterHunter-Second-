@@ -6,7 +6,7 @@ using static Define;
 
 public class Player : Charater
 {
-	Blow _attack = new Blow();
+	IAttack _attack = new Blow();
 
 	protected override void Init()
     {
@@ -20,7 +20,7 @@ public class Player : Charater
 		Managers.Table.m_Attack.m_Dictionary.TryGetValue(100001, out attackInfo);
 		_attackInfo = attackInfo;
 
-		_attack.Init(gameObject);
+		_attack.SetInfo(gameObject);
 	}
 
 	protected override void Update()

@@ -231,7 +231,9 @@ GameObject:
   - component: {fileID: 9006022462425404481}
   - component: {fileID: 5866666020975951808}
   - component: {fileID: 5866666020975951807}
-  - component: {fileID: 1901313885134665710}
+  - component: {fileID: 192219821}
+  - component: {fileID: 192219822}
+  - component: {fileID: 192219823}
   m_Layer: 0
   m_Name: Paladin WProp J Nordstrom
   m_TagString: Untagged
@@ -271,8 +273,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 182d4eaebb91fef48ae46de8d1d51fa5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Hp: 0
-  Defense: 0
+  _stat:
+    m_nID: 0
+    m_iHp: 0
+    m_iStemina: 0
+    m_fAtk: 0
+    m_fDef: 0
+    m_fJumpPower: 0
+    m_fWalkSpeed: 0
+    m_fRunSpeed: 0
+    m_fCrunchSpeed: 0
+    m_fAttackSpeed: 0
+  _attackInfo:
+    m_nID: 0
+    m_sName: 
+    m_iDmg: 0
+    m_iSpeed: 0
+    m_fCoolTime: 0
+    m_fRange: 0
+    m_iNextNum: 0
+    m_sAnimName: 
+  _coolTime: 0
   _destPos: {x: 0, y: 0, z: 0}
   _lockTarget: {fileID: 0}
   target: {fileID: 0}
@@ -306,7 +327,7 @@ CapsuleCollider:
   m_Height: 1.8976946
   m_Direction: 1
   m_Center: {x: -0.012362957, y: 0.84475255, z: 0}
---- !u!95 &1901313885134665710
+--- !u!95 &192219821
 Animator:
   serializedVersion: 4
   m_ObjectHideFlags: 0
@@ -317,7 +338,7 @@ Animator:
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 39c8fbcf6d6a4e340902748776fa5ae6, type: 3}
   m_Controller: {fileID: 9100000, guid: 2c291dc785f62b946afc33152735d06f, type: 2}
-  m_CullingMode: 0
+  m_CullingMode: 2
   m_UpdateMode: 0
   m_ApplyRootMotion: 1
   m_LinearVelocityBlending: 0
@@ -326,6 +347,45 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &192219822
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 481873116616196636}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  observableSearch: 2
+  Synchronization: 3
+  OwnershipTransfer: 0
+  ObservedComponents:
+  - {fileID: 192219823}
+  viewIdField: 0
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
+--- !u!114 &192219823
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 481873116616196636}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 627855c7f81362d41938ffe0b1475957, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SynchronizePosition: 1
+  m_SynchronizeRotation: 1
+  m_SynchronizeScale: 0
+  m_UseLocal: 1
 --- !u!1 &608477026091564299
 GameObject:
   m_ObjectHideFlags: 0

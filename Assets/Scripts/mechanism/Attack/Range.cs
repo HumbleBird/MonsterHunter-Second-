@@ -5,17 +5,20 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
 
-public class Range : Attack
+public class Range
 {
-    Range range = new Range();
-
-    public void Attack()
+    public void BasicAttack()
     {
+        throw new NotImplementedException();
     }
 
-    public override void BasicAttack(GameObject target, Table_Attack.Info attackInfo = null)
+    public void Init()
     {
+        throw new NotImplementedException();
+    }
 
-
+    public void Kick()
+    {
+        throw new NotImplementedException();
     }
 }
