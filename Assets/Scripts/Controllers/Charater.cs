@@ -18,13 +18,7 @@ public class Charater : MonoBehaviour
     public float WalkSpeed { get { return _stat.m_fWalkSpeed; } set { _stat.m_fWalkSpeed = value; } }
     #endregion
 
-    #region Attack
     public Table_Attack.Info _attackInfo = new Table_Attack.Info();
-    public float CoolTime { get { return _attackInfo.m_fCoolTime; } set { _attackInfo.m_fCoolTime = value; } }
-
-    public float _coolTime;
-    #endregion
-
 
     [SerializeField]
     protected Vector3 _destPos;

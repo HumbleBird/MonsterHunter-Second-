@@ -7,7 +7,8 @@ using UnityEngine;
 
 public interface IAttack
 {
-    public void SetInfo(GameObject go);
+    public void Init(GameObject o);
     public void BasicAttack();
+    public void Skill();
     public void Kick();
 }

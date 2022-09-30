@@ -20,7 +20,7 @@ public class Player : Charater
 		Managers.Table.m_Attack.m_Dictionary.TryGetValue(100001, out attackInfo);
 		_attackInfo = attackInfo;
 
-		_attack.SetInfo(gameObject);
+		_attack.Init(gameObject);
 	}
 
 	protected override void Update()
@@ -62,4 +62,6 @@ public class Player : Charater
         }
 		
     }
+
+
 }

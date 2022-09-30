@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,30 +14,24 @@ public class Blow : MonoBehaviour, IAttack
     protected Charater m_TargetCharater = null;
     protected GameObject m_GOProjectile = null; // 투사체
 
-    public void SetInfo(GameObject go)
+    public void Init(GameObject go)
     {
-        m_Go = gameObject;
+        m_Go = go;
         m_Charater = m_Go.GetComponent<Charater>();
 
         m_GOTarget = m_Charater.target;
         m_TargetCharater = m_GOTarget.GetComponent<Charater>();
     }
 
-
     // 기본 공격
     public void BasicAttack()
     {
-        float distance = (m_GOTarget.transform.position - m_Go.transform.position).magnitude;
+        m_Charater._animator.Play(m_Charater._attackInfo.m_sAnimName);
 
-        // 거리 계산
-        if (m_Charater._attackInfo.m_fRange < distance)
-        {
-            m_Charater._animator.Play(m_Charater._attackInfo.m_sAnimName);
-            m_TargetCharater.OnAttacked(m_Go);
-        }
+        HitCheck();
 
         // 다음 공격 유무 여부, 클릭 시간 감지.
-        if (m_Charater._attackInfo.m_iNextNum != 0)
+        if (m_Charater._attackInfo.m_iNextNum != 0 || _bNextAttackClick == true)
         {
             Table_Attack.Info m_Attack = null;
             Managers.Table.m_Attack.m_Dictionary.TryGetValue(m_Charater._attackInfo.m_iNextNum, out m_Attack);
@@ -45,13 +40,44 @@ public class Blow : MonoBehaviour, IAttack
         }
     }
 
-    public void CheckClickTime()
-    {
-    }
-
     public void Kick()
     {
     }
 
-    // 직접적으로 데미지를 주는 것은 각 애니메이션 별로 넣고. 여기서는 애니메이션과 다음 콤보를 넣는 걸로
+    public void Skill()
+    {
+        throw new NotImplementedException();
+    }
+
+    public void HitCheck()
+    {
+        float distance = (m_GOTarget.transform.position - m_Go.transform.position).magnitude;
+
+        // 거리 계산
+        if (m_Charater._attackInfo.m_fRange < distance)
+        {
+            m_TargetCharater.OnAttacked(m_Go);
+        }
+    }
+
+    bool _bNextAttackClick = false;
+    void ClickTimeCheck()
+    {
+        float _clickTime = 0.0f;
+        while (true)
+        {
+            _clickTime += Time.deltaTime;
+
+            if (m_Charater._attackInfo.m_fCoolTime <= _clickTime)
+            {
+                // TODO CommandKey 
+                if (Input.GetMouseButtonDown(0))
+                {
+                    _clickTime = 0.0f;
+                    _bNextAttackClick = true;
+                    break;
+                }
+            }
+        }
+    }
 }

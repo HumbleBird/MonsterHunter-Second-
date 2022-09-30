@@ -41,6 +41,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1600075238632009571}
   - component: {fileID: 2407762683828135648}
+  - component: {fileID: 9174292141734315058}
   m_Layer: 0
   m_Name: Paladin_J_Nordstrom
   m_TagString: Untagged
@@ -185,6 +186,19 @@ SkinnedMeshRenderer:
     m_Center: {x: 0.79662716, y: 0.45543876, z: 0.2404747}
     m_Extent: {x: 0.15018606, y: 0.04597959, z: 0.507103}
   m_DirtyAABB: 0
+--- !u!65 &9174292141734315058
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 358443169275956873}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.17036426, y: 0.6373985, z: 0.39085254}
+  m_Center: {x: 0.31, y: 1.32, z: 0.14288382}
 --- !u!1 &390577620294164807
 GameObject:
   m_ObjectHideFlags: 0
@@ -293,7 +307,6 @@ MonoBehaviour:
     m_fRange: 0
     m_iNextNum: 0
     m_sAnimName: 
-  _coolTime: 0
   _destPos: {x: 0, y: 0, z: 0}
   _lockTarget: {fileID: 0}
   target: {fileID: 0}
