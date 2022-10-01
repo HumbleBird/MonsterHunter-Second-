@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
 
-public class Blow : MonoBehaviour, IAttack
+public class Blow : IAttack
 {
     protected GameObject m_Go = null; // 플레이어
     protected Charater m_Charater = null;
@@ -26,18 +26,24 @@ public class Blow : MonoBehaviour, IAttack
     // 기본 공격
     public void BasicAttack()
     {
+        _bNextAttackClick = false;
         m_Charater._animator.Play(m_Charater._attackInfo.m_sAnimName);
 
         HitCheck();
+        NextAttackCheck();
 
         // 다음 공격 유무 여부, 클릭 시간 감지.
-        if (m_Charater._attackInfo.m_iNextNum != 0 || _bNextAttackClick == true)
+        if (m_Charater._attackInfo.m_iNextNum != 0 && _bNextAttackClick == true)
         {
             Table_Attack.Info m_Attack = null;
             Managers.Table.m_Attack.m_Dictionary.TryGetValue(m_Charater._attackInfo.m_iNextNum, out m_Attack);
             m_Charater._attackInfo = m_Attack;
-            this.BasicAttack();
+            _bNextAttackClick = false;
+            Debug.Log("다음 공격" + m_Charater._attackInfo.m_iNextNum);
+            BasicAttack();
         }
+
+        // TODO 1타로 변경
     }
 
     public void Kick()
@@ -61,22 +67,16 @@ public class Blow : MonoBehaviour, IAttack
     }
 
     bool _bNextAttackClick = false;
-    void ClickTimeCheck()
+    void NextAttackCheck()
     {
-        float _clickTime = 0.0f;
-        while (true)
+        // 애니메이션 체크
+        float curAnimationTime = m_Charater._animator.GetCurrentAnimatorStateInfo(0).normalizedTime;
+        if(curAnimationTime >= 0.8)
         {
-            _clickTime += Time.deltaTime;
-
-            if (m_Charater._attackInfo.m_fCoolTime <= _clickTime)
+            if (Input.GetMouseButtonDown(0))
             {
-                // TODO CommandKey 
-                if (Input.GetMouseButtonDown(0))
-                {
-                    _clickTime = 0.0f;
-                    _bNextAttackClick = true;
-                    break;
-                }
+                _bNextAttackClick = true;
+                return;
             }
         }
     }

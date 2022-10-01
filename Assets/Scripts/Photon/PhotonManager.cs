@@ -3,7 +3,7 @@
 using Photon.Pun;
 using Photon.Realtime;
 
-public class PhotonManager : MonoBehaviourPunCallbacks
+public partial class PhotonManager : MonoBehaviourPunCallbacks
 {
     public PhotonView PV;
 
@@ -34,7 +34,7 @@ public class PhotonManager : MonoBehaviourPunCallbacks
     {
         base.OnConnectedToMaster();
 
-        Debug.Log(" photon OnDisconnectd ");
+        Debug.Log(" photon OnConnectedToMaster ");
 
         PhotonNetwork.JoinLobby();
     }
@@ -43,7 +43,7 @@ public class PhotonManager : MonoBehaviourPunCallbacks
     {
         base.OnJoinedLobby();
 
-        Debug.Log(" Photon OnDisconnectd ");
+        Debug.Log(" Photon Join Lobby ");
     }
 
     public void OnLobby() //나의 로비 조인
@@ -52,38 +52,4 @@ public class PhotonManager : MonoBehaviourPunCallbacks
 
         Debug.Log(" photon OnLobby ");
     }
-
-    ///////////////Room
-    public void CreateLobbyRoom(string _strRoomName = null) // 방 생성
-    {
-        if (null == _strRoomName)
-            return;
-
-        PhotonNetwork.CreateRoom(_strRoomName);
-
-        Debug.Log("CreateLobbyRoom = " + _strRoomName);
-    }
-
-    // 랜덤으로 방 들어가기
-
-    public void JoinLobbyRoom(string _strRoomName = null) // 방 생성
-    {
-        if (null == _strRoomName)
-            return;
-
-        PhotonNetwork.JoinRoom(_strRoomName);
-
-        Debug.Log("JoinLobbyRoom = " + _strRoomName);
-    }
-
-    public void Leave(bool _bCom = true)
-    {
-        PhotonNetwork.LeaveRoom(_bCom);
-
-        Debug.Log("LeaveRoom ");
-    }
-
-    // 방 만들고, 들어가고, 실패하고, 삭제하고, 업데이트하고, 관리하고 등등
-
-    // 방 진입, ready 완료, 게임 시작
 }

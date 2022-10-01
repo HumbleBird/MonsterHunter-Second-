@@ -16,6 +16,8 @@ public class Player : Charater
 		Managers.Table.m_Stat.m_Dictionary.TryGetValue(1001, out stat);
 		_stat = stat;
 
+
+		// TODO
 		Table_Attack.Info attackInfo = null;
 		Managers.Table.m_Attack.m_Dictionary.TryGetValue(100001, out attackInfo);
 		_attackInfo = attackInfo;

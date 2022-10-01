@@ -70,6 +70,24 @@ public class SoundManager
 		}
 	}
 
+    // TODO 뮤트 기능
+    bool m_bMute = false;
+    public void MuteBgm(AudioClip audioClip,
+        bool _bMute = true)
+    {
+        if (audioClip == null)
+            return;
+
+        // 해당하는 현재 브금을 찾아서 뮤트하기
+
+        AudioSource audioSource = _audioSources[(int)Define.Sound.Bgm];
+
+        audioSource.mute = _bMute;
+
+        if (_bMute)
+            audioSource.Play();
+    }
+
 	AudioClip GetOrAddAudioClip(string path, Define.Sound type = Define.Sound.Effect)
     {
 		if (path.Contains("Sounds/") == false)

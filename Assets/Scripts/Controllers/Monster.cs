@@ -19,6 +19,9 @@ public class Monster : Charater
         Table_Stat.Info stat = null;
         Managers.Table.m_Stat.m_Dictionary.TryGetValue(2001, out stat);
         _stat = stat;
+
+        // UI
+        
     }
 
     protected override void UpdateIdle()

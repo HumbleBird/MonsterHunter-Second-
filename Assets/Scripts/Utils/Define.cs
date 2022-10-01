@@ -4,6 +4,13 @@ using UnityEngine;
 
 public class Define
 {
+    public enum Team
+    {
+        All,
+        Player1,
+        Player2
+    }
+
     public enum WorldObject
     {
         Unknown,
