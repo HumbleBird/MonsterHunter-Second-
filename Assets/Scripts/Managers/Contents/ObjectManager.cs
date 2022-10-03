@@ -20,9 +20,12 @@ public class ObjectManager
 
 	public GameObject Find(int id)
     {
-		_objects.TryGetValue(id, new )
-		if (_objects.ContainsKey(id))
-			return _objects.Keys(id);
+		GameObject obj = null;
+		_objects.TryGetValue(id, out obj);
+		if (obj == null)
+			return null;
+
+		return obj;
     }
 
 	//public GameObject Find(Func<GameObject, bool> condition)

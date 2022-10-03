@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using static Define;
 
-public class Charater : MonoBehaviour
+public class Charater1 : Base
 {
     #region Stat
     public Table_Stat.Info _stat = new Table_Stat.Info();
@@ -18,8 +18,6 @@ public class Charater : MonoBehaviour
     public float WalkSpeed { get { return _stat.m_fWalkSpeed; } set { _stat.m_fWalkSpeed = value; } }
     #endregion
 
-    public Table_Attack.Info _attackInfo = new Table_Attack.Info();
-
     [SerializeField]
     protected Vector3 _destPos;
     Vector3 m_vCurPos;
@@ -29,11 +27,6 @@ public class Charater : MonoBehaviour
     [SerializeField]
     protected GameObject _lockTarget;
     public GameObject target; // 타겟
-
-    public Animator _animator { get; set; }
-	protected Rigidbody _rigid;
-
-    Battle _battle = new Battle();
 
     CreatureState _state = CreatureState.None;
 	public CreatureState State
