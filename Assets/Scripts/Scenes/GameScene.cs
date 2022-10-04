@@ -10,6 +10,9 @@ public class GameScene : BaseScene
 
         SceneType = Define.Scene.Game;
 
+        Managers.Object.Spawn(1);
+        Managers.Object.Spawn(11);
+
         //Managers.UI.ShowSceneUI<UI_Inven>();
         //gameObject.GetOrAddComponent<CursorController>();
 

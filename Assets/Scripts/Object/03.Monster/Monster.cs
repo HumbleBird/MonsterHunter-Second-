@@ -11,17 +11,12 @@ public class Monster : Charater
     [SerializeField]
     float _attackRange = 2;
 
-    protected override void Init()
+    Table_Boss.Info bossInfo;
+
+    public override void SetInfo(int id)
     {
-        base.Init();
-
-        State = CreatureState.Idle;
-        Table_Stat.Info stat = null;
-        Managers.Table.m_Stat.m_Dictionary.TryGetValue(2001, out stat);
-        _stat = stat;
-
-        // UI
-        
+        bossInfo = Managers.Table.m_Boss.Get(id);
+        statInfo = Managers.Table.m_Stat.Get(bossInfo.m_iStat);
     }
 
     protected override void UpdateIdle()
@@ -78,14 +73,14 @@ public class Monster : Charater
         transform.rotation = Quaternion.Lerp(transform.rotation, quat, 20 * Time.deltaTime);
     }
 
-    protected override void OnHitEvent()
+    void OnHitEvent()
     {
         if (_lockTarget != null)
         {
             Charater cl = _lockTarget.GetComponent<Charater>();
             // 쿨타임
 
-            cl.OnAttacked(gameObject);
+            //cl.OnAttacked(gameObject);
 
             if (Hp > 0)
             {

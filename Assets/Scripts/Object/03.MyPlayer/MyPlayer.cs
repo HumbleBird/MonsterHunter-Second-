@@ -4,27 +4,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using static Define;
 
-public class Player : Charater
+public class MyPlayer : Player
 {
-	IAttack _attack = new Blow();
-
-	protected override void Init()
-    {
-		base.Init();
-
-		Table_Stat.Info stat = null;
-		Managers.Table.m_Stat.m_Dictionary.TryGetValue(1001, out stat);
-		_stat = stat;
-
-
-		// TODO
-		Table_Attack.Info attackInfo = null;
-		Managers.Table.m_Attack.m_Dictionary.TryGetValue(100001, out attackInfo);
-		_attackInfo = attackInfo;
-
-		_attack.Init(gameObject);
-	}
-
 	protected override void Update()
     {
 		Move();
@@ -47,23 +28,9 @@ public class Player : Charater
 		//float moveSpeed = Mathf.Lerp(walkSpeed, runSpeed, Input.GetAxis("Sprint"));
 	}
 
-    protected override void OnHitEvent()
+	void Attack()
     {
-		if(_lockTarget != null)
-        {
-			Charater cl =_lockTarget.GetComponent<Charater>();
-			cl.OnAttacked(transform.gameObject);
-        }
-    }
-
-	public void Attack()
-    {
-        if (Input.GetMouseButtonDown(0))
-        {
+		if (Input.GetMouseButtonDown(0))
 			_attack.BasicAttack();
-        }
-		
     }
-
-
 }

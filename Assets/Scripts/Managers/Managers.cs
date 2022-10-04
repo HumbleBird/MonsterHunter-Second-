@@ -9,22 +9,21 @@ public class Managers : MonoBehaviour
 
     #region Contents
     TableManager _table = new TableManager();
+    ObjectManager _object = new ObjectManager();
 
     public static TableManager Table { get { return Instance._table; } }
+    public static ObjectManager Object { get { return Instance._object; } }
 	#endregion
 
 	#region Core
-	//DataManager _data = new DataManager();
     PoolManager _pool = new PoolManager();
     ResourceManager _resource = new ResourceManager();
     SceneManagerEx _scene = new SceneManagerEx();
     SoundManager _sound = new SoundManager();
     UIManager _ui = new UIManager();
     [SerializeField]
-    //PhotonManager _photon = new PhotonManager();
     PhotonManager _photon;
 
-    //public static DataManager Data { get { return Instance._data; } }
     public static PoolManager Pool { get { return Instance._pool; } }
     public static ResourceManager Resource { get { return Instance._resource; } }
     public static SceneManagerEx Scene { get { return Instance._scene; } }
