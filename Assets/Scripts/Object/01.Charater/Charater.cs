@@ -7,16 +7,8 @@ using static Define;
 
 public partial class Charater : Base
 {
-
-
     [SerializeField]
     protected Vector3 _destPos;
-
-    [SerializeField]
-    protected GameObject _lockTarget;
-    public GameObject target; // 타겟
-
-    Battle _battle = new Battle();
 
     CreatureState _state = CreatureState.Idle;
 	public CreatureState State
@@ -67,7 +59,5 @@ public partial class Charater : Base
     protected virtual void UpdateSkill() { }
     protected virtual void UpdateDead() { }
 
-
     // TODO Trans
-
 }
