@@ -8,11 +8,13 @@ public class Managers : MonoBehaviour
     static Managers Instance { get { Init(); return s_instance; } } // 유일한 매니저를 갖고온다
 
     #region Contents
-    TableManager _table = new TableManager();
     ObjectManager _object = new ObjectManager();
+    BattleManager _battle = new BattleManager();
+    UI_BattleManager _uiBattle = new UI_BattleManager();
 
-    public static TableManager Table { get { return Instance._table; } }
     public static ObjectManager Object { get { return Instance._object; } }
+    public static BattleManager Battle { get { return Instance._battle; } }
+    public static UI_BattleManager UI_Battle { get { return Instance._uiBattle; } }
 	#endregion
 
 	#region Core
@@ -23,6 +25,7 @@ public class Managers : MonoBehaviour
     UIManager _ui = new UIManager();
     [SerializeField]
     PhotonManager _photon;
+    TableManager _table = new TableManager();
 
     public static PoolManager Pool { get { return Instance._pool; } }
     public static ResourceManager Resource { get { return Instance._resource; } }
@@ -30,9 +33,10 @@ public class Managers : MonoBehaviour
     public static SoundManager Sound { get { return Instance._sound; } }
     public static UIManager UI { get { return Instance._ui; } }
     public static PhotonManager PHOTON { get { return Instance._photon; } }
-	#endregion
+    public static TableManager Table { get { return Instance._table; } }
+    #endregion
 
-	void Start()
+    void Start()
     {
         Init();
 	}

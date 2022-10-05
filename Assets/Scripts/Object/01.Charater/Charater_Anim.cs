@@ -7,22 +7,22 @@ using static Define;
 
 public partial class Charater : Base
 {
-    public void RefreshAnimation()
-    {
-        switch (State)
-        {
-            case CreatureState.Idle:
-                _animator.Play("Idle");
-                break;
-            case CreatureState.Move:
-                _animator.Play("Walk");
-                break;
-            case CreatureState.Skill:
-                //_animator.Play("Attack");
-                break;
-            case CreatureState.Dead:
-                _animator.Play("Dead");
-                break;
-        }
-    }
+    //public void RefreshAnimation()
+    //{
+    //    switch (State)
+    //    {
+    //        case CreatureState.Idle:
+    //            Animator.Play("Idle");
+    //            break;
+    //        case CreatureState.Move:
+    //            Animator.Play("Walk");
+    //            break;
+    //        case CreatureState.Skill:
+    //            //Animator.Play("Attack");
+    //            break;
+    //        case CreatureState.Dead:
+    //            Animator.Play("Dead");
+    //            break;
+    //    }
+    //}
 }

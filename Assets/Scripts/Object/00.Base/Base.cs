@@ -4,24 +4,24 @@ using UnityEngine;
 
 public class Base : MonoBehaviour
 {
-    protected Rigidbody _rigid;
-    protected Collider _coller;
-    public Animator _animator ;
+    protected Rigidbody Rigid { get; set; }
+    protected Collider Coller { get; set; }
+    public Animator Animator { get; set; }
 
     public int ID { get; set; }
     public string Type { get; set; }
     public Vector3 Pos { get; set; }
 
-    private void Awake()
+    private void Start()
     {
         Init();
     }
 
     protected virtual void Init()
     {
-        _animator = GetComponent<Animator>();
-        _rigid = GetComponent<Rigidbody>();
-        _coller = GetComponent<Collider>();
+        Animator = GetComponent<Animator>();
+        Rigid = GetComponent<Rigidbody>();
+        Coller = GetComponent<Collider>();
     }
 
 

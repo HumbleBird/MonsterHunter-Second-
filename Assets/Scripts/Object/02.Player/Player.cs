@@ -12,5 +12,7 @@ public class Player : Charater
     {
         playerInfo = Managers.Table.m_Player.Get(id);
         statInfo = Managers.Table.m_Stat.Get(playerInfo.m_iStat);
+
+
     }
 }

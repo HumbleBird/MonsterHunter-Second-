@@ -20,7 +20,7 @@ public partial class Charater : Base
 				return;
 
 			_state = value;
-			RefreshAnimation();
+			//RefreshAnimation();
         }
     }
 

@@ -322,30 +322,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8bffddf5a64c7ab479ecd6a45c505720, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _stat:
-    m_nID: 0
-    m_iHp: 0
-    m_iStemina: 0
-    m_fAtk: 0
-    m_fDef: 0
-    m_fJumpPower: 0
-    m_fWalkSpeed: 0
-    m_fRunSpeed: 0
-    m_fCrunchSpeed: 0
-    m_fAttackSpeed: 0
-  _attackInfo:
-    m_nID: 0
-    m_sName: 
-    m_iDmg: 0
-    m_iSpeed: 0
-    m_fCoolTime: 0
-    m_fRange: 0
-    m_iNextNum: 0
-    m_sAnimName: 
-  _coolTime: 0
   _destPos: {x: 0, y: 0, z: 0}
   _lockTarget: {fileID: 0}
-  target: {fileID: 0}
+  target: {fileID: 481873116616196636, guid: 5e690635e8c4c4a4a9a9d450119b0d87, type: 3}
   _scanRange: 10
   _attackRange: 2
 --- !u!95 &2141164795

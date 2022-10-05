@@ -1,3 +1,3 @@
-Idx,Name,StageType,Stat,Level,RewardGold,RewardItem,#Prefab_Path
-아이디,이름,스테이지타입,보스 스탯,레벨,보상 골드,보상 아이템,프리팹
-11,오크,1,2000,1,10000,0,Prefabs/Monster/Boss/Orc
+Idx,#Name,class,Level,Stat,#Prefab_Path,#icon,AI
+아이디,이름,직업,레벨,스텟,프리팹,아이콘,AI
+1,팔라딘,Blow,1,1001,Prefabs/Player/Paladin,,
