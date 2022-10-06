@@ -51,7 +51,7 @@ public class ObjectManager
         {
 			Table_Player.Info pinfo = Managers.Table.m_Player.Get(id);
 			GameObject go = Managers.Resource.Instantiate(pinfo.m_sPrefabPath);
-			go.GetComponent<Charater>().SetInfo(id);
+			go.GetComponent<Charater>().SetInfo(pinfo.m_nID);
 			_objects.Add(pinfo.m_nID, go); // 이게 필요하나?
 		}
 		// 해당하는 
@@ -59,7 +59,7 @@ public class ObjectManager
         {
 			Table_Boss.Info binfo = Managers.Table.m_Boss.Get(id);
 			GameObject go = Managers.Resource.Instantiate(binfo.m_sPrefabPath);
-			go.GetComponent<Charater>().SetInfo(id);
+			go.GetComponent<Charater>().SetInfo(binfo.m_nID);
 			_objects.Add(binfo.m_nID, go); // 이게 필요하나?
 		}
 		// TODO Monster

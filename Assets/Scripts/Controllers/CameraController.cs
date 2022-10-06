@@ -20,7 +20,8 @@ public class CameraController : MonoBehaviour
 
     void Start()
     {
-
+        GameObject go =  Managers.Object.Find(1);
+        _player = go.transform;
     }
 
     void LateUpdate()

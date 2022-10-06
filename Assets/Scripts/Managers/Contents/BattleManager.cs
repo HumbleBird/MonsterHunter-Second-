@@ -12,6 +12,10 @@ public class BattleManager
     // TODO Charater에서 Adapter하기
     public virtual void HitEvent(GameObject attacker, int dmg, GameObject victim)
     {
+        // 데미지 계산으로 체력 깍기
+        // 해당 객체의 피격 애니메이션을
+        // 피격자와 공격자의 UI 스탯 변화를
+
         Charater victimCharater = victim.GetComponent<Charater>();
 
         int damage = (int)Mathf.Max(0, dmg - victimCharater.Def);
@@ -25,5 +29,9 @@ public class BattleManager
             victimCharater.Hp = 0;
             victimCharater.State = Define.CreatureState.Dead;
         }
+
+        
     }
+
+    // 버프 주기(누가 누구에게 무슨 효과를)
 }

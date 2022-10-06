@@ -14,7 +14,7 @@ public partial class Charater : Base
     protected GameObject _lockTarget;
     public GameObject target; // 타겟
 
-    public void ChangeAttackClass(string typeClass)
+    public void ChangeClass(string typeClass)
     {
         switch (typeClass)
         {
@@ -27,5 +27,7 @@ public partial class Charater : Base
             default:
                 break;
         }
+
+        _attack.Init();
     }
 }

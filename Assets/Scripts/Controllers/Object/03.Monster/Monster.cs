@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.AI;
 using static Define;
 
-public class Monster : Charater
+public class Monster : AI
 {
     [SerializeField]
     float _scanRange = 10;

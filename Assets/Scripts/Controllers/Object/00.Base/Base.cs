@@ -12,7 +12,7 @@ public class Base : MonoBehaviour
     public string Type { get; set; }
     public Vector3 Pos { get; set; }
 
-    private void Start()
+    private void Awake()
     {
         Init();
     }

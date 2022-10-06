@@ -38,4 +38,9 @@ public class TableManager
         AssetDatabase.Refresh();
 #endif
     }
+
+    public void Clear()
+    {
+
+    }
 }

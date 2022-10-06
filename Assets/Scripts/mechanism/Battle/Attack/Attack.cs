@@ -14,9 +14,9 @@ public abstract class Attack
 
     protected GameObject m_GOProjectile = null; // 투사체
 
-    public virtual void Init(GameObject go)
+    public virtual void Init()
     {
-        m_Go = go;
+        m_Go = Managers.Object.Find(1);
         m_Player = m_Go.GetComponent<Player>();
 
         m_GOTarget = m_Player.target;
@@ -25,7 +25,7 @@ public abstract class Attack
         ClearAttackInfo();
     }
 
-    public abstract void BasicAttack(int id);
+    public abstract void BasicAttack(int id = 100001);
     public abstract void Skill();
     public abstract void Kick();
 

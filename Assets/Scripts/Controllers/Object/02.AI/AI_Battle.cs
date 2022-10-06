@@ -9,4 +9,11 @@ public partial class AI : Charater
     // Patrol And Search follw
     // Battle
     // 
+    public void Attack()
+    {
+        throw new NotImplementedException();
+    }
+
+
+
 }

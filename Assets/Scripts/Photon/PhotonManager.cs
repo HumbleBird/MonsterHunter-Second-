@@ -7,7 +7,7 @@ public partial class PhotonManager : MonoBehaviourPunCallbacks
 {
     public PhotonView PV;
 
-    private void Awake()
+    public void Init()
     {
         PhotonNetwork.GameVersion = "1.0.0";
         PhotonNetwork.SendRate = 20; // 통신속도
@@ -51,5 +51,10 @@ public partial class PhotonManager : MonoBehaviourPunCallbacks
         PhotonNetwork.IsMessageQueueRunning = true;
 
         Debug.Log(" photon OnLobby ");
+    }
+
+    public void Clear()
+    {
+
     }
 }

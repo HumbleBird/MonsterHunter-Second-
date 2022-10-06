@@ -8,8 +8,8 @@ public class Table_Attack : Table_Base
     {
         public int      m_nID;
         public string   m_sName;
-        public int      m_iDmg;
-        public int      m_iSpeed;
+        public float    m_fDmg;
+        public float    m_fSpeed;
         public float    m_fCoolTime;
         public float    m_fRange;
         public int      m_iNextNum;
@@ -60,8 +60,8 @@ public class Table_Attack : Table_Base
 
         _reader.get(_nRow, ref _info.m_nID);
         _reader.get(_nRow, ref _info.m_sName);
-        _reader.get(_nRow, ref _info.m_iDmg);
-        _reader.get(_nRow, ref _info.m_iSpeed);
+        _reader.get(_nRow, ref _info.m_fDmg);
+        _reader.get(_nRow, ref _info.m_fSpeed);
         _reader.get(_nRow, ref _info.m_fCoolTime);
         _reader.get(_nRow, ref _info.m_fRange);
         _reader.get(_nRow, ref _info.m_iNextNum);

@@ -9,9 +9,9 @@ using UnityEngine;
 public class Blow : Attack
 {
     // 기본 좌클릭 공격
-    public override void BasicAttack(int id)
+    public override void BasicAttack(int id = 100001)
     {
-        Table_Attack.Info info = m_Player.GetAttackInfo(id);
+        Table_Attack.Info info = Managers.Table.m_Attack.Get(id);
 
         // 애니메이션
         m_Player.Animator.Play(info.m_sAnimName);

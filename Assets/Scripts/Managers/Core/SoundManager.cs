@@ -71,9 +71,8 @@ public class SoundManager
 	}
 
     // TODO 뮤트 기능
-    bool m_bMute = false;
-    public void MuteBgm(AudioClip audioClip,
-        bool _bMute = true)
+    //bool m_bMute = false;
+    public void MuteBgm(AudioClip audioClip, bool _bMute = true)
     {
         if (audioClip == null)
             return;

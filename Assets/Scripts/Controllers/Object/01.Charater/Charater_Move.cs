@@ -7,6 +7,7 @@ using static Define;
 
 public partial class Charater : Base
 {
+    #region PHOTON
     Vector3 m_vCurPos;
     Quaternion m_qCurRot;
     PhotonView PV;
@@ -31,4 +32,7 @@ public partial class Charater : Base
             m_qCurRot = (Quaternion)stream.ReceiveNext();
         }
     }
+    #endregion
+
+    protected abstract void Move();
 }

@@ -26,6 +26,8 @@ public partial class Charater : Base
 
 	protected override void Init()
 	{
+        base.Init();
+
         MaxHp = Hp;
         MaxStamina = Stamina;
     }

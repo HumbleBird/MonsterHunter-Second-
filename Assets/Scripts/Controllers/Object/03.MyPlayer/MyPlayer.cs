@@ -6,13 +6,23 @@ using static Define;
 
 public class MyPlayer : Player
 {
-	protected override void Update()
+    protected override void Init()
+    {
+        base.Init();
+	}
+
+    private void Start()
+    {
+		ChangeClass(playerInfo.m_sClass);
+	}
+
+    protected override void Update()
     {
 		Move();
 		Attack();
 	}
 
-	void Move()
+    protected override void Move()
     {
 		// 애니메이션 (애니메이션 자체에 이동이 포함되어 있음)
 		float horizontal = Input.GetAxis("Horizontal");
@@ -21,6 +31,20 @@ public class MyPlayer : Player
 		// Shft키를 안누르면 최대 0.5, Shft키를 누르면 최대 1까지 값이 바뀌게 된다
 		float offset = 0.5f + Input.GetAxis("Sprint") * 0.5f;
 
+		Vector3 move = new Vector3(horizontal, 0, vertical);
+		
+		// 걷기
+		if(offset == 0)
+        {
+			transform.position += move * statInfo.m_fWalkSpeed * Time.deltaTime;
+		}
+		else if(offset != 0)
+        {
+			transform.position += move * statInfo.m_fRunSpeed * Time.deltaTime;
+		}
+
+
+		// 애니메이션
 		Animator.SetFloat("Horizontal", horizontal * offset);
 		Animator.SetFloat("Vertical", vertical * offset);
 
@@ -32,6 +56,6 @@ public class MyPlayer : Player
 	void Attack()
     {
 		if (Input.GetMouseButtonDown(0))
-			_attack.BasicAttack(1001);
+			_attack.BasicAttack();
     }
 }

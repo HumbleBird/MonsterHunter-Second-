@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class Player : Charater
 {
-    Table_Player.Info playerInfo;
+    public Table_Player.Info playerInfo { get; set; }
 
     public override void SetInfo(int id)
     {
@@ -14,5 +14,10 @@ public class Player : Charater
         statInfo = Managers.Table.m_Stat.Get(playerInfo.m_iStat);
 
 
+    }
+
+    protected override void Move()
+    {
+        throw new NotImplementedException();
     }
 }

@@ -21,15 +21,5 @@ public abstract partial class Charater : Base
     public float Def { get { return statInfo.m_fDef; } set { statInfo.m_fDef = value; } }
     public float WalkSpeed { get { return statInfo.m_fWalkSpeed; } set { statInfo.m_fWalkSpeed = value; } }
     #endregion
-
-    // 나중에 Stat은? Equipment는 붙여야 됨?
-    // TODO Player AttackInfo Dict에 다 넣어 줘야 함. 수동으로
-    public Table_Attack.Info GetAttackInfo(int id)
-    {
-        if (attackInfo.ContainsKey(id))
-            return attackInfo[id];
-
-        return null;
-    }
 }
 
