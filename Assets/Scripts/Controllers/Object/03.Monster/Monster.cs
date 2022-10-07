@@ -17,6 +17,7 @@ public class Monster : AI
     {
         bossInfo = Managers.Table.m_Boss.Get(id);
         statInfo = Managers.Table.m_Stat.Get(bossInfo.m_iStat);
+        aiInfo = Managers.Table.m_AI.Get(bossInfo.m_iAI);
     }
 
     protected override void UpdateIdle()

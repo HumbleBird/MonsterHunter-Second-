@@ -33,6 +33,4 @@ public partial class Charater : Base
         }
     }
     #endregion
-
-    protected abstract void Move();
 }

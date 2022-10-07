@@ -15,9 +15,4 @@ public class Player : Charater
 
 
     }
-
-    protected override void Move()
-    {
-        throw new NotImplementedException();
-    }
 }

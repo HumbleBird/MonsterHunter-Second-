@@ -3,15 +3,10 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public partial class AI : Charater
 {
-    public override void SetInfo(int id)
-    {
-        ; // Monster로 아니면 object type에 따라서 분류하기
-    }
+    protected Table_AI.Info aiInfo;
 
-    // 동물, 몬스터, 보스 등
-    // Patrol, Scan, Battle Pattern(Attack, Buff, etc...)
-    
 }

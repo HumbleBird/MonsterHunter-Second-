@@ -1,20 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
 
-public class Table_Boss : Table_Base
+public class Table_AI : Table_Base
 {
     [Serializable] 
     public class Info
     {
-        public int    m_nID;
-        public string m_sName;
-        public int    m_iStageType;
-        public int    m_iStat;
-        public int    m_iLevel;
-        public int    m_iRewardGold;
-        public int    m_iRewardItem;
-        public string m_sPrefabPath;
-        public int    m_iAI;
+        public int      m_nID;
+        public int      m_iType;
+        public float    m_fStartWaitTime;
+        public float    m_fTimeToRotate;
+        public float    m_fViewRadius;
+        public float    m_fViewAngle;
     }
 
     public Dictionary<int, Info> m_Dictionary = new Dictionary<int, Info>();
@@ -60,16 +57,13 @@ public class Table_Boss : Table_Base
             return false;
 
         _reader.get(_nRow, ref _info.m_nID);
-        _reader.get(_nRow, ref _info.m_sName);
-        _reader.get(_nRow, ref _info.m_iStageType);
-        _reader.get(_nRow, ref _info.m_iStat);
-        _reader.get(_nRow, ref _info.m_iLevel);
-        _reader.get(_nRow, ref _info.m_iRewardGold);
-        _reader.get(_nRow, ref _info.m_iRewardItem);
-        _reader.get(_nRow, ref _info.m_sPrefabPath);
-        _reader.get(_nRow, ref _info.m_iAI);
+        _reader.get(_nRow, ref _info.m_iType);
+        _reader.get(_nRow, ref _info.m_fStartWaitTime);
+        _reader.get(_nRow, ref _info.m_fTimeToRotate);
+        _reader.get(_nRow, ref _info.m_fViewRadius);
+        _reader.get(_nRow, ref _info.m_fViewAngle);
 
-        return true;                 
+        return true;
     }
 }
 
