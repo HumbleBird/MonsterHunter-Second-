@@ -9,9 +9,8 @@ public class GameScene : BaseScene
         base.Init();
 
         SceneType = Define.Scene.Game;
-
-        Managers.Object.Spawn(1);
-        Managers.Object.Spawn(11);
+        Managers.Battle.SpawnCharater(Define.CharaterType.Player);
+        Managers.Battle.SpawnCharater(Define.CharaterType.Boss);
 
         //Managers.UI.ShowSceneUI<UI_Inven>();
         //gameObject.GetOrAddComponent<CursorController>();

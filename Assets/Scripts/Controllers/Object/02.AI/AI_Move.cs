@@ -7,35 +7,31 @@ using static Define;
 
 public partial class AI : Charater
 {
-    public override void SetInfo(int id)
-    {
-        ; // 나중에 몬스터나 동물도 추가 예정
-    }
+    public override void SetInfo(int id) { }
 
     public UnityEngine.AI.NavMeshAgent navMeshAgent;               //  Nav mesh agent component
+    public float startWaitTime = 4;                 //  Wait time of every action
+    public float timeToRotate = 2;                  //  Wait time when the enemy detect near the player without seeing
+    public float speedWalk = 6;                     //  Walking speed, speed in the nav mesh agent
+    public float speedRun = 9;                      //  Running speed
 
+    public float viewRadius = 15;                   //  Radius of the enemy view
+    public float viewAngle = 90;                    //  Angle of the enemy view
     public LayerMask playerMask;                    //  To detect the player with the raycast
     public LayerMask obstacleMask;                  //  To detect the obstacules with the raycast
-    
     public float meshResolution = 1.0f;             //  How many rays will cast per degree
     public int edgeIterations = 4;                  //  Number of iterations to get a better performance of the mesh filter when the raycast hit an obstacule
     public float edgeDistance = 0.5f;               //  Max distance to calcule the a minumun and a maximum raycast when hits something
 
-    Transform[] waypoints;                          //  All the waypoints where the enemy patrols
+
+    public Transform[] waypoints;                   //  All the waypoints where the enemy patrols
     int m_CurrentWaypointIndex;                     //  Current waypoint where the enemy is going to
 
     Vector3 playerLastPosition = Vector3.zero;      //  Last position of the player when was near the enemy
     Vector3 m_PlayerPosition;                       //  Last position of the player when the player is seen by the enemy
 
-    protected float startWaitTime;                  //  Wait time of every action
-    protected float timeToRotate;                   //  Wait time when the enemy detect near the player without seeing
-    protected float m_fSpeedWalk;                   //  Walking speed, speed in the nav mesh agent
-    protected float m_fSpeedRun;                    //  Running speed
-    protected float m_WaitTime;                     //  Variable of the wait time that makes the delay
-    protected float m_TimeToRotate;                 //  Variable of the wait time to rotate when the player is near that makes the delay
-    protected float m_viewRadius;                   //  Radius of the enemy view
-    protected float m_viewAngle;                    //  Angle of the enemy view
-
+    float m_WaitTime;                               //  Variable of the wait time that makes the delay
+    float m_TimeToRotate;                           //  Variable of the wait time to rotate when the player is near that makes the delay
     bool m_playerInRange;                           //  If the player is in range of vision, state of chasing
     bool m_PlayerNear;                              //  If the player is near, state of hearing
     bool m_IsPatrol;                                //  If the enemy is patrol, state of patroling
@@ -48,61 +44,19 @@ public partial class AI : Charater
         m_CaughtPlayer = false;
         m_playerInRange = false;
         m_PlayerNear = false;
-
-        m_WaitTime = aiInfo.m_fStartWaitTime;                 //  Set the wait time variable that will change
-        m_TimeToRotate = aiInfo.m_fTimeToRotate;
-        m_viewRadius = aiInfo.m_fViewRadius;
-        m_viewAngle = aiInfo.m_fViewAngle;
-
-        m_fSpeedWalk = statInfo.m_fWalkSpeed;
-        m_fSpeedRun = statInfo.m_fRunSpeed;
+        m_WaitTime = startWaitTime;                 //  Set the wait time variable that will change
+        m_TimeToRotate = timeToRotate;
 
         m_CurrentWaypointIndex = 0;                 //  Set the initial waypoint
-        navMeshAgent = gameObject.GetOrAddComponent<UnityEngine.AI.NavMeshAgent>();
+        navMeshAgent = GetComponent<UnityEngine.AI.NavMeshAgent>();
 
         navMeshAgent.isStopped = false;
-        navMeshAgent.speed = m_fSpeedWalk;             //  Set the navemesh speed with the normal speed of the enemy
+        navMeshAgent.speed = speedWalk;             //  Set the navemesh speed with the normal speed of the enemy
         navMeshAgent.SetDestination(waypoints[m_CurrentWaypointIndex].position);    //  Set the destination to the first waypoint
     }
 
-    protected override void UpdateController()
+    protected void MoveAI()
     {
-        base.UpdateController();
-
-        switch (State)
-        {
-            case CreatureState.Idle:
-                MonsterPatrolAI();              //  Check whether or not the player is in the enemy's field of vision
-                break;
-            case CreatureState.Move:
-                MonsterPatrolAI();             //  Check whether or not the player is in the enemy's field of vision
-                break;
-        }
-    }
-
-    protected override void UpdateIdle()
-    {
-        EnviromentView();
-
-        // TODO Idle 애니메이션 중 랜덤으로 재생
-    }
-
-    protected override void UpdateMove()
-    {
-        if (!m_IsPatrol)
-        {
-            Chasing();
-        }
-        else
-        {
-            Patroling();
-        }
-    }
-
-    private void MonsterPatrolAI()
-    {
-        EnviromentView();
-
         if (!m_IsPatrol)
         {
             Chasing();
@@ -138,13 +92,12 @@ public partial class AI : Charater
             }
             else
             {
-                // 여기가 플레이어에게 다 온 순간?
                 if (Vector3.Distance(transform.position, GameObject.FindGameObjectWithTag("Player").transform.position) >= 2.5f)
                     //  Wait if the current position is not the player position
-                    Stop();
+                Stop();
                 m_WaitTime -= Time.deltaTime;
 
-
+                CaughtPlayer();
             }
         }
     }
@@ -212,11 +165,13 @@ public partial class AI : Charater
     void CaughtPlayer()
     {
         m_CaughtPlayer = true;
+        State = CreatureState.Skill;
     }
 
     void LookingPlayer(Vector3 player)
     {
         navMeshAgent.SetDestination(player);
+        //transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(dir), 20 * Time.deltaTime);
         if (Vector3.Distance(transform.position, player) <= 0.3)
         {
             if (m_WaitTime <= 0)

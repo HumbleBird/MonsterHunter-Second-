@@ -10,8 +10,8 @@ public partial class Charater : Base
     [SerializeField]
     protected Vector3 _destPos;
 
-    CreatureState _state = CreatureState.Idle;
-	public CreatureState State
+    protected CreatureState _state = CreatureState.Idle;
+	public virtual CreatureState State
     {
 		get { return _state;}
         set
@@ -20,7 +20,6 @@ public partial class Charater : Base
 				return;
 
 			_state = value;
-			//RefreshAnimation();
         }
     }
 

@@ -36,6 +36,8 @@ public class Managers : MonoBehaviour
     public static TableManager Table { get { return Instance._table; } }
     #endregion
 
+    static public string m_strHttp = "http://58.78.211.147:3000/";
+
     void Start()
     {
         Init();

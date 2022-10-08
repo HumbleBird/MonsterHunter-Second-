@@ -9,20 +9,32 @@ public class MyPlayer : Player
     protected override void Init()
     {
         base.Init();
+
+		target = Managers.Object.Find(101);
 	}
 
-    private void Start()
+    protected override void UpdateController()
     {
-		ChangeClass(playerInfo.m_sClass);
+        base.UpdateController();
+
+		switch (State)
+		{
+			case CreatureState.Idle:
+				GetInputKeyMove();
+				Attack();
+				break;
+			case CreatureState.Move:
+				GetInputKeyMove();
+				Attack();
+				break;
+			case CreatureState.Skill:
+				break;
+			case CreatureState.Dead:
+				break;
+		}
 	}
 
-    protected override void Update()
-    {
-		Move();
-		Attack();
-	}
-
-    protected override void Move()
+    void GetInputKeyMove()
     {
 		// 애니메이션 (애니메이션 자체에 이동이 포함되어 있음)
 		float horizontal = Input.GetAxis("Horizontal");
@@ -43,7 +55,6 @@ public class MyPlayer : Player
 			transform.position += move * statInfo.m_fRunSpeed * Time.deltaTime;
 		}
 
-
 		// 애니메이션
 		Animator.SetFloat("Horizontal", horizontal * offset);
 		Animator.SetFloat("Vertical", vertical * offset);
@@ -56,6 +67,23 @@ public class MyPlayer : Player
 	void Attack()
     {
 		if (Input.GetMouseButtonDown(0))
+        {
 			_attack.BasicAttack();
-    }
+			
+		}
+	}
+
+	protected void AttackingCheck()
+	{
+		// 공격을 하는 동안 못 움직이게 하기
+		float curAnimationTime = Animator.GetCurrentAnimatorStateInfo(0).normalizedTime;
+		if (curAnimationTime >= 1)
+		{
+			State = CreatureState.Move;
+		}
+        else
+        {
+			State = CreatureState.Skill;
+        }
+	}
 }

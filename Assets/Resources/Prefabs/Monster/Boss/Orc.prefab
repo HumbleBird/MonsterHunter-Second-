@@ -273,7 +273,7 @@ GameObject:
   - component: {fileID: 2141164795}
   m_Layer: 0
   m_Name: Orc
-  m_TagString: Untagged
+  m_TagString: Monster
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -324,9 +324,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _destPos: {x: 0, y: 0, z: 0}
   _lockTarget: {fileID: 0}
-  target: {fileID: 481873116616196636, guid: 5e690635e8c4c4a4a9a9d450119b0d87, type: 3}
-  _scanRange: 10
-  _attackRange: 2
+  navMeshAgent: {fileID: 0}
+  playerMask:
+    serializedVersion: 2
+    m_Bits: 128
+  obstacleMask:
+    serializedVersion: 2
+    m_Bits: 2048
+  meshResolution: 1
+  edgeIterations: 4
+  edgeDistance: 0.5
+  waypoints:
+  - {fileID: 5503306849077290327, guid: 3d0dd77f2acd9cb4695b310706a925f0, type: 3}
+  - {fileID: 8224311364943130330, guid: 1c15cd5510ff9804e8c75cf9ad5da76d, type: 3}
+  - {fileID: 4853226077292527588, guid: 98433b961a27fa44696fa490a2297c2a, type: 3}
 --- !u!95 &2141164795
 Animator:
   serializedVersion: 4

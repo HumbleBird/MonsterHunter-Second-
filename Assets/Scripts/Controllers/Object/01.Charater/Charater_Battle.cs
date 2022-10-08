@@ -12,7 +12,7 @@ public partial class Charater : Base
 
     [SerializeField]
     protected GameObject _lockTarget;
-    public GameObject target; // 타겟
+    public GameObject target { get; set; } // 타겟
 
     public void ChangeClass(string typeClass)
     {

@@ -3,17 +3,9 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static Define;
 
 public partial class AI : Charater
 {
-    // Patrol And Search follw
-    // Battle
-    // 
-    public void Attack()
-    {
-        throw new NotImplementedException();
-    }
-
-
-
+    // TODO Animal NPC
 }

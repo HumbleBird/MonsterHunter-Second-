@@ -4,6 +4,13 @@ using UnityEngine;
 
 public class Define
 {
+    public enum CharaterType
+    {
+        Player,
+        Monster,
+        Boss
+    }
+
     public enum Team
     {
         All,
@@ -27,7 +34,6 @@ public class Define
 
     public enum CreatureState
     {
-        None,
         Idle,
         Move,
         Skill,

@@ -19,13 +19,13 @@ public abstract class Attack
         m_Go = Managers.Object.Find(1);
         m_Player = m_Go.GetComponent<Player>();
 
-        m_GOTarget = m_Player.target;
-        m_TargetMonster = m_GOTarget.GetComponent<Monster>();
+        //m_GOTarget = m_Player.target;
+        //m_TargetMonster = m_GOTarget.GetComponent<Monster>();
 
         ClearAttackInfo();
     }
 
-    public abstract void BasicAttack(int id = 100001);
+    public abstract void BasicAttack(int id = 1);
     public abstract void Skill();
     public abstract void Kick();
 
@@ -48,5 +48,26 @@ public abstract class Attack
     {
 
 
+    }
+
+    public virtual void HitEvent(GameObject attacker, int dmg, GameObject victim)
+    {
+        // 데미지 계산으로 체력 깍기
+        // 해당 객체의 피격 애니메이션을
+        // 피격자와 공격자의 UI 스탯 변화를
+
+        Charater victimCharater = victim.GetComponent<Charater>();
+
+        int damage = (int)Mathf.Max(0, dmg - victimCharater.Def);
+        victimCharater.Hp -= damage;
+
+        // TODO 애니메이션
+        victimCharater.Animator.Play("Hit");
+
+        if (victimCharater.Hp <= 0)
+        {
+            victimCharater.Hp = 0;
+            victimCharater.State = Define.CreatureState.Dead;
+        }
     }
 }

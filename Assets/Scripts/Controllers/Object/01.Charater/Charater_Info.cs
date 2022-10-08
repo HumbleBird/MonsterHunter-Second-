@@ -8,7 +8,7 @@ using static Define;
 public abstract partial class Charater : Base
 {
     public Table_Stat.Info statInfo { get; set; } = new Table_Stat.Info();
-    public Dictionary<int, Table_Attack.Info> attackInfo { get; set; } = new Dictionary<int, Table_Attack.Info>();
+    public Table_Attack.Info attackInfo { get; set; } = new Table_Attack.Info();
     public abstract void SetInfo(int id);
 
     // 만약
