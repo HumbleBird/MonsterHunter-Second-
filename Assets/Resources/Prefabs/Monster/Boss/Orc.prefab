@@ -269,8 +269,8 @@ GameObject:
   m_Component:
   - component: {fileID: 662347745478704761}
   - component: {fileID: 4597673734399790262}
-  - component: {fileID: 1988439945}
   - component: {fileID: 2141164795}
+  - component: {fileID: 8248375790130339655}
   m_Layer: 0
   m_Name: Orc
   m_TagString: Monster
@@ -310,7 +310,27 @@ CapsuleCollider:
   m_Height: 3.03
   m_Direction: 1
   m_Center: {x: 0, y: 1, z: 0}
---- !u!114 &1988439945
+--- !u!95 &2141164795
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1342959200176554030}
+  m_Enabled: 1
+  m_Avatar: {fileID: 9000000, guid: 61b8698a2176146289745095c88a5155, type: 3}
+  m_Controller: {fileID: 9100000, guid: 09cab020fee16432ba38823221662a31, type: 2}
+  m_CullingMode: 2
+  m_UpdateMode: 1
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &8248375790130339655
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -325,6 +345,12 @@ MonoBehaviour:
   _destPos: {x: 0, y: 0, z: 0}
   _lockTarget: {fileID: 0}
   navMeshAgent: {fileID: 0}
+  startWaitTime: 4
+  timeToRotate: 2
+  speedWalk: 1
+  speedRun: 3
+  viewRadius: 15
+  viewAngle: 90
   playerMask:
     serializedVersion: 2
     m_Bits: 128
@@ -338,26 +364,6 @@ MonoBehaviour:
   - {fileID: 5503306849077290327, guid: 3d0dd77f2acd9cb4695b310706a925f0, type: 3}
   - {fileID: 8224311364943130330, guid: 1c15cd5510ff9804e8c75cf9ad5da76d, type: 3}
   - {fileID: 4853226077292527588, guid: 98433b961a27fa44696fa490a2297c2a, type: 3}
---- !u!95 &2141164795
-Animator:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1342959200176554030}
-  m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: 61b8698a2176146289745095c88a5155, type: 3}
-  m_Controller: {fileID: 9100000, guid: 09cab020fee16432ba38823221662a31, type: 2}
-  m_CullingMode: 2
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1576848682820892603
 GameObject:
   m_ObjectHideFlags: 0

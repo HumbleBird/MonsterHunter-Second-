@@ -16,16 +16,18 @@ public partial class Monster : AI
         ChangeClass("Blow");
     }
 
-    protected override void Update()
+    protected override void UpdateController()
     {
-        base.Update();
+        base.UpdateController();
 
-        MoveAI();
-    }
-
-
-    protected override void UpdateSkill()
-    {
-        //AttackRandom();
+        switch (State)
+        {
+            case CreatureState.Move:
+                StartCoroutine("MoveAI");
+                break;
+            case CreatureState.Skill:
+                AttackRandom();
+                break;
+        }
     }
 }

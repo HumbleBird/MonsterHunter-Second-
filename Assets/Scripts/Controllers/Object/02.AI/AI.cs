@@ -8,6 +8,8 @@ using static Define;
 
 public partial class AI : Charater
 {
+    protected Table_AI.Info aiInfo; // 길 찾기를 위한 대기 시간 및 시야 각도 등
+
     public override CreatureState State
     {
         get { return _state; }
@@ -21,8 +23,6 @@ public partial class AI : Charater
         }
     }
 
-    protected Table_AI.Info aiInfo;
-
     protected override void UpdateController()
     {
         base.UpdateController();
@@ -30,12 +30,44 @@ public partial class AI : Charater
         switch (State)
         {
             case CreatureState.Idle:
-                EnviromentView();             //  Check whether or not the player is in the enemy's field of vision
+                EnviromentView();
+                RandomChangeState();
                 break;
             case CreatureState.Move:
-                EnviromentView();             //  Check whether or not the player is in the enemy's field of vision
-                MoveAI();
+                EnviromentView();
+                StartCoroutine("MoveAI");
                 break;
         }
+    }
+
+    float time = 3f;
+    void RandomChangeState()
+    {
+        if (m_playerInRange == true)
+        {
+            State = CreatureState.Move;
+            return;
+        }
+
+        // 3초에 한 번씩 변할지 말지를 결정
+        if (time <= 0)
+        {
+            int Rand = UnityEngine.Random.Range(0, 2);
+            if (Rand == 0)
+            {
+                State = CreatureState.Idle;
+            }
+            else
+            {
+                State = CreatureState.Move;
+            }
+            time = 3f;
+            return;
+        }
+        else
+        {
+            time -= Time.deltaTime;
+        }
+
     }
 }

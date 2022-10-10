@@ -60,5 +60,6 @@ public partial class Charater : Base
     protected virtual void UpdateSkill() { }
     protected virtual void UpdateDead() { }
 
+
     // TODO Trans
 }

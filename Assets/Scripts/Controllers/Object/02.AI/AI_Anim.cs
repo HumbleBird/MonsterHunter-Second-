@@ -19,6 +19,7 @@ public partial class AI : Charater
                 break;
             case CreatureState.Skill:
                 //Animator.Play("Attack");
+                // 현재 공격하는 공격 ID를 참고하여 애니메이션 재생인데..
                 break;
             case CreatureState.Dead:
                 Animator.Play("Dead");

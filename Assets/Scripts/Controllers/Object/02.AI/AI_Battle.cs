@@ -7,5 +7,5 @@ using static Define;
 
 public partial class AI : Charater
 {
-    // TODO Animal NPC
+    
 }
