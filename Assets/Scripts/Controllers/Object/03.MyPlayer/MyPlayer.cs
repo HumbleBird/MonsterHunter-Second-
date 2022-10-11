@@ -69,7 +69,6 @@ public class MyPlayer : Player
 		if (Input.GetMouseButtonDown(0))
         {
 			_attack.BasicAttack();
-			
 		}
 	}
 

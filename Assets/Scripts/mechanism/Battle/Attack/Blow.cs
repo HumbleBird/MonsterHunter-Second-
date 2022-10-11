@@ -11,6 +11,7 @@ public class Blow : Attack
     // 기본 좌클릭 공격
     public override void BasicAttack(int id = 1)
     {
+        _bNextAttackClick = false;
         Table_Attack.Info info = Managers.Table.m_Attack.Get(id);
 
         if(info == null)
@@ -21,18 +22,13 @@ public class Blow : Attack
 
         // 애니메이션
         m_Player.Animator.Play(info.m_sAnimName);
-
-        NextAttackCheck();
+        NextAttackCheck(info.m_sAnimName);
 
         // 다음 공격 유무 여부, 클릭 시간 감지.
         if (info.m_iNextNum != 0 && _bNextAttackClick == true)
         {
-            _bNextAttackClick = false;
             BasicAttack(info.m_iNextNum);
         }
-
-        _bNextAttackClick = false;
-
         return;
     }
 
@@ -45,4 +41,5 @@ public class Blow : Attack
     {
         throw new NotImplementedException();
     }
+
 }

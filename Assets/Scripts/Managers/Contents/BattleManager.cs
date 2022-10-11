@@ -53,4 +53,23 @@ public class BattleManager
                 break;
         }
     }
+
+    // Battle
+    public virtual void HitEvent(GameObject attacker, int dmg, GameObject victim)
+    {
+        Charater victimCharater = victim.GetComponent<Charater>();
+
+        int damage = (int)Mathf.Max(0, dmg - victimCharater.Def);
+        victimCharater.Hp -= damage;
+
+        // TODO 애니메이션
+        victimCharater.Animator.Play("Hit");
+        Debug.Log($"{victim.name}의 남은 체력은 {victimCharater.Hp}");
+
+        if (victimCharater.Hp <= 0)
+        {
+            victimCharater.Hp = 0;
+            victimCharater.State = Define.CreatureState.Dead;
+        }
+    }
 }
