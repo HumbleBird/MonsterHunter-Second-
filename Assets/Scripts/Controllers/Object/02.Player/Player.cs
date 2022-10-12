@@ -14,4 +14,9 @@ public class Player : Charater
         statInfo = Managers.Table.m_Stat.Get(playerInfo.m_iStat);
         ChangeClass(playerInfo.m_sClass);
     }
+
+    public void Attack(GameObject obj)
+    {
+        Managers.Battle.HitEvent(gameObject, (int)Atk, obj);
+    }
 }

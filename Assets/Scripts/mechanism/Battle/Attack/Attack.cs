@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,6 +15,9 @@ public abstract class Attack
 
     protected GameObject m_GOProjectile = null; // 투사체
 
+    public float cooldownTime = 2f;
+
+
     public virtual void Init()
     {
         m_Go = Managers.Object.Find(1);
@@ -25,23 +29,8 @@ public abstract class Attack
     public abstract void Kick();
 
     protected bool _bNextAttackClick = false;
-    protected void NextAttackCheck(string currentAnim)
+    protected virtual void NextAttackCheck(Table_Attack.Info info)
     {
-        AnimatorStateInfo info = m_Player.Animator.GetCurrentAnimatorStateInfo(0);
 
-        if (info.IsName(currentAnim))
-        {
-            float curAnimationTime = info.normalizedTime;
-            if (curAnimationTime >= 0.7)
-            {
-                if (Input.GetMouseButtonDown(0))
-                {
-                    _bNextAttackClick = true;
-                    return;
-                }
-            }
-        }
     }
-
-
 }

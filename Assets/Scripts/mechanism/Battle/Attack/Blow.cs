@@ -20,15 +20,8 @@ public class Blow : Attack
             return;
         }
 
-        // 애니메이션
-        m_Player.Animator.Play(info.m_sAnimName);
-        NextAttackCheck(info.m_sAnimName);
-
-        // 다음 공격 유무 여부, 클릭 시간 감지.
-        if (info.m_iNextNum != 0 && _bNextAttackClick == true)
-        {
-            BasicAttack(info.m_iNextNum);
-        }
+        m_Player.Animator.SetBool(info.m_sAnimName, true);
+        NextAttackCheck(info);
         return;
     }
 
@@ -40,6 +33,30 @@ public class Blow : Attack
     public override void Skill()
     {
         throw new NotImplementedException();
+    }
+
+    protected override void NextAttackCheck(Table_Attack.Info info)
+    {
+        AnimatorStateInfo Animinfo = m_Player.Animator.GetCurrentAnimatorStateInfo(0);
+
+        if (Animinfo.IsName(info.m_sAnimName))
+        {
+            float curAnimationTime = Animinfo.normalizedTime;
+
+            m_Player.Animator.SetBool(info.m_sAnimName, false);
+            Debug.Log(m_Player.Animator.GetBool(info.m_sAnimName));
+            if (curAnimationTime >= 0.7)
+            {
+
+                if (Input.GetMouseButtonDown(0))
+                {
+                    if (info.m_iNextNum != 0)
+                    {
+                        BasicAttack(info.m_iNextNum);
+                    }
+                }
+            }
+        }
     }
 
 }

@@ -11,16 +11,17 @@ public partial class AI : Charater
     public override void SetInfo(int id) { }
 
     #region 변수
-    public NavMeshAgent navMeshAgent;               //  Nav mesh agent component
+    NavMeshAgent navMeshAgent;                      //  Nav mesh agent component
     public float startWaitTime = 4;                 //  Wait time of every action
     public float timeToRotate = 2;                  //  Wait time when the enemy detect near the player without seeing
+    float m_WaitTime;                               //  딜레이 대기 시간
+    float m_TimeToRotate;                           //  플레이어가 근처에 있을 때 딜레이 대기 시간
     public float speedWalk = 1;                     //  Walking speed, speed in the nav mesh agent
     public float speedRun = 3;                      //  Running speed
 
     public float viewRadius = 5;                   //  Radius of the enemy view
     public float viewAngle = 90;                    //  Angle of the enemy view
-    public LayerMask playerMask;                    //  To detect the player with the raycast
-    public LayerMask obstacleMask;                  //  To detect the obstacules with the raycast
+
     public float meshResolution = 1.0f;             //  How many rays will cast per degree
     public int edgeIterations = 4;                  //  Number of iterations to get a better performance of the mesh filter when the raycast hit an obstacule
     public float edgeDistance = 0.5f;               //  Max distance to calcule the a minumun and a maximum raycast when hits something
@@ -29,11 +30,12 @@ public partial class AI : Charater
     public Transform[] waypoints;                   //  All the waypoints where the enemy patrols
     int m_CurrentWaypointIndex = 0;                     //  Current waypoint where the enemy is going to
 
+    public LayerMask playerMask;                    //  To detect the player with the raycast
+    public LayerMask obstacleMask;                  //  To detect the obstacules with the raycast
+
     Vector3 playerLastPosition = Vector3.zero;      //  Last position of the player when was near the enemy
     Vector3 m_PlayerPosition = Vector3.zero;        //  Last position of the player when the player is seen by the enemy
 
-    float m_WaitTime;                               //  딜레이 대기 시간
-    float m_TimeToRotate;                           //  플레이어가 근처에 있을 때 딜레이 대기 시간
     bool m_playerInRange= false;                  //  If the player is in range of vision, state of chasing
     bool m_PlayerNear  = false;               //  If the player is near, state of hearing
     bool m_IsPatrol    = true;             //  If the enemy is patrol, state of patroling
@@ -76,7 +78,7 @@ public partial class AI : Charater
             Move(speedRun);
             navMeshAgent.SetDestination(m_PlayerPosition);          
         }
-        if (navMeshAgent.remainingDistance <= navMeshAgent.stoppingDistance)    
+        //if (navMeshAgent.remainingDistance <= navMeshAgent.stoppingDistance)    
         {
             if (m_WaitTime <= 0 && !m_CaughtPlayer && dis >= m_fDetectRange) 
             {
@@ -166,7 +168,6 @@ public partial class AI : Charater
     void CaughtPlayer()
     {
         m_CaughtPlayer = true;
-
         State = CreatureState.Skill;
     }
     #endregion
@@ -207,11 +208,15 @@ public partial class AI : Charater
                 if (!Physics.Raycast(transform.position, dirToPlayer, dstToPlayer, obstacleMask))
                 {
                     m_playerInRange = true;             
-                    m_IsPatrol = false;                 
+                    m_IsPatrol = false;
+                    target = null;
                 }
                 // 장애물에 막히면
                 else
+                {
                     m_playerInRange = false;
+                    target = playerInRange[1].gameObject;
+                }
             }
             // 시야 밖
             if (Vector3.Distance(transform.position, player.position) > viewRadius)
@@ -220,4 +225,6 @@ public partial class AI : Charater
                 m_PlayerPosition = player.transform.position;       
         }
     }
+
+
 }

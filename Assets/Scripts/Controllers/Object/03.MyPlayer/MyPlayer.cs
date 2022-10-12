@@ -4,13 +4,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using static Define;
 
-public class MyPlayer : Player
+public partial class MyPlayer : Player
 {
-    protected override void Init()
+	public Collider attackCollider;
+	public TrigerDetector trigerDetecter;
+
+	protected override void Init()
     {
         base.Init();
 
-		target = Managers.Object.Find(101);
 	}
 
     protected override void UpdateController()
@@ -61,28 +63,5 @@ public class MyPlayer : Player
 
 		// 이동속도 : Shift키를 안눌렀을 땐 walkSpeed, Shift키를 눌렀을 땐 runSpeed값이 moveSpeed에 저장
 		//float moveSpeed = Mathf.Lerp(walkSpeed, runSpeed, Input.GetAxis("Sprint"));
-	}
-
-	// TODO
-	void Attack()
-    {
-		if (Input.GetMouseButtonDown(0))
-        {
-			_attack.BasicAttack();
-		}
-	}
-
-	protected void AttackingCheck()
-	{
-		// 공격을 하는 동안 못 움직이게 하기
-		float curAnimationTime = Animator.GetCurrentAnimatorStateInfo(0).normalizedTime;
-		if (curAnimationTime >= 1)
-		{
-			State = CreatureState.Move;
-		}
-        else
-        {
-			State = CreatureState.Skill;
-        }
 	}
 }

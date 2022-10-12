@@ -55,7 +55,7 @@ public class BattleManager
     }
 
     // Battle
-    public virtual void HitEvent(GameObject attacker, int dmg, GameObject victim)
+    public virtual void HitEvent(GameObject attacker, float dmg, GameObject victim)
     {
         Charater victimCharater = victim.GetComponent<Charater>();
 

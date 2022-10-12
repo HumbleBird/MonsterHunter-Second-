@@ -49,7 +49,6 @@ public partial class AI : Charater
             return;
         }
 
-        // 3초에 한 번씩 변할지 말지를 결정
         if (time <= 0)
         {
             int Rand = UnityEngine.Random.Range(0, 2);
