@@ -419,9 +419,6 @@ GameObject:
   - component: {fileID: 1197275047}
   - component: {fileID: 1197275048}
 <<<<<<< HEAD
-<<<<<<< HEAD
->>>>>>> parent of b1e3220e (aa)
-=======
 >>>>>>> parent of b1e3220e (aa)
 =======
 >>>>>>> parent of b1e3220e (aa)
@@ -492,20 +489,12 @@ Transform:
   m_GameObject: {fileID: 1197275043}
 <<<<<<< HEAD
 <<<<<<< HEAD
-<<<<<<< HEAD
   m_LocalRotation: {x: -0.23890713, y: 0.04452101, z: -0.011010706, w: -0.9699588}
   m_LocalPosition: {x: -0.14516985, y: 4.7520227, z: -13.62916}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1343385738}
-=======
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: -10}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
->>>>>>> parent of b1e3220e (aa)
 =======
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 1, z: -10}
@@ -594,18 +583,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 1197275043}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5e5a2a4ab56bf724faae15359b0ee526, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1197275048
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1197275043}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 637c2db44e2fb19428a764374e6b3a83, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
@@ -617,9 +594,6 @@ MonoBehaviour:
   m_Zoom: 3
 --- !u!1 &1289666822
 <<<<<<< HEAD
-<<<<<<< HEAD
->>>>>>> parent of b1e3220e (aa)
-=======
 >>>>>>> parent of b1e3220e (aa)
 =======
 >>>>>>> parent of b1e3220e (aa)
@@ -630,7 +604,6 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
   - component: {fileID: 1469313239}
@@ -647,8 +620,6 @@ MonoBehaviour:
 =======
 =======
 >>>>>>> parent of b1e3220e (aa)
-=======
->>>>>>> parent of b1e3220e (aa)
   - component: {fileID: 1289666826}
   - component: {fileID: 1289666825}
   - component: {fileID: 1289666824}
@@ -663,9 +634,6 @@ MonoBehaviour:
 --- !u!136 &1289666823
 CapsuleCollider:
 <<<<<<< HEAD
-<<<<<<< HEAD
->>>>>>> parent of b1e3220e (aa)
-=======
 >>>>>>> parent of b1e3220e (aa)
 =======
 >>>>>>> parent of b1e3220e (aa)
@@ -673,7 +641,6 @@ CapsuleCollider:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
   m_GameObject: {fileID: 1469313237}
@@ -710,8 +677,6 @@ CapsuleCollider:
   m_ComponentOwner: {fileID: 1042635204}
 --- !u!4 &1469313239
 =======
-=======
->>>>>>> parent of b1e3220e (aa)
 =======
 >>>>>>> parent of b1e3220e (aa)
   m_GameObject: {fileID: 1289666822}
@@ -774,9 +739,6 @@ MeshFilter:
   m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!4 &1289666826
 <<<<<<< HEAD
-<<<<<<< HEAD
->>>>>>> parent of b1e3220e (aa)
-=======
 >>>>>>> parent of b1e3220e (aa)
 =======
 >>>>>>> parent of b1e3220e (aa)
@@ -785,7 +747,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
   m_GameObject: {fileID: 1469313237}
@@ -798,8 +759,6 @@ Transform:
 =======
 =======
 >>>>>>> parent of b1e3220e (aa)
-=======
->>>>>>> parent of b1e3220e (aa)
   m_GameObject: {fileID: 1289666822}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 4.32, y: 1, z: 0}
@@ -807,9 +766,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
 <<<<<<< HEAD
-<<<<<<< HEAD
->>>>>>> parent of b1e3220e (aa)
-=======
 >>>>>>> parent of b1e3220e (aa)
 =======
 >>>>>>> parent of b1e3220e (aa)
