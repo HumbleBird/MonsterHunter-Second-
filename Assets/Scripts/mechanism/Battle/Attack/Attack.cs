@@ -17,7 +17,6 @@ public abstract class Attack
 
     public float cooldownTime = 2f;
 
-
     public virtual void Init()
     {
         m_Go = Managers.Object.Find(1);

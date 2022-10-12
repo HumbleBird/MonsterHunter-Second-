@@ -23,11 +23,11 @@ public partial class MyPlayer : Player
 		{
 			case CreatureState.Idle:
 				GetInputKeyMove();
-				Attack();
+				Attack2();
 				break;
 			case CreatureState.Move:
 				GetInputKeyMove();
-				Attack();
+				Attack2();
 				break;
 			case CreatureState.Skill:
 				break;

@@ -25,6 +25,22 @@ public class Blow : Attack
         return;
     }
 
+    // 기본 좌클릭 공격
+    public void BasicAttack2(int id = 1)
+    {
+        Table_Attack.Info info = Managers.Table.m_Attack.Get(id);
+
+        if (info == null)
+        {
+            Debug.LogError($"해당하는 {id}의 스킬이 없습니다.");
+            return;
+        }
+
+        m_Player.Animator.SetBool(info.m_sAnimName, true);
+        NextAttackCheck(info);
+        return;
+    }
+
     public override void Kick()
     {
     }
@@ -32,7 +48,8 @@ public class Blow : Attack
     // 내려찍기
     public override void Skill()
     {
-        throw new NotImplementedException();
+        
+        
     }
 
     protected override void NextAttackCheck(Table_Attack.Info info)

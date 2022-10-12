@@ -144,8 +144,6 @@ public partial class AI : Charater
         }
     }
 
-    
-
     #region 부가 기능
     public void NextPoint()
     {
@@ -225,6 +223,4 @@ public partial class AI : Charater
                 m_PlayerPosition = player.transform.position;       
         }
     }
-
-
 }
