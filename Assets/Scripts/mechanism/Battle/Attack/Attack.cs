@@ -15,8 +15,6 @@ public abstract class Attack
 
     protected GameObject m_GOProjectile = null; // 투사체
 
-    public float cooldownTime = 2f;
-
     public virtual void Init()
     {
         m_Go = Managers.Object.Find(1);
@@ -25,11 +23,11 @@ public abstract class Attack
 
     public abstract void BasicAttack(int id = 1);
     public abstract void Skill();
-    public abstract void Kick();
+    public virtual void Kick() { }
 
     protected bool _bNextAttackClick = false;
-    protected virtual void NextAttackCheck(Table_Attack.Info info)
+    public virtual IEnumerator  NextAttackCheck()
     {
-
+        yield return null;
     }
 }

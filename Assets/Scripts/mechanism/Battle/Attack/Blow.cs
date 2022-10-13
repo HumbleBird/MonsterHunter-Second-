@@ -8,27 +8,12 @@ using UnityEngine;
 
 public class Blow : Attack
 {
+    Table_Attack.Info info = null;
+
     // 기본 좌클릭 공격
     public override void BasicAttack(int id = 1)
     {
-        _bNextAttackClick = false;
-        Table_Attack.Info info = Managers.Table.m_Attack.Get(id);
-
-        if(info == null)
-        {
-            Debug.LogError($"해당하는 {id}의 스킬이 없습니다.");
-            return;
-        }
-
-        m_Player.Animator.SetBool(info.m_sAnimName, true);
-        NextAttackCheck(info);
-        return;
-    }
-
-    // 기본 좌클릭 공격
-    public void BasicAttack2(int id = 1)
-    {
-        Table_Attack.Info info = Managers.Table.m_Attack.Get(id);
+        info = Managers.Table.m_Attack.Get(id);
 
         if (info == null)
         {
@@ -37,43 +22,36 @@ public class Blow : Attack
         }
 
         m_Player.Animator.SetBool(info.m_sAnimName, true);
-        NextAttackCheck(info);
-        return;
     }
 
-    public override void Kick()
-    {
-    }
-
-    // 내려찍기
-    public override void Skill()
-    {
-        
-        
-    }
-
-    protected override void NextAttackCheck(Table_Attack.Info info)
+    public override IEnumerator  NextAttackCheck()
     {
         AnimatorStateInfo Animinfo = m_Player.Animator.GetCurrentAnimatorStateInfo(0);
 
-        if (Animinfo.IsName(info.m_sAnimName))
+        while (Animinfo.normalizedTime <= 1 && Animinfo.IsName(info.m_sAnimName)) // 해당 애니메이션이 진행중일때
         {
-            float curAnimationTime = Animinfo.normalizedTime;
-
-            m_Player.Animator.SetBool(info.m_sAnimName, false);
-            Debug.Log(m_Player.Animator.GetBool(info.m_sAnimName));
-            if (curAnimationTime >= 0.7)
+            if (info.m_iNextNum != 0 && Animinfo.normalizedTime > 0.7)
             {
-
                 if (Input.GetMouseButtonDown(0))
                 {
-                    if (info.m_iNextNum != 0)
-                    {
-                        BasicAttack(info.m_iNextNum);
-                    }
+                    m_Player.Animator.SetBool(info.m_sAnimName, false);
+                    Debug.Log("b");
+                    BasicAttack(info.m_iNextNum);
                 }
+                m_Player.Animator.SetBool(info.m_sAnimName, false);
+                yield return new WaitForSeconds(0.5f);
             }
+            else
+            {
+                m_Player.Animator.SetBool(info.m_sAnimName, false);
+                Debug.Log("c");
+            }
+
         }
+
+        yield return new WaitForSeconds(0.5f);
+        Debug.Log("d");
     }
 
+    public override void Skill() { }
 }

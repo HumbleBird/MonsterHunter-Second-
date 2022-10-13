@@ -9,12 +9,6 @@ public partial class MyPlayer : Player
 	public Collider attackCollider;
 	public TrigerDetector trigerDetecter;
 
-	protected override void Init()
-    {
-        base.Init();
-
-	}
-
     protected override void UpdateController()
     {
         base.UpdateController();
@@ -23,11 +17,9 @@ public partial class MyPlayer : Player
 		{
 			case CreatureState.Idle:
 				GetInputKeyMove();
-				Attack2();
 				break;
 			case CreatureState.Move:
 				GetInputKeyMove();
-				Attack2();
 				break;
 			case CreatureState.Skill:
 				break;
@@ -63,5 +55,7 @@ public partial class MyPlayer : Player
 
 		// 이동속도 : Shift키를 안눌렀을 땐 walkSpeed, Shift키를 눌렀을 땐 runSpeed값이 moveSpeed에 저장
 		//float moveSpeed = Mathf.Lerp(walkSpeed, runSpeed, Input.GetAxis("Sprint"));
+
+		attack();
 	}
 }
