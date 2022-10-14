@@ -4,18 +4,26 @@ using UnityEngine;
 
 public class TrigerDetector : MonoBehaviour
 {
-    Transform _player;
-    Player _pc;
+    [SerializeField]
+    GameObject _goPlayer;
 
-    private void Start()
+    private void OnEnable()
     {
-        _player = transform.root;
-        _pc = _player.GetComponent<Player>();
+        StartCoroutine("AutoDisable");
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.CompareTag("Monster"))
-            _pc.Attack(other.gameObject);
+        Player pc = _goPlayer.GetComponent<Player>();
+
+        if (other.CompareTag("Monster"))
+            pc.Attack(other.gameObject);
+    }
+
+    private IEnumerator AutoDisable()
+    {
+        yield return new WaitForSeconds(0.1f);
+
+        gameObject.SetActive(false);
     }
 }

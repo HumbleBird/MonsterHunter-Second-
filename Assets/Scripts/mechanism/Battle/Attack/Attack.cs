@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
 
-public abstract class Attack
+public abstract class Attack 
 {
     protected GameObject m_Go = null; // 플레이어
     protected Player m_Player = null;
@@ -21,13 +21,11 @@ public abstract class Attack
         m_Player = m_Go.GetComponent<Player>();
     }
 
-    public abstract void BasicAttack(int id = 1);
+    public abstract IEnumerator BasicAttack(int id = 1);
+    public abstract void BasicAttack2(int id = 1);
     public abstract void Skill();
     public virtual void Kick() { }
 
     protected bool _bNextAttackClick = false;
-    public virtual IEnumerator  NextAttackCheck()
-    {
-        yield return null;
-    }
+    public abstract void NextAttackCheck();
 }

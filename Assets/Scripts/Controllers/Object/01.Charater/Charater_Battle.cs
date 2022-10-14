@@ -9,6 +9,7 @@ public partial class Charater : Base
 {
     // 접근점
     protected Attack _attack;
+    public GameObject attackCollider;
 
     [SerializeField]
     protected GameObject _lockTarget;
@@ -22,7 +23,7 @@ public partial class Charater : Base
                 _attack = new Blow();
                 break;
             case "Range":
-                _attack = new Range();
+                //_attack = new Range();
                 break;
             default:
                 break;

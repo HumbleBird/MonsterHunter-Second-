@@ -9,6 +9,6 @@ public partial class Monster : AI
     {
 
 
-        _attack.BasicAttack(101);
+       // _attack.BasicAttack(101);
     }
 }
