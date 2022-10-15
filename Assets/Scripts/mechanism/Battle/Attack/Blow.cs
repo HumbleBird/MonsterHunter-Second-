@@ -15,8 +15,8 @@ public class Blow : Attack
     public override IEnumerator BasicAttack(int id = 1)
     {
         info = Managers.Table.m_Attack.Get(id);
-        m_Player.attackCollider.SetActive(true);
-        
+        //m_Player.attackCollider.SetActive(true);
+
         if (info == null)
         {
             Debug.LogError($"해당하는 {id}의 스킬이 없습니다.");

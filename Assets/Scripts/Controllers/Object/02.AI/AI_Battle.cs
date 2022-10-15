@@ -7,8 +7,10 @@ using static Define;
 
 public partial class AI : Charater
 {
-    public void Attack()
+    protected override void UpdateSkill()
     {
+        base.UpdateSkill();
+
         if (target != null)
         {
             m_CaughtPlayer = false;

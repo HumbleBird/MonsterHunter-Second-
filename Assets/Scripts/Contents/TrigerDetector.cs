@@ -7,9 +7,10 @@ public class TrigerDetector : MonoBehaviour
     [SerializeField]
     GameObject _goPlayer;
 
-    private void OnEnable()
+    public void Set()
     {
-        StartCoroutine("AutoDisable");
+        Managers.Camera.Shake(100001);
+        gameObject.SetActive(true);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -18,11 +19,6 @@ public class TrigerDetector : MonoBehaviour
 
         if (other.CompareTag("Monster"))
             pc.Attack(other.gameObject);
-    }
-
-    private IEnumerator AutoDisable()
-    {
-        yield return new WaitForSeconds(0.1f);
 
         gameObject.SetActive(false);
     }

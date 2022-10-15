@@ -11,13 +11,18 @@ public class Managers : MonoBehaviour
     ObjectManager _object = new ObjectManager();
     BattleManager _battle = new BattleManager();
     UI_BattleManager _uiBattle = new UI_BattleManager();
+    [SerializeField]
+    MainCamera _maincamera;
+    ZoneManager _zone = new ZoneManager();
 
     public static ObjectManager Object { get { return Instance._object; } }
     public static BattleManager Battle { get { return Instance._battle; } }
     public static UI_BattleManager UI_Battle { get { return Instance._uiBattle; } }
-	#endregion
+    public static MainCamera Camera { get { return Instance._maincamera; } }
+    public static ZoneManager Zone { get { return Instance._zone; } }
+    #endregion
 
-	#region Core
+    #region Core
     PoolManager _pool = new PoolManager();
     ResourceManager _resource = new ResourceManager();
     SceneManagerEx _scene = new SceneManagerEx();

@@ -14,7 +14,7 @@ public class UI_BattleManager : IPointerDownHandler, IDragHandler, IPointerUpHan
 
 #if UNITY_ANDROID
     #if UNITY_EDITOR
-        JOYSTCK.transform.position = input.mousePosition;
+        //JOYSTCK.transform.position = input.mousePosition;
     #else
         Touch touch = Input.GetTouch(0);
 

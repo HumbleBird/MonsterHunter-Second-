@@ -275,10 +275,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _destPos: {x: 0, y: 0, z: 0}
+  attackCollider: {fileID: 3234748966453461130}
   _lockTarget: {fileID: 0}
   _isNextCanAttack: 1
-  attackCollider: {fileID: 3234748966453461130}
-  trigerDetecter: {fileID: 2056428751166852154}
+  _attackItem: {fileID: 9074619578433338133}
 --- !u!54 &5866666020975951808
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2989,7 +2989,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &7555751848557005202
 Transform:
   m_ObjectHideFlags: 0
@@ -3017,6 +3017,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae42adb2e09204b46a112ec1cb188008, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _goPlayer: {fileID: 481873116616196636}
 --- !u!65 &3234748966453461130
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3026,7 +3027,7 @@ BoxCollider:
   m_GameObject: {fileID: 9074619578433338133}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 0.09, y: 0.11856213, z: 0.8162945}
   m_Center: {x: 0.010001734, y: 0.013264864, z: 0.5481492}

@@ -54,7 +54,18 @@ public partial class AI : Charater
         navMeshAgent.SetDestination(waypoints[m_CurrentWaypointIndex].position);    //  Set the destination to the first waypoint
     }
 
-    protected IEnumerator MoveAI()
+    protected override void UpdateMove()
+    {
+        while (true)
+        {
+            if (!m_IsPatrol)
+                Chasing();
+            else
+                Patroling();
+        }
+    }
+
+    IEnumerator MoveAI()
     {
         while (true)
         {
@@ -63,7 +74,7 @@ public partial class AI : Charater
             else
                 Patroling();
 
-            yield return new WaitForSeconds(1f);
+            yield return null;
         }
     }
 
@@ -78,7 +89,7 @@ public partial class AI : Charater
             Move(speedRun);
             navMeshAgent.SetDestination(m_PlayerPosition);          
         }
-        //if (navMeshAgent.remainingDistance <= navMeshAgent.stoppingDistance)    
+        if (navMeshAgent.remainingDistance <= navMeshAgent.stoppingDistance)    
         {
             if (m_WaitTime <= 0 && !m_CaughtPlayer && dis >= m_fDetectRange) 
             {
@@ -205,15 +216,15 @@ public partial class AI : Charater
                 float dstToPlayer = Vector3.Distance(transform.position, player.position);          
                 if (!Physics.Raycast(transform.position, dirToPlayer, dstToPlayer, obstacleMask))
                 {
+                    // 포착
                     m_playerInRange = true;             
                     m_IsPatrol = false;
-                    target = null;
+                    target = playerInRange[1].gameObject;
                 }
-                // 장애물에 막히면
                 else
                 {
                     m_playerInRange = false;
-                    target = playerInRange[1].gameObject;
+                    target = null;
                 }
             }
             // 시야 밖

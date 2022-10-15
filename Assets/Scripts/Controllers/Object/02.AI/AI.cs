@@ -35,7 +35,7 @@ public partial class AI : Charater
                 break;
             case CreatureState.Move:
                 EnviromentView();
-                StartCoroutine("MoveAI");
+                MoveAI();
                 break;
         }
     }
