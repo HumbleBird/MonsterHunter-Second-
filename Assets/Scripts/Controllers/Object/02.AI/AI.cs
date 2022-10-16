@@ -31,17 +31,16 @@ public partial class AI : Charater
         {
             case CreatureState.Idle:
                 EnviromentView();
-                RandomChangeState();
+                NextActionState();
                 break;
             case CreatureState.Move:
                 EnviromentView();
-                MoveAI();
                 break;
         }
     }
 
     float time = 3f;
-    void RandomChangeState()
+    void NextActionState()
     {
         if (m_playerInRange == true)
         {
@@ -53,20 +52,13 @@ public partial class AI : Charater
         {
             int Rand = UnityEngine.Random.Range(0, 2);
             if (Rand == 0)
-            {
                 State = CreatureState.Idle;
-            }
             else
-            {
                 State = CreatureState.Move;
-            }
             time = 3f;
-            return;
         }
         else
-        {
             time -= Time.deltaTime;
-        }
 
     }
 }

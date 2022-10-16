@@ -56,13 +56,7 @@ public partial class AI : Charater
 
     protected override void UpdateMove()
     {
-        while (true)
-        {
-            if (!m_IsPatrol)
-                Chasing();
-            else
-                Patroling();
-        }
+        StartCoroutine("MoveAI");
     }
 
     IEnumerator MoveAI()
@@ -91,6 +85,7 @@ public partial class AI : Charater
         }
         if (navMeshAgent.remainingDistance <= navMeshAgent.stoppingDistance)    
         {
+            // 플레이러를 잡지 못하는 상황이라면
             if (m_WaitTime <= 0 && !m_CaughtPlayer && dis >= m_fDetectRange) 
             {
                 // 다시 patrol
@@ -129,7 +124,7 @@ public partial class AI : Charater
                 //  다음 행동과 플레이어의 마지막 위치를 가기 위한 대기
                 Stop();
                 m_TimeToRotate -= Time.deltaTime;
-                State = CreatureState.Idle;
+                
             }
         }
         else
@@ -149,7 +144,6 @@ public partial class AI : Charater
                     // 다음 웨이포인트에 도착 후 대기
                     Stop();
                     m_WaitTime -= Time.deltaTime;
-                    State = CreatureState.Idle;
                 }
             }
         }
@@ -166,6 +160,7 @@ public partial class AI : Charater
     {
         navMeshAgent.isStopped = true;
         navMeshAgent.speed = 0;
+        State = CreatureState.Idle;
     }
 
     void Move(float speed)
@@ -177,6 +172,7 @@ public partial class AI : Charater
     void CaughtPlayer()
     {
         m_CaughtPlayer = true;
+        Debug.Break();
         State = CreatureState.Skill;
     }
     #endregion
@@ -219,7 +215,7 @@ public partial class AI : Charater
                     // 포착
                     m_playerInRange = true;             
                     m_IsPatrol = false;
-                    target = playerInRange[1].gameObject;
+                    target = playerInRange[0].gameObject;
                 }
                 else
                 {

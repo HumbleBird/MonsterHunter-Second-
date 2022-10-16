@@ -343,27 +343,26 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _destPos: {x: 0, y: 0, z: 0}
+  attackCollider: {fileID: 0}
   _lockTarget: {fileID: 0}
-  navMeshAgent: {fileID: 0}
   startWaitTime: 4
   timeToRotate: 2
   speedWalk: 1
   speedRun: 3
   viewRadius: 15
   viewAngle: 90
+  meshResolution: 1
+  edgeIterations: 4
+  edgeDistance: 0.5
+  waypoints:
+  - {fileID: 8224311364943130330, guid: 1c15cd5510ff9804e8c75cf9ad5da76d, type: 3}
+  - {fileID: 4853226077292527588, guid: 98433b961a27fa44696fa490a2297c2a, type: 3}
   playerMask:
     serializedVersion: 2
     m_Bits: 128
   obstacleMask:
     serializedVersion: 2
     m_Bits: 2048
-  meshResolution: 1
-  edgeIterations: 4
-  edgeDistance: 0.5
-  waypoints:
-  - {fileID: 5503306849077290327, guid: 3d0dd77f2acd9cb4695b310706a925f0, type: 3}
-  - {fileID: 8224311364943130330, guid: 1c15cd5510ff9804e8c75cf9ad5da76d, type: 3}
-  - {fileID: 4853226077292527588, guid: 98433b961a27fa44696fa490a2297c2a, type: 3}
 --- !u!1 &1576848682820892603
 GameObject:
   m_ObjectHideFlags: 0

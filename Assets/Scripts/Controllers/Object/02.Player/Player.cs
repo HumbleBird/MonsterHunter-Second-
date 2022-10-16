@@ -4,13 +4,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player : Charater
+public partial class Player : Charater
 {
     public Table_Player.Info playerInfo { get; set; }
 
     public bool _isNextCanAttack = true;
     public GameObject _attackItem;
     protected TrigerDetector _detectorItem;
+
+    protected float rotation;
 
     public override void SetInfo(int id)
     {

@@ -73,6 +73,8 @@ public partial class MyPlayer : Player
 			transform.position += move * statInfo.m_fRunSpeed * Time.deltaTime;
 		}
 
+		rotation = horizontal;
+
 		// 애니메이션
 		Animator.SetFloat("Horizontal", horizontal * offset);
 		Animator.SetFloat("Vertical", vertical * offset);
