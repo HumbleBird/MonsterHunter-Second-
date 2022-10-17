@@ -1,3 +1,4 @@
+using Cinemachine;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -6,8 +7,13 @@ using static Define;
 
 public partial class MyPlayer : Player
 {
+	public GameObject followTransform;
+	public Vector2 _look;
 
-    protected override void UpdateController()
+	public float rotationPower = 3f;
+	public float rotationLerp = 0.5f;
+
+	protected override void UpdateController()
     {
         base.UpdateController();
 
@@ -28,8 +34,7 @@ public partial class MyPlayer : Player
 		}
 	}
 
-	bool _moveKeyPressed = true;
-
+	bool _moveKeyPressed = false;
 	protected override void UpdateIdle()
     {
 		// 이동 상태로 갈지 확인
@@ -58,27 +63,44 @@ public partial class MyPlayer : Player
 		float horizontal = Input.GetAxis("Horizontal");
 		float vertical = Input.GetAxis("Vertical");
 
-		// Shft키를 안누르면 최대 0.5, Shft키를 누르면 최대 1까지 값이 바뀌게 된다
-		float offset = 0.5f + Input.GetAxis("Sprint") * 0.5f;
+		float speed = WalkSpeed;
 
 		Vector3 move = new Vector3(horizontal, 0, vertical);
 		
-		// 걷기
-		if(offset == 0)
-        {
-			transform.position += move * statInfo.m_fWalkSpeed * Time.deltaTime;
+		float inputMagnitude = Mathf.Clamp01(move.magnitude);
+		inputMagnitude /= 2;
+
+		if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))
+		{
+			inputMagnitude *= 2;
+			speed = RunSpeed;
 		}
-		else if(offset != 0)
-        {
-			transform.position += move * statInfo.m_fRunSpeed * Time.deltaTime;
+
+		transform.position += move * speed * Time.deltaTime;
+		Animator.SetFloat("Sprint", inputMagnitude, 0.05f, Time.deltaTime);
+
+		#region Player Rotation
+		followTransform.transform.rotation *= Quaternion.AngleAxis(_look.y * rotationPower, Vector3.right);
+
+		var angles = followTransform.transform.localEulerAngles;
+		angles.z = 0;
+
+		var angle = followTransform.transform.localEulerAngles.x;
+
+		//Clamp the Up/Down rotation
+		if (angle > 180 && angle < 340)
+		{
+			angles.x = 340;
+		}
+		else if (angle < 180 && angle > 40)
+		{
+			angles.x = 40;
 		}
 
-		rotation = horizontal;
 
-		// 애니메이션
-		Animator.SetFloat("Horizontal", horizontal * offset);
-		Animator.SetFloat("Vertical", vertical * offset);
+		followTransform.transform.localEulerAngles = angles;
 
+		#endregion
 		// 이동속도 : Shift키를 안눌렀을 땐 walkSpeed, Shift키를 눌렀을 땐 runSpeed값이 moveSpeed에 저장
 		//float moveSpeed = Mathf.Lerp(walkSpeed, runSpeed, Input.GetAxis("Sprint"));
 	}

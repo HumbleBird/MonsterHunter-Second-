@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class MainCamera : MonoBehaviour
 {
-    bool m_bCameraShake = false;
+    private bool m_bCameraShake = false;
 
     Transform m_ShakeTr;
 

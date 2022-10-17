@@ -5,13 +5,14 @@ using UnityEngine;
 
 public class ThirdPersonCameraController : MonoBehaviour
 {
-    CinemachineFreeLook m_cinemashin;
+    
+    CinemachineVirtualCamera m_cinemashin;
     Transform m_goPlayer;
 
     // Start is called before the first frame update
     void Start()
     {
-        m_cinemashin = GetComponent<CinemachineFreeLook>();
+        m_cinemashin = GetComponent<CinemachineVirtualCamera>();
         Init();
     }
 
@@ -19,7 +20,6 @@ public class ThirdPersonCameraController : MonoBehaviour
     {
         m_goPlayer = Managers.Object.Find(1).transform.Find("Third Person Player");
         m_cinemashin.Follow = m_goPlayer;
-        m_cinemashin.LookAt = m_goPlayer;
     }
 
     // Update is called once per frame

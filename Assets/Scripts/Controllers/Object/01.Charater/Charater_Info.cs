@@ -20,6 +20,7 @@ public abstract partial class Charater : Base
     public float Atk { get { return statInfo.m_fAtk; } set { statInfo.m_fAtk = value; } }
     public float Def { get { return statInfo.m_fDef; } set { statInfo.m_fDef = value; } }
     public float WalkSpeed { get { return statInfo.m_fWalkSpeed; } set { statInfo.m_fWalkSpeed = value; } }
+    public float RunSpeed { get { return statInfo.m_fRunSpeed; } set { statInfo.m_fRunSpeed = value; } }
     #endregion
 }
 
