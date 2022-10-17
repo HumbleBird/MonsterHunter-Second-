@@ -22,10 +22,8 @@ public abstract class Attack
     }
 
     public abstract IEnumerator BasicAttack(int id = 1);
-    public abstract void BasicAttack2(int id = 1);
     public abstract void Skill();
     public virtual void Kick() { }
 
-    protected bool _bNextAttackClick = false;
     public abstract void NextAttackCheck();
 }

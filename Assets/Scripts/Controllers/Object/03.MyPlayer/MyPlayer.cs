@@ -8,12 +8,14 @@ using static Define;
 public partial class MyPlayer : Player
 {
 	public GameObject followTransform;
-	public Vector2 _look;
+	Camera m_tCamera;
 
-	public float rotationPower = 3f;
-	public float rotationLerp = 0.5f;
+    private void Start()
+    {
+		m_tCamera = Camera.main;
+	}
 
-	protected override void UpdateController()
+    protected override void UpdateController()
     {
         base.UpdateController();
 
@@ -57,16 +59,16 @@ public partial class MyPlayer : Player
 			_moveKeyPressed = false;
 	}
 
-    protected override void UpdateMove()
+	protected override void UpdateMove()
     {
-		// 애니메이션 (애니메이션 자체에 이동이 포함되어 있음)
 		float horizontal = Input.GetAxis("Horizontal");
 		float vertical = Input.GetAxis("Vertical");
 
 		float speed = WalkSpeed;
 
 		Vector3 move = new Vector3(horizontal, 0, vertical);
-		
+		move = Quaternion.AngleAxis(m_tCamera.transform.rotation.eulerAngles.y, Vector3.up) * move;
+
 		float inputMagnitude = Mathf.Clamp01(move.magnitude);
 		inputMagnitude /= 2;
 
@@ -77,31 +79,23 @@ public partial class MyPlayer : Player
 		}
 
 		transform.position += move * speed * Time.deltaTime;
+
+		if (move != Vector3.zero)
+			transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(move), 10 * Time.deltaTime);
+
 		Animator.SetFloat("Sprint", inputMagnitude, 0.05f, Time.deltaTime);
+	}
 
-		#region Player Rotation
-		followTransform.transform.rotation *= Quaternion.AngleAxis(_look.y * rotationPower, Vector3.right);
-
-		var angles = followTransform.transform.localEulerAngles;
-		angles.z = 0;
-
-		var angle = followTransform.transform.localEulerAngles.x;
-
-		//Clamp the Up/Down rotation
-		if (angle > 180 && angle < 340)
+	// 마우스 커서
+	private void OnApplicationFocus(bool focus)
+	{
+		if (focus)
 		{
-			angles.x = 340;
+			Cursor.lockState = CursorLockMode.Locked;
 		}
-		else if (angle < 180 && angle > 40)
+		else
 		{
-			angles.x = 40;
+			Cursor.lockState = CursorLockMode.None;
 		}
-
-
-		followTransform.transform.localEulerAngles = angles;
-
-		#endregion
-		// 이동속도 : Shift키를 안눌렀을 땐 walkSpeed, Shift키를 눌렀을 땐 runSpeed값이 moveSpeed에 저장
-		//float moveSpeed = Mathf.Lerp(walkSpeed, runSpeed, Input.GetAxis("Sprint"));
 	}
 }

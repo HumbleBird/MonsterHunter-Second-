@@ -258,7 +258,6 @@ Transform:
   - {fileID: 8230923611645489014}
   - {fileID: 9123875786510074440}
   - {fileID: 2235155092380718675}
-  - {fileID: 3897944067678202561}
   - {fileID: 5607268609300114851}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -280,6 +279,10 @@ MonoBehaviour:
   _lockTarget: {fileID: 0}
   _isNextCanAttack: 1
   _attackItem: {fileID: 9074619578433338133}
+  followTransform: {fileID: 6756492207421512747}
+  _look: {x: 0, y: 0}
+  rotationPower: 3
+  rotationLerp: 0.5
 --- !u!54 &5866666020975951808
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -369,37 +372,6 @@ MonoBehaviour:
   m_SynchronizeRotation: 1
   m_SynchronizeScale: 0
   m_UseLocal: 1
---- !u!1 &549994250732709354
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 3897944067678202561}
-  m_Layer: 7
-  m_Name: CameraRoot
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &3897944067678202561
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 549994250732709354}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1000966418453780646}
-  m_RootOrder: 4
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &608477026091564299
 GameObject:
   m_ObjectHideFlags: 0
@@ -2222,7 +2194,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5607268609300114851}
   m_Layer: 7
-  m_Name: Third Person Player
+  m_Name: Follw Target
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2241,7 +2213,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1000966418453780646}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6864710800523267014
 GameObject:

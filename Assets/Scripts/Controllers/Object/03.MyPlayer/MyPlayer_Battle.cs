@@ -6,14 +6,15 @@ using static Define;
 
 public partial class MyPlayer : Player
 {
+	Coroutine co;
+
 	void GetInputkeyAttack()
 	{
 		if (Input.GetMouseButtonDown(0) && _isNextCanAttack)
 		{
 			_isNextCanAttack = false;
 			State = CreatureState.Skill;
-			StartCoroutine(_attack.BasicAttack());
-			//_attack.BasicAttack2();
+			co = StartCoroutine(_attack.BasicAttack());
 		}
 	}
 
