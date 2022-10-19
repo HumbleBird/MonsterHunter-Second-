@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class ThirdPersonCameraController : MonoBehaviour
 {
+
     void Start()
     {
         CinemachineFreeLook m_cinemashin = GetComponent<CinemachineFreeLook>();

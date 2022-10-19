@@ -9,12 +9,12 @@ using UnityEngine;
 public class Blow : Attack
 {
     Table_Attack.Info info = null;
+    Coroutine _co;
 
     // 기본 좌클릭 공격
     public override IEnumerator BasicAttack(int id = 1)
     {
         info = Managers.Table.m_Attack.Get(id);
-        //m_Player.attackCollider.SetActive(true);
 
         if (info == null)
         {
@@ -33,9 +33,8 @@ public class Blow : Attack
                 m_Player.Animator.SetBool(info.m_sAnimName, false);
                 if (Input.GetMouseButtonDown(0))
                 {
-                    this.BasicAttack
-                    BasicAttack(info.m_iNextNum);
-                    Debug.Log("2타... 3타 공격중");
+                    Debug.Log("2타 3타 공격 중...");
+                    //yield return _mono.StartCoroutine(BasicAttack(info.m_iNextNum));
                 }
                 break;
             }

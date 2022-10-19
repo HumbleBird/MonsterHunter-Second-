@@ -29,6 +29,6 @@ public partial class Charater : Base
                 break;
         }
 
-        _attack.Init();
+        _attack.Init(this);
     }
 }

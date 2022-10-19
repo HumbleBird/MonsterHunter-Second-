@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
 
-public abstract class Attack 
+public abstract class Attack
 {
     protected GameObject m_Go = null; // 플레이어
     protected Player m_Player = null;
@@ -14,11 +14,13 @@ public abstract class Attack
     protected Monster m_TargetMonster = null;
 
     protected GameObject m_GOProjectile = null; // 투사체
+    protected MonoBehaviour _mono;
 
-    public virtual void Init()
+    public virtual void Init(MonoBehaviour mono)
     {
         m_Go = Managers.Object.Find(1);
         m_Player = m_Go.GetComponent<Player>();
+        _mono = mono;
     }
 
     public abstract IEnumerator BasicAttack(int id = 1);

@@ -48,17 +48,12 @@ public partial class AI : Charater
             return;
         }
 
+        time -= Time.deltaTime;
+
         if (time <= 0)
         {
-            int Rand = UnityEngine.Random.Range(0, 2);
-            if (Rand == 0)
-                State = CreatureState.Idle;
-            else
-                State = CreatureState.Move;
             time = 3f;
+            State = CreatureState.Move;
         }
-        else
-            time -= Time.deltaTime;
-
     }
 }

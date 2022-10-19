@@ -14,20 +14,6 @@ public partial class Monster : AI
         aiInfo = Managers.Table.m_AI.Get(bossInfo.m_iAI);
 
         ChangeClass("Blow");
-    }
 
-    protected override void UpdateController()
-    {
-        base.UpdateController();
-
-        switch (State)
-        {
-            case CreatureState.Move:
-                StartCoroutine("MoveAI");
-                break;
-            case CreatureState.Skill:
-                AttackRandom();
-                break;
-        }
     }
 }

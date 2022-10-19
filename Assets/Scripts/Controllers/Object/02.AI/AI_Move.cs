@@ -51,12 +51,13 @@ public partial class AI : Charater
 
         navMeshAgent.isStopped = false;
         navMeshAgent.speed = speedWalk;             //  Set the navemesh speed with the normal speed of the enemy
-        navMeshAgent.SetDestination(waypoints[m_CurrentWaypointIndex].position);    //  Set the destination to the first waypoint
+
+        navMeshAgent.SetDestination(waypoints[m_CurrentWaypointIndex].position);
     }
 
     protected override void UpdateMove()
     {
-        StartCoroutine("MoveAI");
+        StartCoroutine(MoveAI());
     }
 
     IEnumerator MoveAI()
@@ -102,7 +103,7 @@ public partial class AI : Charater
                 if (dis <= 3f)
                 {
                     Stop();
-                    CaughtPlayer();
+                    //CaughtPlayer();
                 }
                 m_WaitTime -= Time.deltaTime;
             }
@@ -124,7 +125,6 @@ public partial class AI : Charater
                 //  다음 행동과 플레이어의 마지막 위치를 가기 위한 대기
                 Stop();
                 m_TimeToRotate -= Time.deltaTime;
-                
             }
         }
         else
@@ -139,12 +139,11 @@ public partial class AI : Charater
                     Move(speedWalk);
                     m_WaitTime = startWaitTime;
                 }
-                else
-                {
-                    // 다음 웨이포인트에 도착 후 대기
-                    Stop();
-                    m_WaitTime -= Time.deltaTime;
-                }
+            }
+            else
+            {
+                NextPoint();
+                Move(speedWalk);
             }
         }
     }
@@ -160,7 +159,6 @@ public partial class AI : Charater
     {
         navMeshAgent.isStopped = true;
         navMeshAgent.speed = 0;
-        State = CreatureState.Idle;
     }
 
     void Move(float speed)

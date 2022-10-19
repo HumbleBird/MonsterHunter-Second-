@@ -5,10 +5,10 @@ using static Define;
 
 public partial class Monster : AI
 {
-    void AttackRandom()
+    protected override void UpdateSkill()
     {
+        base.UpdateSkill();
 
-
-       // _attack.BasicAttack(101);
+        // _attack.BasicAttack(101);
     }
 }
