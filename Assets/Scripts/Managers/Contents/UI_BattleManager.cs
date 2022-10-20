@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class UI_BattleManager : IPointerDownHandler, IDragHandler, IPointerUpHandler
+public class UI_BattleManager : MonoBehaviour, IPointerDownHandler, IDragHandler, IPointerUpHandler
 {
+    #region ¡∂¿ÃΩ∫∆Ω
     public JoyStick2 JOYSTICK;
 
     public void OnPointerDown(PointerEventData evt)
@@ -37,5 +38,21 @@ public class UI_BattleManager : IPointerDownHandler, IDragHandler, IPointerUpHan
     public void OnDrag(PointerEventData evt)
     {
         JOYSTICK.OnDrag((PointerEventData)evt);
+    }
+    #endregion
+
+    public UI_PlayerInfo UIPlayerInfo;
+
+    public void Init()
+    {
+        GameObject player = Managers.Object.Find(1);
+        Player charater = player.GetComponent<Player>();
+        UIPlayerInfo.SetInfo(charater);
+    }
+
+    public void HitEvent()
+    {
+        UIPlayerInfo.HitEvent();
+        // »≠∏È ¿·±Ò ª°∞≤∞‘ ∆‰¿ÃµÂ ¿Œ, ∆‰¿ÃµÂ æ∆øÙ«œ±‚
     }
 }

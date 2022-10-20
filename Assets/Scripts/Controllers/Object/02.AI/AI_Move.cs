@@ -22,11 +22,6 @@ public partial class AI : Charater
     public float viewRadius = 5;                   //  Radius of the enemy view
     public float viewAngle = 90;                    //  Angle of the enemy view
 
-    public float meshResolution = 1.0f;             //  How many rays will cast per degree
-    public int edgeIterations = 4;                  //  Number of iterations to get a better performance of the mesh filter when the raycast hit an obstacule
-    public float edgeDistance = 0.5f;               //  Max distance to calcule the a minumun and a maximum raycast when hits something
-    float m_fDetectRange = 4;
-
     public Transform[] waypoints;                   //  All the waypoints where the enemy patrols
     int m_CurrentWaypointIndex = 0;                     //  Current waypoint where the enemy is going to
 
@@ -39,7 +34,8 @@ public partial class AI : Charater
     bool m_playerInRange= false;                  //  If the player is in range of vision, state of chasing
     bool m_PlayerNear  = false;               //  If the player is near, state of hearing
     bool m_IsPatrol    = true;             //  If the enemy is patrol, state of patroling
-    bool m_CaughtPlayer= false;                 //  if the enemy has caught the player
+
+    protected bool m_CaughtPlayer= false;                 //  if the enemy has caught the player
     #endregion
 
     void Start()
@@ -57,39 +53,44 @@ public partial class AI : Charater
 
     protected override void UpdateMove()
     {
-        StartCoroutine(MoveAI());
+        StartCoroutine(WayPointMove());
     }
 
-    IEnumerator MoveAI()
+    IEnumerator WayPointMove()
     {
-        while (true)
-        {
-            if (!m_IsPatrol)
-                Chasing();
-            else
-                Patroling();
+        if (!m_IsPatrol)
+            Chasing();
+        else
+            Patroling();
 
-            yield return null;
-        }
+        yield return null;
     }
 
-    void Chasing()
+
+    private void Chasing()
     {
-        m_PlayerNear = false;                       
-        playerLastPosition = Vector3.zero;
+        //  The enemy is chasing the player
+        m_PlayerNear = false;                       //  Set false that hte player is near beacause the enemy already sees the player
+        playerLastPosition = Vector3.zero;          //  Reset the player near position
         float dis = Vector3.Distance(transform.position, GameObject.FindGameObjectWithTag("Player").transform.position);
+        //float dis = Vector3.Distance(transform.position, target.transform.position);
 
         if (!m_CaughtPlayer)
         {
             Move(speedRun);
-            navMeshAgent.SetDestination(m_PlayerPosition);          
+            navMeshAgent.SetDestination(m_PlayerPosition);          //  set the destination of the enemy to the player location
         }
-        if (navMeshAgent.remainingDistance <= navMeshAgent.stoppingDistance)    
+
+        // 적이 사정거리에 들면 공격
+        if (dis < 2)
+            CaughtPlayer();
+
+        if (navMeshAgent.remainingDistance <= navMeshAgent.stoppingDistance)    //  Control if the enemy arrive to the player location
         {
-            // 플레이러를 잡지 못하는 상황이라면
-            if (m_WaitTime <= 0 && !m_CaughtPlayer && dis >= m_fDetectRange) 
+            // 플레이어를 놓쳤을 경우
+            if (m_WaitTime <= 0 && !m_CaughtPlayer && dis >= 6f)
             {
-                // 다시 patrol
+                //  Check if the enemy is not near to the player, returns to patrol after the wait time delay
                 m_IsPatrol = true;
                 m_PlayerNear = false;
                 Move(speedWalk);
@@ -97,13 +98,11 @@ public partial class AI : Charater
                 m_WaitTime = startWaitTime;
                 navMeshAgent.SetDestination(waypoints[m_CurrentWaypointIndex].position);
             }
-            // 플레이어 앞까지 옴
             else
             {
-                if (dis <= 3f)
+                if (dis >= 2.5f)
                 {
                     Stop();
-                    //CaughtPlayer();
                 }
                 m_WaitTime -= Time.deltaTime;
             }
@@ -114,7 +113,7 @@ public partial class AI : Charater
     {
         if (m_PlayerNear)
         {
-            //  근처 플레이어가 있는지 탐지 후 이동
+            //  Check if the enemy detect near the player, so the enemy will move to that position
             if (m_TimeToRotate <= 0)
             {
                 Move(speedWalk);
@@ -122,33 +121,34 @@ public partial class AI : Charater
             }
             else
             {
-                //  다음 행동과 플레이어의 마지막 위치를 가기 위한 대기
+                //  The enemy wait for a moment and then go to the last player position
                 Stop();
                 m_TimeToRotate -= Time.deltaTime;
             }
         }
         else
         {
+            m_PlayerNear = false;           //  The player is no near when the enemy is platroling
             playerLastPosition = Vector3.zero;
-            navMeshAgent.SetDestination(waypoints[m_CurrentWaypointIndex].position);
+            navMeshAgent.SetDestination(waypoints[m_CurrentWaypointIndex].position);    //  Set the enemy destination to the next waypoint
             if (navMeshAgent.remainingDistance <= navMeshAgent.stoppingDistance)
             {
+                //  If the enemy arrives to the waypoint position then wait for a moment and go to the next
                 if (m_WaitTime <= 0)
                 {
                     NextPoint();
                     Move(speedWalk);
                     m_WaitTime = startWaitTime;
                 }
-            }
-            else
-            {
-                NextPoint();
-                Move(speedWalk);
+                else
+                {
+                    Stop();
+                    m_WaitTime -= Time.deltaTime;
+                }
             }
         }
     }
 
-    #region 부가 기능
     public void NextPoint()
     {
         m_CurrentWaypointIndex = (m_CurrentWaypointIndex + 1) % waypoints.Length;
@@ -159,26 +159,32 @@ public partial class AI : Charater
     {
         navMeshAgent.isStopped = true;
         navMeshAgent.speed = 0;
+        Animator.Play("Idle");
     }
-
+    
     void Move(float speed)
     {
         navMeshAgent.isStopped = false;
         navMeshAgent.speed = speed;
+
+        if (!m_IsPatrol)
+            Animator.Play("Run");
+        else
+            Animator.Play("Walk");
     }
 
     void CaughtPlayer()
     {
+        Stop();
+        LookingPlayer(m_PlayerPosition);
         m_CaughtPlayer = true;
-        Debug.Break();
         State = CreatureState.Skill;
     }
-    #endregion
 
     void LookingPlayer(Vector3 player)
     {
         navMeshAgent.SetDestination(player);
-        if (Vector3.Distance(transform.position, player) <= 1) // TODO 1을 공격 사정 거리로 바꾸기
+        if (Vector3.Distance(transform.position, player) <= 0.3)
         {
             if (m_WaitTime <= 0)
             {
@@ -196,10 +202,9 @@ public partial class AI : Charater
         }
     }
 
-    // 플레이어 있는지 탐지
     void EnviromentView()
     {
-        Collider[] playerInRange = Physics.OverlapSphere(transform.position, viewRadius, playerMask);
+        Collider[] playerInRange = Physics.OverlapSphere(transform.position, viewRadius, playerMask);   //  Make an overlap sphere around the enemy to detect the playermask in the view radius
 
         for (int i = 0; i < playerInRange.Length; i++)
         {
@@ -207,25 +212,36 @@ public partial class AI : Charater
             Vector3 dirToPlayer = (player.position - transform.position).normalized;
             if (Vector3.Angle(transform.forward, dirToPlayer) < viewAngle / 2)
             {
-                float dstToPlayer = Vector3.Distance(transform.position, player.position);          
+                float dstToPlayer = Vector3.Distance(transform.position, player.position);          //  Distance of the enmy and the player
                 if (!Physics.Raycast(transform.position, dirToPlayer, dstToPlayer, obstacleMask))
                 {
-                    // 포착
-                    m_playerInRange = true;             
-                    m_IsPatrol = false;
-                    target = playerInRange[0].gameObject;
+                    m_playerInRange = true;             //  The player has been seeing by the enemy and then the nemy starts to chasing the player
+                    m_IsPatrol = false;                 //  Change the state to chasing the player
+                    target = player.gameObject;
                 }
                 else
                 {
+                    /*
+                     *  If the player is behind a obstacle the player position will not be registered
+                     * */
                     m_playerInRange = false;
-                    target = null;
                 }
             }
-            // 시야 밖
             if (Vector3.Distance(transform.position, player.position) > viewRadius)
-                m_playerInRange = false;               
+            {
+                /*
+                 *  If the player is further than the view radius, then the enemy will no longer keep the player's current position.
+                 *  Or the enemy is a safe zone, the enemy will no chase
+                 * */
+                m_playerInRange = false;                //  Change the sate of chasing
+            }
             if (m_playerInRange)
-                m_PlayerPosition = player.transform.position;       
+            {
+                /*
+                 *  If the enemy no longer sees the player, then the enemy will go to the last position that has been registered
+                 * */
+                m_PlayerPosition = player.transform.position;       //  Save the player's current position if the player is in range of vision
+            }
         }
     }
 }

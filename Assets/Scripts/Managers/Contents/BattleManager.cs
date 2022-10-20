@@ -6,6 +6,7 @@ using static Define;
 
 public class BattleManager
 {
+    #region Player
     void CreatePlayer(int id)
     {
         Table_Player.Info pinfo = Managers.Table.m_Player.Get(id);
@@ -53,14 +54,18 @@ public class BattleManager
                 break;
         }
     }
+    #endregion
 
-    // Battle
+    #region Battle
     public virtual void HitEvent(GameObject attacker, float dmg, GameObject victim)
     {
         Charater victimCharater = victim.GetComponent<Charater>();
 
         int damage = (int)Mathf.Max(0, dmg - victimCharater.Def);
         victimCharater.Hp -= damage;
+
+        if (victimCharater.CompareTag("Player"))
+            Managers.UIBattle.HitEvent();
 
         // TODO 애니메이션
         victimCharater.Animator.Play("Hit");
@@ -72,4 +77,5 @@ public class BattleManager
             victimCharater.State = Define.CreatureState.Dead;
         }
     }
+    #endregion
 }

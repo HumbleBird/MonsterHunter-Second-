@@ -233,8 +233,6 @@ GameObject:
   - component: {fileID: 5866666020975951808}
   - component: {fileID: 5866666020975951807}
   - component: {fileID: 192219821}
-  - component: {fileID: 192219822}
-  - component: {fileID: 192219823}
   m_Layer: 7
   m_Name: Paladin
   m_TagString: Player
@@ -250,7 +248,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 481873116616196636}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 10}
+  m_LocalPosition: {x: 5, y: 0, z: 15}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -274,9 +272,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af946b2a33ca18d49894ab630546090c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _destPos: {x: 0, y: 0, z: 0}
-  attackCollider: {fileID: 3234748966453461130}
-  _lockTarget: {fileID: 0}
+  State: 0
   _isNextCanAttack: 1
   _attackItem: {fileID: 9074619578433338133}
   followTransform: {fileID: 6756492207421512747}
@@ -330,45 +326,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &192219822
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 481873116616196636}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ObservedComponentsFoldoutOpen: 1
-  Group: 0
-  prefixField: -1
-  observableSearch: 2
-  Synchronization: 3
-  OwnershipTransfer: 0
-  ObservedComponents:
-  - {fileID: 192219823}
-  viewIdField: 0
-  InstantiationId: 0
-  isRuntimeInstantiated: 0
---- !u!114 &192219823
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 481873116616196636}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 627855c7f81362d41938ffe0b1475957, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_SynchronizePosition: 1
-  m_SynchronizeRotation: 1
-  m_SynchronizeScale: 0
-  m_UseLocal: 1
 --- !u!1 &608477026091564299
 GameObject:
   m_ObjectHideFlags: 0
@@ -2190,6 +2147,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5607268609300114851}
+  - component: {fileID: 4800138753560148446}
   m_Layer: 7
   m_Name: Follw Target
   m_TagString: Untagged
@@ -2212,6 +2170,18 @@ Transform:
   m_Father: {fileID: 1000966418453780646}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4800138753560148446
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6756492207421512747}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: afa496bd0576288429840f75b250736a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6864710800523267014
 GameObject:
   m_ObjectHideFlags: 0

@@ -8,18 +8,13 @@ public partial class Player : Charater
 {
     public Table_Player.Info playerInfo { get; set; }
 
-    public bool _isNextCanAttack = true;
     public GameObject _attackItem;
-    protected TrigerDetector _detectorItem;
-
-    protected float rotation;
 
     public override void SetInfo(int id)
     {
         playerInfo = Managers.Table.m_Player.Get(id);
         statInfo = Managers.Table.m_Stat.Get(playerInfo.m_iStat);
         ChangeClass(playerInfo.m_sClass);
-        _detectorItem = _attackItem.GetComponentInChildren<TrigerDetector>();
     }
 
     public void Attack(GameObject obj)
@@ -27,7 +22,10 @@ public partial class Player : Charater
         Managers.Battle.HitEvent(gameObject, (int)Atk, obj);
     }
 
-    public virtual void HitEvent()
+    public override void HitEvent()
     {
+        TrigerDetector _detectorItem = _attackItem.GetComponentInChildren<TrigerDetector>();
+
+        _detectorItem.Set();
     }
 }

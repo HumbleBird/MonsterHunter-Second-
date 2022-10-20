@@ -10,14 +10,15 @@ public class Managers : MonoBehaviour
     #region Contents
     ObjectManager _object = new ObjectManager();
     BattleManager _battle = new BattleManager();
-    UI_BattleManager _uiBattle = new UI_BattleManager();
+    [SerializeField]
+    UI_BattleManager _uiBattle;
     [SerializeField]
     MainCamera _maincamera;
     ZoneManager _zone = new ZoneManager();
 
     public static ObjectManager Object { get { return Instance._object; } }
     public static BattleManager Battle { get { return Instance._battle; } }
-    public static UI_BattleManager UI_Battle { get { return Instance._uiBattle; } }
+    public static UI_BattleManager UIBattle { get { return Instance._uiBattle; } }
     public static MainCamera Camera { get { return Instance._maincamera; } }
     public static ZoneManager Zone { get { return Instance._zone; } }
     #endregion

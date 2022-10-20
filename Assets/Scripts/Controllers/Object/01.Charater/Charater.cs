@@ -7,26 +7,10 @@ using static Define;
 
 public partial class Charater : Base
 {
-    [SerializeField]
-    protected Vector3 _destPos;
+	public CreatureState State = CreatureState.Idle;
 
-    protected CreatureState _state = CreatureState.Idle;
-	public virtual CreatureState State
+    private void Start()
     {
-		get { return _state;}
-        set
-        {
-			if (_state == value)
-				return;
-
-			_state = value;
-        }
-    }
-
-	protected override void Init()
-	{
-        base.Init();
-
         MaxHp = Hp;
         MaxStamina = Stamina;
     }
@@ -58,7 +42,13 @@ public partial class Charater : Base
     protected virtual void UpdateIdle() { }
     protected virtual void UpdateMove() { }
     protected virtual void UpdateSkill() { }
-    protected virtual void UpdateDead() { }
+    protected virtual void UpdateDead() 
+    {
+        Rigid.isKinematic = true;
+        Animator.Play("Dead");
+        Managers.Object.Remove(ID);
+        Destroy(gameObject, 5);
+    }
 
 
     // TODO Trans

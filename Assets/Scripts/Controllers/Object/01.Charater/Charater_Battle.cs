@@ -9,10 +9,9 @@ public partial class Charater : Base
 {
     // 접근점
     protected Attack _attack;
-    public GameObject attackCollider;
 
-    [SerializeField]
-    protected GameObject _lockTarget;
+    public bool _isNextCanAttack = true;
+
     public GameObject target { get; set; } // 타겟
 
     public void ChangeClass(string typeClass)
@@ -23,12 +22,17 @@ public partial class Charater : Base
                 _attack = new Blow();
                 break;
             case "Range":
-                //_attack = new Range();
+                _attack = new Range();
                 break;
             default:
                 break;
         }
 
-        _attack.Init(this);
+        _attack.Init(gameObject);
+    }
+
+    public virtual void HitEvent()
+    {
+        
     }
 }

@@ -8,9 +8,15 @@ public class UI_PlayerInfo : UI_Scene
     enum Images
     {
         HPBarBG,
+        HPBarBGHit,
         HPBar,
         STAMINABarBG,
         STAMINABar,
+    }
+
+    enum Texts
+    {
+        Name
     }
 
     Charater _player;
@@ -39,5 +45,24 @@ public class UI_PlayerInfo : UI_Scene
         HpBariamge.fillAmount = _player.Hp / _player.MaxHp;
         Image StaminaBariamge = GetImage((int)Images.STAMINABar);
         StaminaBariamge.fillAmount = _player.Stamina / _player.MaxStamina;
+    }
+
+    public void HitEvent()
+    {
+        StartCoroutine(DownHP());
+    }
+
+    public IEnumerator DownHP()
+    {
+        Refresh();
+
+        yield return new WaitForSeconds(0.5f);
+
+        Image HpBarBGHitiamge = GetImage((int)Images.HPBarBGHit);
+
+        while (HpBarBGHitiamge.fillAmount == _player.Hp / _player.MaxHp)
+        {
+            HpBarBGHitiamge.fillAmount -= Time.deltaTime;
+        }
     }
 }

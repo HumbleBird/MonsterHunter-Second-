@@ -7,14 +7,10 @@ using static Define;
 
 public partial class AI : Charater
 {
-    protected override void UpdateSkill()
+    public override void HitEvent()
     {
-        base.UpdateSkill();
-
+        m_CaughtPlayer = false;
         if (target != null)
-        {
-            m_CaughtPlayer = false;
-            Managers.Battle.HitEvent(gameObject, statInfo.m_fAtk, target);
-        }
+            Managers.Battle.HitEvent(gameObject, (int)Atk, target);
     }
 }

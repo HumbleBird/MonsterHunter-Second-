@@ -271,6 +271,7 @@ GameObject:
   - component: {fileID: 4597673734399790262}
   - component: {fileID: 2141164795}
   - component: {fileID: 8248375790130339655}
+  - component: {fileID: -3509180163188868673}
   m_Layer: 0
   m_Name: Orc
   m_TagString: Monster
@@ -285,7 +286,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1342959200176554030}
-  m_LocalRotation: {x: -0, y: -0.99987084, z: 0, w: -0.016073711}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -5}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 0
@@ -295,7 +296,7 @@ Transform:
   - {fileID: 7365884736523521305}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: -181.842, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!136 &4597673734399790262
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -351,18 +352,50 @@ MonoBehaviour:
   speedRun: 3
   viewRadius: 15
   viewAngle: 90
-  meshResolution: 1
-  edgeIterations: 4
-  edgeDistance: 0.5
   waypoints:
-  - {fileID: 8224311364943130330, guid: 1c15cd5510ff9804e8c75cf9ad5da76d, type: 3}
-  - {fileID: 4853226077292527588, guid: 98433b961a27fa44696fa490a2297c2a, type: 3}
+  - {fileID: 1679679053231344983, guid: 72b0741b639e3a34d9eea189b31234df, type: 3}
+  - {fileID: 895486329094271305, guid: 13c0621ff42488b47bcbe9099a43a4b8, type: 3}
+  - {fileID: 2291071769702744843, guid: 854aee99536f6c1428a40ff07a27ec14, type: 3}
   playerMask:
     serializedVersion: 2
     m_Bits: 128
   obstacleMask:
     serializedVersion: 2
     m_Bits: 2048
+  agent: {fileID: 0}
+  player: {fileID: 0}
+  whatIsGround:
+    serializedVersion: 2
+    m_Bits: 512
+  whatIsPlayer:
+    serializedVersion: 2
+    m_Bits: 128
+  health: 120
+  walkPoint: {x: 0, y: 0, z: 0}
+  walkPointRange: 5
+  timeBetweenAttacks: 0.5
+  projectile: {fileID: 1553130282568054828, guid: c5c4614a4c81c7c4babd70317cb44a28,
+    type: 3}
+  sightRange: 20
+  attackRange: 12
+  playerInSightRange: 0
+  playerInAttackRange: 0
+--- !u!54 &-3509180163188868673
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1342959200176554030}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 112
+  m_CollisionDetection: 0
 --- !u!1 &1576848682820892603
 GameObject:
   m_ObjectHideFlags: 0

@@ -9,6 +9,6 @@ public partial class Monster : AI
     {
         base.UpdateSkill();
 
-        // _attack.BasicAttack(101);
+        StartCoroutine(_attack.BasicAttack(101));
     }
 }

@@ -428,7 +428,7 @@ ModelImporter:
     second: Monster_anim|Block
   - first:
       74: 7400006
-    second: Monster_anim|Death
+    second: Dead
   - first:
       74: 7400008
     second: Monster_anim|Dodge
@@ -455,7 +455,7 @@ ModelImporter:
     second: Monster_anim|Idle_2
   - first:
       74: 7400024
-    second: Monster_anim|Atack_2
+    second: Attack Down
   - first:
       74: 7400026
     second: Monster_anim|Run
@@ -612,7 +612,7 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Monster_anim|Death
+      name: Dead
       takeName: Monster_anim|Death
       internalID: 0
       firstFrame: 0
@@ -873,7 +873,7 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Monster_anim|Atack_2
+      name: Attack Down
       takeName: Monster_anim|Atack_2
       internalID: 0
       firstFrame: 0
@@ -898,14 +898,14 @@ ModelImporter:
       curves: []
       events:
       - time: 0.31176636
-        functionName: Attack
+        functionName: HitEvent
         data: 
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
       - time: 0.76882815
-        functionName: Attack
+        functionName: HitEvent
         data: 
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0

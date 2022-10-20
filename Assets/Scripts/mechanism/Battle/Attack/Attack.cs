@@ -8,19 +8,17 @@ using UnityEngine;
 
 public abstract class Attack
 {
-    protected GameObject m_Go = null; // 플레이어
-    protected Player m_Player = null;
-    protected GameObject m_GOTarget = null; // 타겟
-    protected Monster m_TargetMonster = null;
+    protected GameObject m_Go; // 공격자
+    protected Charater   m_cGo;
+
+    protected GameObject m_GOTarget; // 피격자
 
     protected GameObject m_GOProjectile = null; // 투사체
-    protected MonoBehaviour _mono;
 
-    public virtual void Init(MonoBehaviour mono)
+    public virtual void Init(GameObject go)
     {
-        m_Go = Managers.Object.Find(1);
-        m_Player = m_Go.GetComponent<Player>();
-        _mono = mono;
+        m_Go = go.gameObject;
+        m_cGo = m_Go.GetComponent<Charater>();
     }
 
     public abstract IEnumerator BasicAttack(int id = 1);

@@ -7,12 +7,13 @@ using static Define;
 
 public partial class MyPlayer : Player
 {
-	public GameObject followTransform;
+	public GameObject followTransform { get; set; }
 	Camera m_tCamera;
 
     private void Start()
     {
 		m_tCamera = Camera.main;
+		followTransform = gameObject.GetComponentInChildren<FollwTarget>().gameObject;
 	}
 
     protected override void UpdateController()
@@ -86,16 +87,16 @@ public partial class MyPlayer : Player
 		Animator.SetFloat("Sprint", inputMagnitude, 0.05f, Time.deltaTime);
 	}
 
-	// 마우스 커서
-	//private void OnApplicationFocus(bool focus)
-	//{
-	//	if (focus)
-	//	{
-	//		Cursor.lockState = CursorLockMode.Locked;
-	//	}
-	//	else
-	//	{
-	//		Cursor.lockState = CursorLockMode.None;
-	//	}
-	//}
+	//마우스 커서
+	private void OnApplicationFocus(bool focus)
+	{
+		if (focus)
+		{
+			Cursor.lockState = CursorLockMode.Locked;
+		}
+		else
+		{
+			Cursor.lockState = CursorLockMode.None;
+		}
+	}
 }

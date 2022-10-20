@@ -22,15 +22,15 @@ public class Blow : Attack
             yield break;
         }
 
-        m_Player.Animator.SetBool(info.m_sAnimName, true);
+        m_cGo.Animator.SetBool(info.m_sAnimName, true);
 
         while (true)
         {
-            AnimatorStateInfo Animinfo = m_Player.Animator.GetCurrentAnimatorStateInfo(0);
+            AnimatorStateInfo Animinfo = m_cGo.Animator.GetCurrentAnimatorStateInfo(0);
 
             if (Animinfo.normalizedTime >= 0.7f && Animinfo.IsName(info.m_sAnimName))
             {
-                m_Player.Animator.SetBool(info.m_sAnimName, false);
+                m_cGo.Animator.SetBool(info.m_sAnimName, false);
                 if (Input.GetMouseButtonDown(0))
                 {
                     Debug.Log("2타 3타 공격 중...");
@@ -41,8 +41,8 @@ public class Blow : Attack
             yield return null;
         }
 
-        m_Player._isNextCanAttack = true;
-        m_Player.State = Define.CreatureState.Idle;
+        m_cGo._isNextCanAttack = true;
+        m_cGo.State = Define.CreatureState.Idle;
     }
 
     public override void NextAttackCheck()
