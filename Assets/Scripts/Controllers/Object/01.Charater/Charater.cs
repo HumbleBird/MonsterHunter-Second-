@@ -9,18 +9,18 @@ public partial class Charater : Base
 {
 	public CreatureState State = CreatureState.Idle;
 
-    private void Start()
+    protected virtual void Start()
     {
         MaxHp = Hp;
         MaxStamina = Stamina;
     }
 
     protected virtual void Update()
-	{
-		UpdateController();
-	}
+    {
+        UpdateController();
+    }
 
-	protected virtual void UpdateController()
+    protected virtual void UpdateController()
     {
         switch (State)
         {

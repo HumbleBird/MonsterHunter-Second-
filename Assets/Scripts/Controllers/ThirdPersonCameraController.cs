@@ -12,7 +12,7 @@ public class ThirdPersonCameraController : MonoBehaviour
 
         GameObject go = Managers.Object.Find(1);
         Transform follow = go.GetComponent<MyPlayer>().followTransform.transform;
-\
+
         m_cinemashin.Follow = follow;
         m_cinemashin.LookAt = follow;
     }

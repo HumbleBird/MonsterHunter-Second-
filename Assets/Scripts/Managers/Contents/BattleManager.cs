@@ -20,6 +20,7 @@ public class BattleManager
         GameObject go = Managers.Resource.Instantiate(pinfo.m_sPrefabPath);
         Managers.Object.Add(pinfo.m_nID, go);
         go.GetComponent<Charater>().SetInfo(pinfo.m_nID);
+
     }
 
     void CreateMonster(int id)
@@ -69,7 +70,7 @@ public class BattleManager
 
         // TODO 애니메이션
         victimCharater.Animator.Play("Hit");
-        Debug.Log($"{victim.name}의 남은 체력은 {victimCharater.Hp}");
+        //Debug.Log($"{victim.name}의 남은 체력은 {victimCharater.Hp}");
 
         if (victimCharater.Hp <= 0)
         {

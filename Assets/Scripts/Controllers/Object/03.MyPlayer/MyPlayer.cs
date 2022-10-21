@@ -7,16 +7,17 @@ using static Define;
 
 public partial class MyPlayer : Player
 {
-	public GameObject followTransform { get; set; }
+	public GameObject followTransform;
 	Camera m_tCamera;
 
-    private void Start()
-    {
+	protected override void Start()
+	{
+		base.Start();
+
 		m_tCamera = Camera.main;
-		followTransform = gameObject.GetComponentInChildren<FollwTarget>().gameObject;
 	}
 
-    protected override void UpdateController()
+	protected override void UpdateController()
     {
         base.UpdateController();
 

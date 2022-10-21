@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -24,7 +25,7 @@ public class UI_PlayerInfo : UI_Scene
     public void SetInfo(Charater player)
     {
         _player = player;
-        return;
+        Refresh();
     }
 
     public override void Init()
@@ -32,8 +33,7 @@ public class UI_PlayerInfo : UI_Scene
         base.Init();
 
         Bind<Image>(typeof(Images));
-
-        Refresh();
+        Bind<TextMeshPro>(typeof(Texts));
     }
 
     public void Refresh()
@@ -60,9 +60,16 @@ public class UI_PlayerInfo : UI_Scene
 
         Image HpBarBGHitiamge = GetImage((int)Images.HPBarBGHit);
 
-        while (HpBarBGHitiamge.fillAmount == _player.Hp / _player.MaxHp)
+        while (true)
         {
             HpBarBGHitiamge.fillAmount -= Time.deltaTime;
+            if (HpBarBGHitiamge.fillAmount <= _player.Hp / _player.MaxHp)
+            {
+                HpBarBGHitiamge.fillAmount = _player.Hp / _player.MaxHp;
+                break;
+            }
+
+            yield return null;
         }
     }
 }

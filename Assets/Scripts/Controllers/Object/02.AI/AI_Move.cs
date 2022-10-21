@@ -38,8 +38,10 @@ public partial class AI : Charater
     protected bool m_CaughtPlayer= false;                 //  if the enemy has caught the player
     #endregion
 
-    void Start()
+    protected override void Start()
     {
+        base.Start();
+
         m_WaitTime = startWaitTime;                 //  Set the wait time variable that will change
         m_TimeToRotate = timeToRotate;
 
@@ -53,6 +55,8 @@ public partial class AI : Charater
 
     protected override void UpdateMove()
     {
+        base.UpdateMove();
+
         StartCoroutine(WayPointMove());
     }
 
