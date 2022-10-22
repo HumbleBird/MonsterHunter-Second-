@@ -57,6 +57,11 @@ public partial class MyPlayer : Player
 		   Input.GetKey(KeyCode.S) ||
 		   Input.GetKey(KeyCode.D))
 			State = CreatureState.Move;
+		//else if (Input.GetKey(KeyCode.Space))
+  //      {
+		//	Animator.SetBool("Stand To Roll", true);
+		//	State = CreatureState.Idle;
+  //      }
 		else
 			_moveKeyPressed = false;
 	}

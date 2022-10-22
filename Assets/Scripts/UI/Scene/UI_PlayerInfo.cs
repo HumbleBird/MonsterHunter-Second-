@@ -22,29 +22,35 @@ public class UI_PlayerInfo : UI_Scene
 
     Charater _player;
 
+    public override bool Init()
+    {
+        if (base.Init() == false)
+            return false;
+
+        BindImage(typeof(Images));
+        BindText(typeof(Texts));
+
+        RefreshUI();
+
+        return true;
+    }
+
     public void SetInfo(Charater player)
     {
         _player = player;
-        Refresh();
+
+        RefreshUI();
     }
 
-    public override void Init()
+    public void RefreshUI()
     {
-        base.Init();
-
-        Bind<Image>(typeof(Images));
-        Bind<TextMeshPro>(typeof(Texts));
-    }
-
-    public void Refresh()
-    {
-        if (_player == null)
+        if (_init == false)
             return;
 
         Image HpBariamge = GetImage((int)Images.HPBar);
-        HpBariamge.fillAmount = _player.Hp / _player.MaxHp;
+        HpBariamge.fillAmount = (float)_player.Hp / _player.MaxHp;
         Image StaminaBariamge = GetImage((int)Images.STAMINABar);
-        StaminaBariamge.fillAmount = _player.Stamina / _player.MaxStamina;
+        StaminaBariamge.fillAmount = (float)_player.Stamina / _player.MaxStamina;
     }
 
     public void HitEvent()
@@ -54,7 +60,7 @@ public class UI_PlayerInfo : UI_Scene
 
     public IEnumerator DownHP()
     {
-        Refresh();
+        RefreshUI();
 
         yield return new WaitForSeconds(0.5f);
 
@@ -63,13 +69,15 @@ public class UI_PlayerInfo : UI_Scene
         while (true)
         {
             HpBarBGHitiamge.fillAmount -= Time.deltaTime;
-            if (HpBarBGHitiamge.fillAmount <= _player.Hp / _player.MaxHp)
+            if (HpBarBGHitiamge.fillAmount <= (float)_player.Hp / _player.MaxHp)
             {
-                HpBarBGHitiamge.fillAmount = _player.Hp / _player.MaxHp;
+                HpBarBGHitiamge.fillAmount = (float)_player.Hp / _player.MaxHp;
                 break;
             }
 
             yield return null;
         }
+
+        
     }
 }

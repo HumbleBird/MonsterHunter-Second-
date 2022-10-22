@@ -45,9 +45,9 @@ public class UI_BattleManager : MonoBehaviour, IPointerDownHandler, IDragHandler
 
     public void Init()
     {
-        GameObject player = Managers.Object.Find(1);
-        Player charater = player.GetComponent<Player>();
-        UIPlayerInfo.SetInfo(charater);
+        GameObject go = Managers.Object.Find(1);
+        Player player = go.GetComponent<Player>();
+        UIPlayerInfo.SetInfo(player);
     }
 
     public void HitEvent()

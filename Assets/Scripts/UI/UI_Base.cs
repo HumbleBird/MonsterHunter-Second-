@@ -9,7 +9,16 @@ using UnityEngine.UI;
 public abstract class UI_Base : MonoBehaviour
 {
 	protected Dictionary<Type, UnityEngine.Object[]> _objects = new Dictionary<Type, UnityEngine.Object[]>();
-	public abstract void Init();
+
+	protected bool _init = false;
+
+	public virtual bool Init()
+	{
+		if (_init)
+			return false;
+
+		return _init = true;
+	}
 
 	private void Start()
 	{
@@ -34,6 +43,11 @@ public abstract class UI_Base : MonoBehaviour
 		}
 	}
 
+	protected void BindObject(Type type) { Bind<GameObject>(type); }
+	protected void BindImage(Type type) { Bind<Image>(type); }
+	protected void BindText(Type type) { Bind<TextMeshProUGUI>(type); }
+	protected void BindButton(Type type) { Bind<Button>(type); }
+
 	protected T Get<T>(int idx) where T : UnityEngine.Object
 	{
 		UnityEngine.Object[] objects = null;
@@ -44,7 +58,7 @@ public abstract class UI_Base : MonoBehaviour
 	}
 
 	protected GameObject GetObject(int idx) { return Get<GameObject>(idx); }
-	protected TextMeshPro GetText(int idx) { return Get<TextMeshPro>(idx); }
+	protected TextMeshProUGUI GetText(int idx) { return Get<TextMeshProUGUI>(idx); }
 	protected Button GetButton(int idx) { return Get<Button>(idx); }
 	protected Image GetImage(int idx) { return Get<Image>(idx); }
 

@@ -68,9 +68,7 @@ public class BattleManager
         if (victimCharater.CompareTag("Player"))
             Managers.UIBattle.HitEvent();
 
-        // TODO 애니메이션
         victimCharater.Animator.Play("Hit");
-        //Debug.Log($"{victim.name}의 남은 체력은 {victimCharater.Hp}");
 
         if (victimCharater.Hp <= 0)
         {
