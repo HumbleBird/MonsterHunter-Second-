@@ -51,6 +51,9 @@ public class UI_PlayerInfo : UI_Scene
         HpBariamge.fillAmount = (float)_player.Hp / _player.MaxHp;
         Image StaminaBariamge = GetImage((int)Images.STAMINABar);
         StaminaBariamge.fillAmount = (float)_player.Stamina / _player.MaxStamina;
+
+        TextMeshProUGUI nameText = GetText((int)Texts.Name);
+        nameText.text = _player.name;
     }
 
     public void HitEvent()

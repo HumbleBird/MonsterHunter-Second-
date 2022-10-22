@@ -8,11 +8,18 @@ public partial class MyPlayer : Player
 {
 	void GetInputkeyAttack()
 	{
-		if (Input.GetMouseButtonDown(0) && _isNextCanAttack)
+		if (m_fCoolTime <= 0)
 		{
-			_isNextCanAttack = false;
-			State = CreatureState.Skill;
-			StartCoroutine(_attack.BasicAttack());
+			if (Input.GetMouseButtonDown(0) && _isNextCanAttack)
+			{
+				_isNextCanAttack = false;
+				State = CreatureState.Skill;
+				_attack.BasicAttack();
+			}
+		}
+		else
+		{
+			m_fCoolTime -= Time.deltaTime;
 		}
 	}
 }

@@ -9,6 +9,13 @@ public partial class Monster : AI
     {
         base.UpdateSkill();
 
-        StartCoroutine(_attack.BasicAttack(101));
+        if(m_fCoolTime <= 0)
+        {
+            _attack.BasicAttack(101);
+        }
+        else
+        {
+            m_fCoolTime -= Time.deltaTime;
+        }
     }
 }

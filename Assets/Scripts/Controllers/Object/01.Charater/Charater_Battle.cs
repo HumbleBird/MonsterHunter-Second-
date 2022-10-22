@@ -9,7 +9,7 @@ public partial class Charater : Base
 {
     // 접근점
     protected Attack _attack;
-
+    public float m_fCoolTime = 0f;
     public bool _isNextCanAttack = true;
 
     public GameObject target { get; set; } // 타겟
@@ -34,5 +34,10 @@ public partial class Charater : Base
     public virtual void HitEvent()
     {
         
+    }
+
+    public virtual void CanNextAttack(int id)
+    {
+        _attack.CanNextAttack(id);
     }
 }

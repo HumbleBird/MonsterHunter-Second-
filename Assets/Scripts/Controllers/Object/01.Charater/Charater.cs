@@ -50,6 +50,8 @@ public partial class Charater : Base
         Destroy(gameObject, 5);
     }
 
-
-    // TODO Trans
+    public bool m_bNextAttack = true;
+    void CheckAttackInfo()
+    {
+    }
 }

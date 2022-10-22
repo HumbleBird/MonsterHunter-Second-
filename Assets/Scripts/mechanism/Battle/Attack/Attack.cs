@@ -15,15 +15,19 @@ public abstract class Attack
 
     protected GameObject m_GOProjectile = null; // 투사체
 
+
     public virtual void Init(GameObject go)
     {
         m_Go = go.gameObject;
         m_cGo = m_Go.GetComponent<Charater>();
     }
 
-    public abstract IEnumerator BasicAttack(int id = 1);
+    public abstract void BasicAttack(int id = 1);
     public abstract void Skill();
     public virtual void Kick() { }
 
-    public abstract void NextAttackCheck();
+    public virtual void CanNextAttack(int nextNumber)
+    {
+
+    }
 }

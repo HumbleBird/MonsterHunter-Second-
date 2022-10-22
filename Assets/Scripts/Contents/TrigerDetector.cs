@@ -9,7 +9,7 @@ public class TrigerDetector : MonoBehaviour
 
     public void Set()
     {
-        Managers.Camera.Shake(100001);
+       // Managers.Camera.Shake(100001);
         gameObject.SetActive(true);
     }
 

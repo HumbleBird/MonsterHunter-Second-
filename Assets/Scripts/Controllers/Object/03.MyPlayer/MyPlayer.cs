@@ -17,7 +17,17 @@ public partial class MyPlayer : Player
 		m_tCamera = Camera.main;
 	}
 
-	protected override void UpdateController()
+    protected override void Update()
+    {
+        base.Update();
+
+		if (Input.GetKey(KeyCode.I))
+		{
+			Managers.Camera.ZoomEndStage(0f, -1.5f, 1.5f, 3f - 1.5f, 0.5f, Vector3.zero);
+		}
+	}
+
+    protected override void UpdateController()
     {
         base.UpdateController();
 
@@ -38,7 +48,7 @@ public partial class MyPlayer : Player
 		}
 	}
 
-	bool _moveKeyPressed = false;
+    bool _moveKeyPressed = false;
 	protected override void UpdateIdle()
     {
 		// 이동 상태로 갈지 확인
@@ -57,13 +67,8 @@ public partial class MyPlayer : Player
 		   Input.GetKey(KeyCode.S) ||
 		   Input.GetKey(KeyCode.D))
 			State = CreatureState.Move;
-		//else if (Input.GetKey(KeyCode.Space))
-  //      {
-		//	Animator.SetBool("Stand To Roll", true);
-		//	State = CreatureState.Idle;
-  //      }
-		else
-			_moveKeyPressed = false;
+
+		_moveKeyPressed = false;
 	}
 
 	protected override void UpdateMove()
@@ -103,6 +108,22 @@ public partial class MyPlayer : Player
 		else
 		{
 			Cursor.lockState = CursorLockMode.None;
+		}
+	}
+
+	public override void CanNextAttack(int id)
+    {
+		_attack.CanNextAttack(id);
+	}
+
+	void EndStage()
+    {
+		// 스테이지 blur
+		// Cinemashin의 카메라와 shake가 충돌을 일으켜서 안 되는 듯.
+		// 끝날 때만 이걸 활용하도록 한다.
+		if (Input.GetKey(KeyCode.I))
+		{
+			Managers.Camera.ZoomEndStage(0f, -1.5f, 1.5f, 3f - 1.5f, 0.5f, Vector3.zero);
 		}
 	}
 }

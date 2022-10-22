@@ -286,8 +286,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1342959200176554030}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -5}
+  m_LocalRotation: {x: -0, y: 0.9670617, z: -0, w: 0.25454214}
+  m_LocalPosition: {x: -5.9461417, y: 1, z: 12.244509}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -296,7 +296,7 @@ Transform:
   - {fileID: 7365884736523521305}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 150.507, z: 0}
 --- !u!136 &4597673734399790262
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -343,9 +343,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8bffddf5a64c7ab479ecd6a45c505720, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _destPos: {x: 0, y: 0, z: 0}
-  attackCollider: {fileID: 0}
-  _lockTarget: {fileID: 0}
+  State: 0
+  _isNextCanAttack: 1
   startWaitTime: 4
   timeToRotate: 2
   speedWalk: 1
@@ -362,24 +361,6 @@ MonoBehaviour:
   obstacleMask:
     serializedVersion: 2
     m_Bits: 2048
-  agent: {fileID: 0}
-  player: {fileID: 0}
-  whatIsGround:
-    serializedVersion: 2
-    m_Bits: 512
-  whatIsPlayer:
-    serializedVersion: 2
-    m_Bits: 128
-  health: 120
-  walkPoint: {x: 0, y: 0, z: 0}
-  walkPointRange: 5
-  timeBetweenAttacks: 0.5
-  projectile: {fileID: 1553130282568054828, guid: c5c4614a4c81c7c4babd70317cb44a28,
-    type: 3}
-  sightRange: 20
-  attackRange: 12
-  playerInSightRange: 0
-  playerInAttackRange: 0
 --- !u!54 &-3509180163188868673
 Rigidbody:
   m_ObjectHideFlags: 0
