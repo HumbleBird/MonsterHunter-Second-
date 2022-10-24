@@ -8,11 +8,14 @@ using static Define;
 public partial class Charater : Base
 {
 	public CreatureState State = CreatureState.Idle;
+    [HideInInspector] public bool waiting = false;
 
     protected virtual void Start()
     {
         MaxHp = Hp;
         MaxStamina = Stamina;
+
+        _attack.Init(gameObject);
     }
 
     protected virtual void Update()
@@ -53,5 +56,11 @@ public partial class Charater : Base
     public bool m_bNextAttack = true;
     void CheckAttackInfo()
     {
+    }
+
+    public void ResetWating(string animname)
+    {
+        Animator.SetBool(animname, false);
+        waiting = false;
     }
 }

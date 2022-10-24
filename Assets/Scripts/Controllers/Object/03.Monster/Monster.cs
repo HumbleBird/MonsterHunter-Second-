@@ -14,6 +14,5 @@ public partial class Monster : AI
         aiInfo = Managers.Table.m_AI.Get(bossInfo.m_iAI);
 
         ChangeClass("Blow");
-
     }
 }

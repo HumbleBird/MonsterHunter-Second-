@@ -27,8 +27,6 @@ public partial class Charater : Base
             default:
                 break;
         }
-
-        _attack.Init(gameObject);
     }
 
     public virtual void HitEvent()
@@ -39,5 +37,19 @@ public partial class Charater : Base
     public virtual void CanNextAttack(int id)
     {
         _attack.CanNextAttack(id);
+    }
+
+    public void Stop(float duration)
+    {
+        if (waiting)
+            return;
+        StartCoroutine(Wait(duration));
+    }
+
+    IEnumerator Wait(float duration)
+    {
+        waiting = true;
+        yield return new WaitForSecondsRealtime(duration);
+        waiting = false;
     }
 }

@@ -34,18 +34,23 @@ public partial class MyPlayer : Player
 		switch (State)
 		{
 			case CreatureState.Idle:
-				GetDirInput();
-				GetInputkeyAttack();
+				GetInputKey();
 				break;
 			case CreatureState.Move:
-				GetDirInput();
-				GetInputkeyAttack();
+				GetInputKey();
 				break;
 			case CreatureState.Skill:
 				break;
 			case CreatureState.Dead:
 				break;
 		}
+	}
+
+	void GetInputKey()
+    {
+		GetDirInput();
+		GetInputkeyAttack();
+		GetMoveActionInput();
 	}
 
     bool _moveKeyPressed = false;
@@ -67,12 +72,20 @@ public partial class MyPlayer : Player
 		   Input.GetKey(KeyCode.S) ||
 		   Input.GetKey(KeyCode.D))
 			State = CreatureState.Move;
-
 		_moveKeyPressed = false;
+	}
+
+	void GetMoveActionInput()
+    {
+		if (Input.GetKey(KeyCode.Space))
+			playerMove.Roll();
 	}
 
 	protected override void UpdateMove()
     {
+		if (waiting)
+			return;
+
 		float horizontal = Input.GetAxis("Horizontal");
 		float vertical = Input.GetAxis("Vertical");
 

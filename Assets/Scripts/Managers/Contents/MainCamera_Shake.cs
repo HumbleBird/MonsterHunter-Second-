@@ -94,9 +94,9 @@ public partial class MainCamera : MonoBehaviour
         m_ShakeInfo.m_RemainDist = m_ShakeInfo.m_Shake.magnitude;
         m_ShakeInfo.m_fRemainCountDis = float.MaxValue;
 
-        m_ShakeInfo.m_Veclocity = 3;//info.m_fSpeed;
+        m_ShakeInfo.m_Veclocity = info.m_fSpeed;
 
-        m_ShakeInfo.m_Damping = 1f;//info.m_fDamping;
+        m_ShakeInfo.m_Damping = info.m_fDamping;
         m_ShakeInfo.m_UseDamping = info.m_fDamping > 0;
 
         if (m_ShakeInfo.m_UseDamping)

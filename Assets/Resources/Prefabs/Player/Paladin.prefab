@@ -273,6 +273,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   State: 0
+  waiting: 0
+  m_bNextAttack: 1
+  m_fCoolTime: 0
   _isNextCanAttack: 1
   _attackItem: {fileID: 9074619578433338133}
   followTransform: {fileID: 6756492207421512747}
@@ -319,7 +322,7 @@ Animator:
   m_Controller: {fileID: 9100000, guid: 2c291dc785f62b946afc33152735d06f, type: 2}
   m_CullingMode: 2
   m_UpdateMode: 0
-  m_ApplyRootMotion: 0
+  m_ApplyRootMotion: 1
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
   m_WarningMessage: 

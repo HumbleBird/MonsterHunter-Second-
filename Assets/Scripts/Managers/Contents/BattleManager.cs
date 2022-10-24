@@ -6,7 +6,7 @@ using static Define;
 
 public class BattleManager
 {
-    #region Player
+    #region Spawn
     void CreatePlayer(int id)
     {
         Table_Player.Info pinfo = Managers.Table.m_Player.Get(id);
@@ -66,7 +66,10 @@ public class BattleManager
         victimCharater.Hp -= damage;
 
         if (victimCharater.CompareTag("Player"))
+        {
+            victimCharater.Stop(0.2f);
             Managers.UIBattle.HitEvent();
+        }
 
         victimCharater.Animator.Play("Hit");
 
@@ -76,5 +79,7 @@ public class BattleManager
             victimCharater.State = Define.CreatureState.Dead;
         }
     }
+
+
     #endregion
 }
