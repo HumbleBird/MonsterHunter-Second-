@@ -82,4 +82,32 @@ public class BattleManager
 
 
     #endregion
+
+    #region Camera
+    void EndStage()
+    {
+        // 스테이지 blur
+        // Cinemashin의 카메라와 shake가 충돌을 일으켜서 안 되는 듯.
+        // 끝날 때만 이걸 활용하도록 한다.
+        if (Input.GetKey(KeyCode.I))
+        {
+            Managers.Camera.ZoomEndStage(0f, -1.5f, 1.5f, 3f - 1.5f, 0.5f, Vector3.zero);
+        }
+    }
+    #endregion
+
+    #region ETC
+    //마우스 커서
+    private void OnApplicationFocus(bool focus)
+    {
+        if (focus)
+        {
+            Cursor.lockState = CursorLockMode.Locked;
+        }
+        else
+        {
+            Cursor.lockState = CursorLockMode.None;
+        }
+    }
+    #endregion
 }

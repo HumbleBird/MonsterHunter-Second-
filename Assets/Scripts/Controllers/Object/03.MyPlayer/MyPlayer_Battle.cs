@@ -22,4 +22,9 @@ public partial class MyPlayer : Player
 			m_fCoolTime -= Time.deltaTime;
 		}
 	}
+
+	public override void CanNextAttack(int id)
+	{
+		_attack.CanNextAttack(id);
+	}
 }

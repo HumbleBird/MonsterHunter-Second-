@@ -19,18 +19,4 @@ public partial class Player : Charater
 
         playerMove.Init(gameObject);
     }
-
-    public void Attack(GameObject obj)
-    {
-        Managers.Battle.HitEvent(gameObject, (int)Atk, obj);
-    }
-
-    public override void HitEvent()
-    {
-        TrigerDetector _detectorItem = _attackItem.GetComponentInChildren<TrigerDetector>();
-
-        _detectorItem.Set();
-    }
-
-
 }

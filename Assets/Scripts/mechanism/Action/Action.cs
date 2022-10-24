@@ -13,6 +13,14 @@ public class Action : Strategy
     public void Roll()
     {
         m_cGo.waiting = true;
-        m_cGo.Animator.SetBool("Stand To Roll", true);
+
+        if (m_cGo.State == Define.CreatureState.Idle)
+        {
+            m_cGo.Animator.SetBool("Stand To Roll", true);
+        }
+        else if (m_cGo.State == Define.CreatureState.Move)
+        {
+            m_cGo.Animator.SetBool("Run To Roll", true);
+        }
     }
 }

@@ -110,33 +110,4 @@ public partial class MyPlayer : Player
 
 		Animator.SetFloat("Sprint", inputMagnitude, 0.05f, Time.deltaTime);
 	}
-
-	//마우스 커서
-	private void OnApplicationFocus(bool focus)
-	{
-		if (focus)
-		{
-			Cursor.lockState = CursorLockMode.Locked;
-		}
-		else
-		{
-			Cursor.lockState = CursorLockMode.None;
-		}
-	}
-
-	public override void CanNextAttack(int id)
-    {
-		_attack.CanNextAttack(id);
-	}
-
-	void EndStage()
-    {
-		// 스테이지 blur
-		// Cinemashin의 카메라와 shake가 충돌을 일으켜서 안 되는 듯.
-		// 끝날 때만 이걸 활용하도록 한다.
-		if (Input.GetKey(KeyCode.I))
-		{
-			Managers.Camera.ZoomEndStage(0f, -1.5f, 1.5f, 3f - 1.5f, 0.5f, Vector3.zero);
-		}
-	}
 }

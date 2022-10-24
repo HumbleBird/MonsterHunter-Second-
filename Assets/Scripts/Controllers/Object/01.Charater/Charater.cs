@@ -53,12 +53,8 @@ public partial class Charater : Base
         Destroy(gameObject, 5);
     }
 
-    public bool m_bNextAttack = true;
-    void CheckAttackInfo()
-    {
-    }
 
-    public void ResetWating(string animname)
+    public void ResetAnimation(string animname)
     {
         Animator.SetBool(animname, false);
         waiting = false;

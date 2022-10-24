@@ -61,7 +61,7 @@ ModelImporter:
       curves: []
       events:
       - time: 0.84333295
-        functionName: ResetWating
+        functionName: ResetAnimation
         data: Stand To Roll
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0
