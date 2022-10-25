@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
+using static Define;
 
 public class Action : Strategy
 {
@@ -12,6 +13,7 @@ public class Action : Strategy
 
     public void Roll()
     {
+        
         m_cGo.waiting = true;
 
         if (m_cGo.State == Define.CreatureState.Idle)
@@ -22,5 +24,25 @@ public class Action : Strategy
         {
             m_cGo.Animator.SetBool("Run To Roll", true);
         }
+    }
+
+    public void Crounch(PlayerActionMoveState State)
+    {
+        if(State == PlayerActionMoveState.Start)
+            m_cGo.Animator.SetBool("Crounch Start", true);
+        else if (State == PlayerActionMoveState.End)
+            m_cGo.Animator.SetBool("Crounch Start", false);
+
+        m_cGo.Animator.SetFloat("Crounch State", (int)State);
+    }
+
+    public void Shild(PlayerActionMoveState State)
+    {
+        if (State == PlayerActionMoveState.Start)
+            m_cGo.Animator.SetBool("Shild", true);
+        else if (State == PlayerActionMoveState.End)
+            m_cGo.Animator.SetBool("Shild", false);
+
+        m_cGo.Animator.SetFloat("Shild State", (int)State);
     }
 }

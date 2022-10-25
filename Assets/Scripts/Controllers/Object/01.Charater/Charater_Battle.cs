@@ -37,6 +37,7 @@ public partial class Charater : Base
     public virtual void CanNextAttack(int id)
     {
         _attack.CanNextAttack(id);
+        State = CreatureState.Idle;
     }
 
     public void Stop(float duration)

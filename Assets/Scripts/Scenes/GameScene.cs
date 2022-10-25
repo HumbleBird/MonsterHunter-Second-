@@ -12,8 +12,8 @@ public class GameScene : BaseScene
         Managers.Battle.SpawnCharater(Define.CharaterType.Player);
         Managers.Battle.SpawnCharater(Define.CharaterType.Boss);
 
+        Managers.UIBattle.UIPlayerInfo = Managers.UI.ShowSceneUI<UI_PlayerInfo>();
         Managers.UIBattle.Init();
-
         //Managers.UI.ShowSceneUI<UI_Inven>();
         //gameObject.GetOrAddComponent<CursorController>();
 

@@ -24,7 +24,6 @@ public class Blow : Attack
         m_cGo.Animator.SetBool(info.m_sAnimName, true);
 
         m_cGo._isNextCanAttack = true;
-        m_cGo.State = Define.CreatureState.Idle;
         m_cGo.m_fCoolTime = info.m_fCoolTime;
     }
 

@@ -10,8 +10,7 @@ public class Managers : MonoBehaviour
     #region Contents
     ObjectManager _object = new ObjectManager();
     BattleManager _battle = new BattleManager();
-    [SerializeField]
-    UI_BattleManager _uiBattle;
+    UI_BattleManager _uiBattle = new UI_BattleManager();
     [SerializeField]
     MainCamera _maincamera;
     ZoneManager _zone = new ZoneManager();

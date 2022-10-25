@@ -75,10 +75,19 @@ public partial class MyPlayer : Player
 		_moveKeyPressed = false;
 	}
 
-	void GetMoveActionInput()
-    {
+	protected void GetMoveActionInput()
+	{
 		if (Input.GetKey(KeyCode.Space))
-			playerMove.Roll();
+			m_stPlayerMove.Roll();
+
+        if (Input.GetKeyDown(KeyCode.LeftControl))
+            m_stPlayerMove.Crounch(PlayerActionMoveState.Start);
+        else if (Input.GetKey(KeyCode.LeftControl))
+            m_stPlayerMove.Crounch(PlayerActionMoveState.Idle);
+        else if (Input.GetKeyUp(KeyCode.LeftControl))
+            m_stPlayerMove.Crounch(PlayerActionMoveState.End);
+		else
+            m_stPlayerMove.Crounch(PlayerActionMoveState.None);
 	}
 
 	protected override void UpdateMove()

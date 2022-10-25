@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class UI_BattleManager : MonoBehaviour, IPointerDownHandler, IDragHandler, IPointerUpHandler
+public class UI_BattleManager : IPointerDownHandler, IDragHandler, IPointerUpHandler
 {
     #region ¡∂¿ÃΩ∫∆Ω
     public JoyStick2 JOYSTICK;

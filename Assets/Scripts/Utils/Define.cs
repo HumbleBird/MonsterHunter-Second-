@@ -4,6 +4,14 @@ using UnityEngine;
 
 public class Define
 {
+    public enum PlayerActionMoveState
+    {
+        Start = 0,
+        Idle = 1,
+        Hit = 2,
+        End = 3,
+        None = 4
+    }
 
     public enum CharaterType
     {
