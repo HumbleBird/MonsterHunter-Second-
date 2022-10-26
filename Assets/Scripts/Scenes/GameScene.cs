@@ -14,6 +14,8 @@ public class GameScene : BaseScene
 
         Managers.UIBattle.UIPlayerInfo = Managers.UI.ShowSceneUI<UI_PlayerInfo>();
         Managers.UIBattle.Init();
+
+        Managers.Sound.Play()
         //Managers.UI.ShowSceneUI<UI_Inven>();
         //gameObject.GetOrAddComponent<CursorController>();
 

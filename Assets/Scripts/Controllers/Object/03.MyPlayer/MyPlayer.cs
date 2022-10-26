@@ -75,21 +75,39 @@ public partial class MyPlayer : Player
 		_moveKeyPressed = false;
 	}
 
+	// ±∏∏£±‚, æ…±‚ µÓµÓ
 	protected void GetMoveActionInput()
 	{
 		if (Input.GetKey(KeyCode.Space))
 			m_stPlayerMove.Roll();
 
+		// æ…±‚
         if (Input.GetKeyDown(KeyCode.LeftControl))
             m_stPlayerMove.Crounch(PlayerActionMoveState.Start);
         else if (Input.GetKey(KeyCode.LeftControl))
-            m_stPlayerMove.Crounch(PlayerActionMoveState.Idle);
-        else if (Input.GetKeyUp(KeyCode.LeftControl))
-            m_stPlayerMove.Crounch(PlayerActionMoveState.End);
+        {
+			m_stPlayerMove.Crounch(PlayerActionMoveState.Idle);
+
+			// æ…¿∫ ªÛ≈¬ø°º≠ ΩØµÂ
+			if (Input.GetMouseButtonDown(1))
+				m_stPlayerMove.CrounchBlock(PlayerActionMoveState.Start);
+			else if (Input.GetMouseButtonDown(1))
+			{
+				m_stPlayerMove.CrounchBlock(PlayerActionMoveState.Idle);
+			}
+			else if (Input.GetMouseButtonUp(1))
+				m_stPlayerMove.CrounchBlock(PlayerActionMoveState.End);
+		}
+		else if (Input.GetKeyUp(KeyCode.LeftControl))
+        {
+			m_stPlayerMove.Crounch(PlayerActionMoveState.End);
+			m_stPlayerMove.CrounchBlock(PlayerActionMoveState.End);
+		}
 		else
             m_stPlayerMove.Crounch(PlayerActionMoveState.None);
 	}
 
+	// ∞»±‚, ¥ﬁ∏Æ±‚ µÓ
 	protected override void UpdateMove()
     {
 		if (waiting)
@@ -98,7 +116,7 @@ public partial class MyPlayer : Player
 		float horizontal = Input.GetAxis("Horizontal");
 		float vertical = Input.GetAxis("Vertical");
 
-		float speed = WalkSpeed;
+		MoveSpeed = WalkSpeed;
 
 		Vector3 move = new Vector3(horizontal, 0, vertical);
 		move = Quaternion.AngleAxis(m_tCamera.transform.rotation.eulerAngles.y, Vector3.up) * move;
@@ -109,10 +127,10 @@ public partial class MyPlayer : Player
 		if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))
 		{
 			inputMagnitude *= 2;
-			speed = RunSpeed;
+			MoveSpeed = RunSpeed;
 		}
 
-		transform.position += move * speed * Time.deltaTime;
+		transform.position += move * MoveSpeed * Time.deltaTime;
 
 		if (move != Vector3.zero)
 			transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(move), 10 * Time.deltaTime);

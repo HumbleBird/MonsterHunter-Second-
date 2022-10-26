@@ -29,20 +29,26 @@ public class Action : Strategy
     public void Crounch(PlayerActionMoveState State)
     {
         if(State == PlayerActionMoveState.Start)
+        {
             m_cGo.Animator.SetBool("Crounch Start", true);
+            m_cGo.MoveSpeed = m_cGo.CrounchSpeed;
+        }
         else if (State == PlayerActionMoveState.End)
+        {
             m_cGo.Animator.SetBool("Crounch Start", false);
+        }
 
         m_cGo.Animator.SetFloat("Crounch State", (int)State);
     }
 
-    public void Shild(PlayerActionMoveState State)
+    public void CrounchBlock(PlayerActionMoveState State)
     {
         if (State == PlayerActionMoveState.Start)
-            m_cGo.Animator.SetBool("Shild", true);
+            m_cGo.Animator.SetBool("Crounch Block Start", true);
+        // 스테미너 회복 감소
         else if (State == PlayerActionMoveState.End)
-            m_cGo.Animator.SetBool("Shild", false);
+            m_cGo.Animator.SetBool("Crounch Block Start", false);
 
-        m_cGo.Animator.SetFloat("Shild State", (int)State);
+        m_cGo.Animator.SetFloat("Crounch Block State", (int)State);
     }
 }

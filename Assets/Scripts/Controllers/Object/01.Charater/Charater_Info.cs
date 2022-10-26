@@ -19,8 +19,11 @@ public abstract partial class Charater : Base
     public int MaxStamina { get; set; }
     public float Atk { get { return statInfo.m_fAtk; } set { statInfo.m_fAtk = value; } }
     public float Def { get { return statInfo.m_fDef; } set { statInfo.m_fDef = value; } }
+    public float MoveSpeed { get; set; }
     public float WalkSpeed { get { return statInfo.m_fWalkSpeed; } set { statInfo.m_fWalkSpeed = value; } }
     public float RunSpeed { get { return statInfo.m_fRunSpeed; } set { statInfo.m_fRunSpeed = value; } }
+    public float CrounchSpeed { get { return statInfo.m_fCrunchSpeed; } set { statInfo.m_fCrunchSpeed = value; } }
+    
     #endregion
 }
 
