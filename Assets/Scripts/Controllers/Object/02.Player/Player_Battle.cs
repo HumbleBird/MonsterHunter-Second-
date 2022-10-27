@@ -9,6 +9,7 @@ public partial class Player : Charater
     public void Attack(GameObject obj)
     {
         Managers.Battle.HitEvent(gameObject, (int)Atk, obj);
+        Managers.Sound.Play("Effect/Blades&Bludgeonings-Free/BladeHack4-Free-1");
     }
 
     public override void HitEvent()

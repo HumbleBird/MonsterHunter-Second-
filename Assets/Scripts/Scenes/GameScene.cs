@@ -15,7 +15,7 @@ public class GameScene : BaseScene
         Managers.UIBattle.UIPlayerInfo = Managers.UI.ShowSceneUI<UI_PlayerInfo>();
         Managers.UIBattle.Init();
 
-        Managers.Sound.Play()
+        Managers.Sound.Play("Bgm/bigbattle_2_FULL", Define.Sound.Bgm);
         //Managers.UI.ShowSceneUI<UI_Inven>();
         //gameObject.GetOrAddComponent<CursorController>();
 

@@ -137,4 +137,10 @@ public partial class MyPlayer : Player
 
 		Animator.SetFloat("Sprint", inputMagnitude, 0.05f, Time.deltaTime);
 	}
+
+	void Step()
+    {
+		Managers.Sound.Play("Effect/12_Player_Movement_SFX/03_Step_grass_03");
+
+	}
 }
