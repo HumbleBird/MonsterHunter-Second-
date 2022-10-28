@@ -11,9 +11,8 @@ public abstract class Attack : Strategy
     public abstract void BasicAttack(int id = 1);
     public abstract void Skill();
     public virtual void Kick() { }
-
-    public virtual void CanNextAttack(int nextNumber)
+    public virtual void CanNextAttack(Action action, int id)
     {
-
+        // action 함수 실행
     }
 }
