@@ -51,4 +51,15 @@ public class Action : Strategy
 
         m_cGo.Animator.SetFloat("Crounch Block State", (int)State);
     }
+
+    public void Shiled(PlayerActionMoveState State)
+    {
+        if (State == PlayerActionMoveState.Start)
+            m_cGo.Animator.SetBool("Shield Start", true);
+        // 스테미너 회복 감소
+        else if (State == PlayerActionMoveState.End)
+            m_cGo.Animator.SetBool("Shield Start", false);
+
+        m_cGo.Animator.SetFloat("Shield State", (int)State);
+    }
 }

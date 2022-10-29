@@ -17,16 +17,6 @@ public partial class MyPlayer : Player
 		m_tCamera = Camera.main;
 	}
 
-    protected override void Update()
-    {
-        base.Update();
-
-		if (Input.GetKey(KeyCode.I))
-		{
-			Managers.Camera.ZoomEndStage(0f, -1.5f, 1.5f, 3f - 1.5f, 0.5f, Vector3.zero);
-		}
-	}
-
     protected override void UpdateController()
     {
         base.UpdateController();
@@ -78,11 +68,23 @@ public partial class MyPlayer : Player
 	// ±¸¸£±â, ¾É±â µîµî
 	protected void GetMoveActionInput()
 	{
+		// ±¸¸£±â
 		if (Input.GetKey(KeyCode.Space))
 			m_stPlayerMove.Roll();
 
+		// ½¯µå
+		if (Input.GetMouseButtonDown(1))
+		{
+			m_stPlayerMove.Shiled(PlayerActionMoveState.Start);
+
+			if (Input.GetMouseButtonDown(1))
+				m_stPlayerMove.Shiled(PlayerActionMoveState.Idle);
+		}
+		else if (Input.GetMouseButtonUp(1))
+			m_stPlayerMove.Shiled(PlayerActionMoveState.End);
+
 		// ¾É±â
-        if (Input.GetKeyDown(KeyCode.LeftControl))
+		if (Input.GetKeyDown(KeyCode.LeftControl))
             m_stPlayerMove.Crounch(PlayerActionMoveState.Start);
         else if (Input.GetKey(KeyCode.LeftControl))
         {
@@ -105,6 +107,8 @@ public partial class MyPlayer : Player
 		}
 		else
             m_stPlayerMove.Crounch(PlayerActionMoveState.None);
+
+
 	}
 
 	// °È±â, ´Þ¸®±â µî
@@ -140,7 +144,7 @@ public partial class MyPlayer : Player
 
 	void Step()
     {
-		Managers.Sound.Play("Effect/12_Player_Movement_SFX/03_Step_grass_03");
+		//Managers.Sound.Play("Effect/12_Player_Movement_SFX/03_Step_grass_03");
 
 	}
 }

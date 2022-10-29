@@ -13,18 +13,18 @@ public class UI_BattleManager : IPointerDownHandler, IDragHandler, IPointerUpHan
         JOYSTICK.gameObject.SetActive(true);
 
 
-#if UNITY_ANDROID
-    #if UNITY_EDITOR
-        //JOYSTCK.transform.position = input.mousePosition;
-    #else
-        Touch touch = Input.GetTouch(0);
+//#if UNITY_ANDROID
+//    #if UNITY_EDITOR
+//        //JOYSTCK.transform.position = input.mousePosition;
+//    #else
+//        Touch touch = Input.GetTouch(0);
 
-        JOYSTICK.tranform.position = touch.position;
-    #endif
-        JOYSTICK.OnDown((PointerEventData)evt);
+//        JOYSTICK.tranform.position = touch.position;
+//    #endif
+//        JOYSTICK.OnDown((PointerEventData)evt);
 
-#endif
-        JOYSTICK.OnDown((PointerEventData)evt);
+//#endif
+//        JOYSTICK.OnDown((PointerEventData)evt);
 
     }
 

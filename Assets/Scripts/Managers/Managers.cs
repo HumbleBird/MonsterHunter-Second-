@@ -28,8 +28,6 @@ public class Managers : MonoBehaviour
     SceneManagerEx _scene = new SceneManagerEx();
     SoundManager _sound = new SoundManager();
     UIManager _ui = new UIManager();
-    [SerializeField]
-    PhotonManager _photon;
     TableManager _table = new TableManager();
 
     public static PoolManager Pool { get { return Instance._pool; } }
@@ -37,7 +35,6 @@ public class Managers : MonoBehaviour
     public static SceneManagerEx Scene { get { return Instance._scene; } }
     public static SoundManager Sound { get { return Instance._sound; } }
     public static UIManager UI { get { return Instance._ui; } }
-    public static PhotonManager PHOTON { get { return Instance._photon; } }
     public static TableManager Table { get { return Instance._table; } }
     #endregion
 
@@ -80,7 +77,6 @@ public class Managers : MonoBehaviour
         Scene.Clear();
         UI.Clear();
         Pool.Clear();
-        PHOTON.Clear();
 
     }
 }
